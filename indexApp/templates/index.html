@@ -1,0 +1,631 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Banner start -->
+
+<style>
+    .buttonBar {
+    display: none;
+}
+</style>
+<div class="banner banner_video_bg">
+    <div class="pattern-overlay">
+        {% for banner_detail in  banner_details %}
+        <a id="bgndVideo" class="player" data-property="{videoURL:'{{banner_detail.video_link}}',containment:'.banner_video_bg', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active item-100vh">
+                    <div class="container">
+                        <div class="carousel-caption banner-slider-inner">
+                            <div class="banner-content container align-self-center text-start">
+                                <h1>{{banner_detail.title}}</h1>
+                                <p>{{banner_detail.title1}}</p>
+                                <a class="btn-2 btn-defaults" href="#" data-animation="animated fadeInUp delay-15s">
+                                    <span>Get Started Now</span> <i class="arrow"></i>
+                                </a>
+                                <!-- <a class="btn-1 btn-outline-1" href="#" data-animation="animated fadeInUp delay-15s">
+                                    <span>Learn More</span> <i class="arrow"></i>
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Banner end -->
+
+<!-- Featured properties start -->
+<div class="content-area featured-properties">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title-3">
+            <p class="section-subtitle">Best Rent Properties</p>
+            <h1>Featured Properties</h1>
+        </div>
+        <div class="row">
+            {% for feature_detail in feature_details %}
+            <div class="col-lg-6 col-md-12 col-sm-12 wow fadeInLeft delay-04s">
+                <div class="row g-0 property fp2">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <!-- Property img -->
+                        <div class="property-img">
+                            <div class="property-tag button alt featured">Featured</div>
+                            <div class="property-price">${{feature_detail.price}}</div>
+                            <img src="{{feature_detail.post_pic.url}}" alt="fp-list" class="img-responsive hp-2">
+                            <div class="property-overlay">
+                                <a href="properties-details.html" class="overlay-link">
+                                    <i class="fa fa-link"></i>
+                                </a>
+                                <!-- <a class="overlay-link property-video" title="Lexus GS F">
+                                    <i class="fa fa-video-camera"></i>
+                                </a> -->
+                                <!-- <div class="property-magnify-gallery">
+                                    <a href="img/properties/properties-14.jpg" class="overlay-link">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                    <a href="img/properties/properties-13.jpg" class="hidden"></a>
+                                    <a href="img/properties/properties-15.jpg" class="hidden"></a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 property-content">
+                        <!-- Info -->
+                        <div class="info">
+                            <!-- title -->
+                            <h1 class="title">
+                                <a href="properties-details.html">{{feature_detail.post_title}}</a>
+                            </h1>
+                            <!-- Property address -->
+                            <h3 class="property-address">
+                                <a href="/?location={{feature_detail.post_location}}">
+                                    <i class="fa fa-map-marker"> {{feature_detail.post_location}}</i>
+                                </a>
+                            </h3>
+                            <!-- Facilities List -->
+                            <ul class="facilities-list fl-2 clearfix">
+                                <li>
+                                    <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
+                                    <span>{{feature_detail.sqr_feet}} sq ft</span>
+                                </li>
+                                <li>
+                                    <i class="flaticon-bed"></i>
+                                    <span>{{feature_detail.bedrooms}} Bedrooms</span>
+                                </li>
+                                <li>
+                                    <i class="flaticon-holidays"></i>
+                                    <span>{{feature_detail.bathrooms}} Bathrooms</span>
+                                </li>
+                                <li>
+                                    <i class="flaticon-vehicle"></i>
+                                    <span>{{feature_detail.garage}} Garage </span>
+                                </li>
+                            </ul>
+                            <!-- Property footer -->
+                        </div>
+                        <!-- Property footer -->
+                        <div class="property-footer">
+                            <span class="left">
+                                <!-- <a href="#"><i class="fa fa-user"></i>{{feature_detail.developer_name}}</a> -->
+                            </span>
+                            <span class="right">
+                                    <i class="fa fa-calendar"></i>{{feature_detail.get_date}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Featured properties end -->
+
+<!-- Services start -->
+<div class="services content-area-11 clearfix">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title-3">
+            <p class="section-subtitle">Our Expertise</p>
+            <h1>Why Choose Us</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInLeft delay-04s">
+                <div class="service-info-2 df-box">
+                    <div class="number">01</div>
+                    <div class="icon">
+                        <i class="flaticon-people-1"></i>
+                    </div>
+                    <div class="detail">
+                        <h5>
+                            <a href="services-1.html">Trusted By Thousands</a>
+                        </h5>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy Lorem Ipsum has been standard dummy.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp delay-04s">
+                <div class="service-info-2 df-box">
+                    <div class="number">02</div>
+                    <div class="icon">
+                        <i class="flaticon-symbol-1"></i>
+                    </div>
+                    <div class="detail">
+                        <h5>
+                            <a href="services-1.html">Financing Made Easy</a>
+                        </h5>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy Lorem Ipsum has been standard dummy text.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInRight delay-04s">
+                <div class="service-info-2 df-box">
+                    <div class="number">03</div>
+                    <div class="icon">
+                        <i class="flaticon-apartment"></i>
+                    </div>
+                    <div class="detail">
+                        <h5>
+                            <a href="services-1.html">Find Your Property </a>
+                        </h5>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy Lorem Ipsum has been standard dummy text.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-sm-12 text-center wow fadeInUp delay-04s">
+                <a class="btn-1 btn-outline-1" href="services-1.html">
+                    <span>Read More</span> <i class="arrow"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Services end -->
+
+<!-- Recently properties start -->
+<div class="content-area-17 comon-slick recently-properties">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title-3">
+            <p class="section-subtitle">Latest Listings</p>
+            <h1>Recently Properties</h1>
+        </div>
+        <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+            {% for recent_pro_detail in recent_pro_details %}
+            <div class="item slide-box wow fadeInRight delay-04s">
+                <div class="property-2">
+                    <div class="property-inner">
+                        <div class="property-overflow">
+                            <div class="property-photo">
+                                <img src="{{recent_pro_detail.images.url}}" alt="rp" class="img-fluid">
+                                <div class="listing-badges">
+                                    <span class="featured active">
+                                        {% if recent_pro_detail.for_sale %}
+                                        {{recent_pro_detail.for_sale}}
+                                        {% else %}
+                                        {{recent_pro_detail.for_rent}}
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="price-ratings">
+                                    <div class="price">${{recent_pro_detail.price}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content -->
+                        <div class="content">
+                            <!-- title -->
+                            <h4 class="title">
+                                <a href="properties-details.html">{{recent_pro_detail.title}}</a>
+                            </h4>
+                            <!-- Property address -->
+                            <h3 class="property-address">
+                                <a href="properties-details.html">
+                                    <i class="fa fa-map-marker"></i>{{recent_pro_detail.location}} Kathal St. Tampa City,
+                                </a>
+                            </h3>
+                        </div>
+                        <!-- Facilities List -->
+                        <ul class="facilities-list clearfix">
+                            <li>
+                                <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
+                                <span>{{recent_pro_detail.sqr_feet}} sq ft</span>
+                            </li>
+                            <li>
+                                <i class="flaticon-bed"></i>
+                                <span>{{recent_pro_detail.bedrooms}} Bed</span>
+                            </li>
+                            <li>
+                                <i class="flaticon-holidays"></i>
+                                <span>{{recent_pro_detail.bathrooms}} Bath</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Recently Partners block end -->
+
+<!-- Counters 1 strat -->
+<div class="counters-1">
+    <div class="container">
+        <div class="row">
+            {% for counter_detail in counters_details%}
+            <div class="col-lg-3 col-md-6 col-sm-6 wow fadeInLeft delay-04s">
+                <div class="counter-box-1">
+                    <i class="flaticon-symbol-1"></i>
+                    <h1 class="counter">{{counter_detail.counter_for_rent}}</h1>
+                    <h5>Listings For Rent</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 wow fadeInLeft delay-04s">
+                <div class="counter-box-1">
+                    <i class="flaticon-tag"></i>
+                    <h1 class="counter">{{counter_detail.counter_for_sale}}</h1>
+                    <h5>Listings For Sale</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 wow fadeInRight delay-04s">
+                <div class="counter-box-1">
+                    <i class="flaticon-people-1"></i>
+                    <h1 class="counter">{{counter_detail.brokers}}</h1>
+                    <h5>Brokers</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 wow fadeInRight delay-04s">
+                <div class="counter-box-1">
+                    <i class="flaticon-people"></i>
+                    <h1 class="counter">{{counter_detail.agents}}</h1>
+                    <h5>Agents</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Counters 1 end -->
+
+<!-- Popular Places strat -->
+<div class="popular-places pp2 content-area-12">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title-3">
+            <p class="section-subtitle">Find Your City</p>
+            <h1>Popular Places</h1>
+        </div>
+
+        <div class="row">
+
+            <!-- <div class="col-lg-4 col-md-12 col-sm-12 wow fadeInLeft delay-04s col-pad">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100" src="{% static 'indexApp/img/popular-places/popular-places-1.jpg'%}" alt="popular-places">
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">Florida</a>
+                                        <span class="float-end">27 Properties</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100" src="{% static 'indexApp/img/popular-places/popular-places-2.jpg'%}" alt="popular-places">
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">Rome</a>
+                                        <span class="float-end">12 Properties</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            {% for location in location_details %}
+            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp delay-04s col-pad">
+                <div class="popular-places-box">
+                    <div class="popular-places-overflow">
+                        <div class="popular-places-photo">
+                            <img class="img-fluid w-100 big" src="{{location.location_pic.url}}" alt="popular-places">
+                        </div>
+                    </div>
+                    <div class="ling">
+                        <div class="ling-section">
+                            <h3>
+                                <a href="#">{{location.location_name}}</a>
+                                <span class="float-end">06 Properties</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInRight delay-04s col-pad">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100" src="{% static 'indexApp/img/popular-places/popular-places-6.jpg'%}" alt="popular-places">
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">New York City</a>
+                                        <span class="float-end">26 Properties</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="popular-places-box">
+                            <div class="popular-places-overflow">
+                                <div class="popular-places-photo">
+                                    <img class="img-fluid w-100" src="{% static 'indexApp/img/popular-places/popular-places-5.jpg'%}" alt="popular-places">
+                                </div>
+                            </div>
+                            <div class="ling">
+                                <div class="ling-section">
+                                    <h3>
+                                        <a href="#">San Francisco</a>
+                                        <span class="float-end">65 Properties</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- Popular places end -->
+
+<!-- Agent section start -->
+<div class="agent-section content-area-17">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title-3">
+            <p class="section-subtitle">Our Professionals</p>
+            <h1>Meet Our Agent</h1>
+        </div>
+        <div class="row">
+            {% for agent in agent_details %}
+            <div class="col-lg-6 col-md-6 col-sm-12 wow fadeInLeft delay-04s">
+                <div class="row agent-2 a-two g-0">
+                    <div class="col-lg-5 col-md-12 col-sm-12">
+                        <div class="photo">
+                            <img src="{{agent.images.url}}" alt="agent-2" class="img-fluid">
+                            <!-- <ul class="social-list clearfix">
+                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-12 col-sm-12 align-self-center">
+                        <div class="detail">
+                            <h4>
+                                <a href="agent-single.html">{{agent.name}}</a>
+                            </h4>
+                            <h5>Office Manager</h5>
+                            <div class="contact">
+                                <ul>
+                                    <li>
+                                        <strong>Address:</strong><a href="#"> {{agent.address}}</a>
+                                    </li>
+                                    <li>
+                                        <strong>Email:</strong><a href="mailto:info@themevessel.com"> {{agent.email}}</a>
+                                    </li>
+                                    <li>
+                                        <strong>Mobile:</strong><a href="tel:+554XX-634-7071"> {{agent.email}}</a>
+                                    </li>
+                                    <li>
+                                        <strong>Fax:</strong><a href="#"> {{agent.fax}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Agent section end -->
+
+<div class="clearfix"></div>
+
+<!-- Blog start -->
+<div class="blog comon-slick content-area">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title-3">
+            <p class="section-subtitle">Latest News</p>
+            <h1>Our Blog</h1>
+        </div>
+        <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+            <div class="item slide-box wow fadeInUp delay-04s">
+                <div class="blog-2">
+                    <img src="{% static 'indexApp/img/blog/blog-4.jpg'%}" alt="blog-photo" class="img-fluid w-100">
+                    <div class="date-box">
+                        <span>24</span> May
+                    </div>
+                    <div class="blog-info">
+                        <h3><a href="blog-single-sidebar-right.html">Find Your Best Real Estate</a></h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item slide-box wow fadeInRight delay-04s">
+                <div class="blog-2">
+                    <img src="{% static 'indexApp/img/blog/blog-5.jpg'%}" alt="blog-photo" class="img-fluid w-100">
+                    <div class="date-box">
+                        <span>21</span> July
+                    </div>
+                    <div class="blog-info">
+                        <h3><a href="blog-single-sidebar-right.html">Selling Your Real House</a></h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item slide-box wow fadeInUp delay-04s">
+                <div class="blog-2">
+                    <img src="{% static 'indexApp/img/blog/blog-6.jpg'%}" alt="blog-photo" class="img-fluid w-100">
+                    <div class="date-box">
+                        <span>27</span> April
+                    </div>
+                    <div class="blog-info">
+                        <h3><a href="blog-single-sidebar-right.html">Buying a Best House</a></h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item slide-box wow fadeInLeft delay-04s">
+                <div class="blog-2">
+                    <img src="{% static 'indexApp/img/blog/blog-6.jpg'%}" alt="blog-photo" class="img-fluid w-100">
+                    <div class="date-box">
+                        <span>27</span> April
+                    </div>
+                    <div class="blog-info">
+                        <h3><a href="blog-single-sidebar-right.html">Buying a Best House</a></h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog end -->
+
+<!-- Our newslatters strat -->
+<div class="our-newslatters">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Get Newsletter</h3>
+                <p>Your download should start automatically, if not Click here. Should I give up, huh?.</p>
+                <div class="form-info">
+                    <form class="form-inline d-flex" action="#">
+                        <input class="form-control" type="email" id="email2" placeholder="Email Address...">
+                        <button class="btn button-theme btn-md" type="submit">Get it now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Our newslatters end -->
+
+
+
+<!-- Property Video Modal -->
+<div class="modal property-modal fade" id="propertyModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row modal-raw g-0">
+                    <div class="col-lg-5 modal-left">
+                        <div class="modal-left-content">
+                            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <iframe class="modalIframe w-100" src="https://www.youtube.com/embed/V7IrnC9MISU" allowfullscreen></iframe>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/img-1.jpg" alt="model-photo" class="w-100 img-fluid">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/img-2.jpg" alt="model-photo" class="w-100 img-fluid">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 modal-right">
+                        <div class="modal-right-content bg-white">
+                            <div class="heading comon-section">
+                                <h2>Find Your Dream House</h2>
+                                <p class="location">123 Kathal St. Tampa City,</p>
+                            </div>
+                            <div class="features comon-section">
+                                <strong class="price">
+                                    $178,000
+                                </strong>
+                                <section>
+                                    <h3>Features</h3>
+                                </section>
+                                <ul class="bullets">
+                                    <li><i class="flaticon-air-conditioner"></i>Air conditioning</li>
+                                    <li><i class="flaticon-wifi"></i>Wifi</li>
+                                    <li><i class="flaticon-transport"></i>Parking</li>
+                                    <li><i class="flaticon-people-2"></i>Pool</li>
+                                    <li><i class="flaticon-weightlifting"></i>Gym</li>
+                                    <li><i class="flaticon-building"></i>Alarm</li>
+                                    <li><i class="flaticon-old-telephone-ringing"></i>Balcony</li>
+                                    <li><i class="flaticon-monitor"></i>TV</li>
+                                </ul>
+                            </div>
+                            <div class="0verview comon-section cs-none">
+                                <section>
+                                    <h3>Overview</h3>
+                                </section>
+                                <dl>
+                                    <dt>Model</dt>
+                                    <dd>Maxima</dd>
+                                    <dt>Condition</dt>
+                                    <dd>Brand New</dd>
+                                    <dt>Year</dt>
+                                    <dd>2018</dd>
+                                    <dt>Price</dt>
+                                    <dd>$178,000</dd>
+                                </dl>
+                                <a href="properties-details.html" class="btn button-sm button-theme">Show Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

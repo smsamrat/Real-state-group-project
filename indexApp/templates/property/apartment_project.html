@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.property-content p {
+    margin: 10px 0 20px;
+    padding: 5px;
+    border-radius: 5px;
+    background: #95C41F;
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    font-weight: 500;
+}
+    .overlay-link:hover {
+    background: none;
+    border: none;
+}
+    .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #95c41f;
+    border-color: #0d6efd;
+}
+.search-area {
+    background: #e6e6e6;
+    padding: 65px 0 25px!important;
+}
+.pagination > li > a:hover {
+    background: #4e5739;
+}
+</style>
+
+<!-- Sub Banner end -->
+
+<!-- Search area start -->
+<div class="search-area">
+    <div class="container">
+        <div class="search-area-inner">
+            <div class="search-contents ">
+                <form method="GET">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="area from">
+                                    <option>Area From</option>
+                                    <option>1000</option>
+                                    <option>800</option>
+                                    <option>600</option>
+                                    <option>400</option>
+                                    <option>200</option>
+                                    <option>100</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="property status">
+                                    <option>Property Status</option>
+                                    <option>For Sale</option>
+                                    <option>For Rent</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="location">
+                                    <option>Location</option>
+                                    <option>United States</option>
+                                    <option>United Kingdom</option>
+                                    <option>American Samoa</option>
+                                    <option>Belgium</option>
+                                    <option>Cameroon</option>
+                                    <option>Canada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="property types">
+                                    <option>Property Types</option>
+                                    <option>Residential</option>
+                                    <option>Commercial</option>
+                                    <option>Land</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="bedrooms">
+                                    <option>Bedrooms</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <select class="selectpicker search-fields" name="bathrooms">
+                                    <option>Bathrooms</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <div class="range-slider mb-0">
+                                    <div data-min="0" data-max="150000" data-unit="USD" data-min-name="min_price" data-max-name="max_price" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="form-group">
+                                <button class="search-button btn-3">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Search area start -->
+<!-- property section start -->
+<div class="properties-section-body content-area mt-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <!-- Option bar Start -->
+                <div class="option-bar">
+                    <div class="row">
+                       <div class="col-lg-6 col-md-5 col-sm-5">
+                           <h4>
+                                <span class="heading-icon">
+                                    <i class="fa fa-th-large"></i>
+                                </span>
+                                <span class="title">Apartment Properties</span>
+                            </h4>
+                        </div>
+                   </div>
+               </div>
+               <!-- Option bar end -->
+                <div class="clearfix"></div>
+
+                <!-- Property grid start -->
+                <div class="row">
+                    {% for feature_detail in feature_details %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 wow fadeInUp delay-03s">
+                        <!-- Property start -->
+                        <div class="property fp2">
+                            <!-- Property img -->
+                            <div class="property-img">
+                                <img src="{{feature_detail.post_pic.url}}" alt="fp" class="img-fluid">
+                                <div class="property-overlay">
+                                    
+                                     <div class="overlay-link">{{feature_detail.post_title}}</div>
+
+                                </div>
+                            </div>
+                            <!-- Property content -->
+                            <div class="property-content">
+                                <!-- info -->
+                                <div class="info">
+                                    <!-- title -->
+                                    <h1 class="title">
+                                        <a href="properties-details.html">{{feature_detail.post_title}}</a>
+                                    </h1>
+                                    <!-- Property address -->
+                                    <h3 class="property-address">
+                                        <a href="properties-details.html">
+                                            <i class="fa fa-map-marker"></i>{{feature_detail.post_location}}
+                                        </a>
+                                    </h3>
+                                    <!-- Facilities List -->
+                                    <ul class="facilities-list clearfix">
+                                        <li>
+                                            <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
+                                            <span>{{feature_detail.sqr_feet}} sq ft</span>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-bed"></i>
+                                            <span>{{feature_detail.bedrooms}} Beds</span>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-monitor"></i>
+                                            <span>TV </span>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-holidays"></i>
+                                            <span> {{feature_detail.bathrooms}} Baths</span>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-vehicle"></i>
+                                            <span>{{feature_detail.garage}} Garage</span>
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-building"></i>
+                                            <span>  Balcony</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Property footer -->
+                                <div class="property-footer">
+                                <span class="left">
+                                    <a href=""><p>Call</p></a>
+                                </span>
+                                    <span class="right">
+                                        <a href=""><p>Details</p></a>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Property end -->
+                    </div> 
+                    {% endfor %}                   
+                </div>
+                <!-- Property grid end -->
+
+                <!-- Pagination box start -->
+                <div class="pagination-box text-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            {% if feature_details.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ feature_details.previous_page_number }}">Prev</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="disabled">Prev</a>
+                            </li>
+                            {% endif %}
+                            {% for i in paginator.page_range %}
+                            <li class="page-item {% if i == page_number %} active {% endif %}"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                            {% endfor %}
+                            {% if feature_details.has_next%}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ feature_details.next_page_number }}">Next</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                <!-- ========================= PAGINATION  START// ========================= -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- property section end -->
+
+<!-- Intro section start -->
+<div class="intro-section">
+    <div class="intro-section-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-7 col-sm-12">
+                    <h3>Looking To Sell Or Rent Your Property?</h3>
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-12">
+                    <a class="btn-2 btn-white" href="contact.html">
+                        <span>Get in Touch</span> <i class="arrow"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Intro section end -->
+{% endblock content %}

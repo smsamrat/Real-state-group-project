@@ -8,12 +8,12 @@ def Home(request):
     location_query = Location.objects.filter()
     location_filter= request.GET.get('location')
     if location_filter:
-        feature_query = Features_property_post.objects.filter(post_location__location_name = location_filter)
+        feature_query = Post.objects.filter(post_location__location_name = location_filter)
         paginator = Paginator(feature_query,10)
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
     else:
-        feature_query = Features_property_post.objects.all()
+        feature_query = Post.objects.all()
         paginator = Paginator(feature_query,2)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
@@ -37,10 +37,11 @@ def land_project(request):
     return render(request,'property/land_project.html')
 
 def apartment_project(request):
-    feature_query = Features_property_post.objects.all()
+    feature_query = Post.objects.all()
     paginator = Paginator(feature_query,6,orphans=1)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
+    print(page_obj)
     context ={
         'feature_details':page_obj,
         'page_number':int(page_number),
@@ -65,7 +66,6 @@ def gallay(request):
     gallery_office = Gallery.objects.all()
     # gallery_client = Gallery.objects.filter(img_type = 'Client')
     # gallery_project = Gallery.objects.filter(img_type = 'Project')
-    print(gallery_office)
     context = {
         'gallery_office':gallery_office,
         # 'gallery_client':gallery_client,

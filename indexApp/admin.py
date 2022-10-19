@@ -5,7 +5,7 @@ from .models import *
 
 admin.site.register(Menu)
 admin.site.register(Baner_video)
-admin.site.register(Features_property_post)
+admin.site.register(Post)
 admin.site.register(Recently_Properties)
 admin.site.register(Counters)
 admin.site.register(Location)

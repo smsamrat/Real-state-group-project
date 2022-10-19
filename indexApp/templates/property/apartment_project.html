@@ -157,6 +157,7 @@
                 <!-- Property grid start -->
                 <div class="row">
                     {% for feature_detail in feature_details %}
+                    {% if feature_detail.post_type == 'apartment' %}
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 wow fadeInUp delay-03s">
                         <!-- Property start -->
                         <div class="property fp2">
@@ -224,6 +225,7 @@
                         </div>
                         <!-- Property end -->
                     </div> 
+                    {% endif %} 
                     {% endfor %}                   
                 </div>
                 <!-- Property grid end -->

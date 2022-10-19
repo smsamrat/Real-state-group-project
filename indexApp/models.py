@@ -27,11 +27,19 @@ class Location(models.Model):
     def __str__(self):
         return f'{self.location_name}'
 
-class Features_property_post(models.Model):
+
+class Post(models.Model):
+    POST_TYPE=(
+        ('feature','feature'),
+        ('apartment','apartment'),
+        ('land','land'),
+        ('recent','recent'),
+    )
     post_pic = models.ImageField(upload_to='features_post_img/',null=True)
     price = models.FloatField(default='0.00')
     post_title = models.CharField(max_length=250,null=True)
     post_location = models.ForeignKey(Location,on_delete=models.CASCADE,related_name='location',blank=True,null=True)
+    post_type = models.CharField(max_length=100,choices=POST_TYPE)
     sqr_feet = models.CharField(max_length=250)
     bedrooms = models.CharField(max_length=250)
     bathrooms = models.CharField(max_length=250)

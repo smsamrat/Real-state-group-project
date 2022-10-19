@@ -7,6 +7,10 @@
     .buttonBar {
     display: none;
 }
+.overlay-link:hover {
+    background: none;
+    border: none;
+}
 </style>
 <div class="banner banner_video_bg">
     <div class="pattern-overlay">
@@ -39,15 +43,16 @@
 <!-- Banner end -->
 
 <!-- Featured properties start -->
-<div class="content-area featured-properties">
+<div class="content-area featured-properties mt-3">
     <div class="container">
         <!-- Main title -->
         <div class="main-title-3">
-            <p class="section-subtitle">Best Rent Properties</p>
+            <p class="section-subtitle">Best Sale Properties</p>
             <h1>Featured Properties</h1>
         </div>
         <div class="row">
             {% for feature_detail in feature_details %}
+            {% if feature_detail.post_type == 'feature' %}
             <div class="col-lg-6 col-md-12 col-sm-12 wow fadeInLeft delay-04s">
                 <div class="row g-0 property fp2">
                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -58,18 +63,8 @@
                             <img src="{{feature_detail.post_pic.url}}" alt="fp-list" class="img-responsive hp-2">
                             <div class="property-overlay">
                                 <a href="properties-details.html" class="overlay-link">
-                                    <i class="fa fa-link"></i>
+                                    <div class="overlay-link">{{feature_detail.post_title}}</div>
                                 </a>
-                                <!-- <a class="overlay-link property-video" title="Lexus GS F">
-                                    <i class="fa fa-video-camera"></i>
-                                </a> -->
-                                <!-- <div class="property-magnify-gallery">
-                                    <a href="img/properties/properties-14.jpg" class="overlay-link">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                    <a href="img/properties/properties-13.jpg" class="hidden"></a>
-                                    <a href="img/properties/properties-15.jpg" class="hidden"></a>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -119,6 +114,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
@@ -196,58 +192,61 @@
             <h1>Recently Properties</h1>
         </div>
         <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
-            {% for recent_pro_detail in recent_pro_details %}
-            <div class="item slide-box wow fadeInRight delay-04s">
-                <div class="property-2">
-                    <div class="property-inner">
-                        <div class="property-overflow">
-                            <div class="property-photo">
-                                <img src="{{recent_pro_detail.images.url}}" alt="rp" class="img-fluid">
-                                <div class="listing-badges">
-                                    <span class="featured active">
-                                        {% if recent_pro_detail.for_sale %}
-                                        {{recent_pro_detail.for_sale}}
-                                        {% else %}
-                                        {{recent_pro_detail.for_rent}}
-                                        {% endif %}
-                                    </span>
-                                </div>
-                                <div class="price-ratings">
-                                    <div class="price">${{recent_pro_detail.price}}</div>
+            {% for feature_detail in feature_details %}
+            {% if feature_detail.post_type == 'recent' %}
+            
+                <div class="item slide-box wow fadeInRight delay-04s">
+                    <div class="property-2">
+                        <div class="property-inner">
+                            <div class="property-overflow">
+                                <div class="property-photo">
+                                    <img src="{{feature_detail.post_pic.url}}" alt="rp" class="img-fluid">
+                                    <!-- <div class="listing-badges">
+                                        <span class="featured active">
+                                            {% if feature_detail.for_sale %}
+                                            {{feature_detail.for_sale}}
+                                            {% else %}
+                                            {{feature_detail.for_rent}}
+                                            {% endif %}
+                                        </span>
+                                    </div> -->
+                                    <div class="price-ratings">
+                                        <div class="price">${{feature_detail.price}}</div>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- content -->
+                            <div class="content">
+                                <!-- title -->
+                                <h4 class="title">
+                                    <a href="properties-details.html">{{feature_detail.post_title}}</a>
+                                </h4>
+                                <!-- Property address -->
+                                <h3 class="property-address">
+                                    <a href="properties-details.html">
+                                        <i class="fa fa-map-marker"></i> {{feature_detail.post_location}}
+                                    </a>
+                                </h3>
+                            </div>
+                            <!-- Facilities List -->
+                            <ul class="facilities-list clearfix">
+                                <li>
+                                    <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
+                                    <span>{{feature_detail.sqr_feet}} sq ft</span>
+                                </li>
+                                <li>
+                                    <i class="flaticon-bed"></i>
+                                    <span>{{feature_detail.bedrooms}} Bed</span>
+                                </li>
+                                <li>
+                                    <i class="flaticon-holidays"></i>
+                                    <span>{{feature_detail.bathrooms}} Bath</span>
+                                </li>
+                            </ul>
                         </div>
-                        <!-- content -->
-                        <div class="content">
-                            <!-- title -->
-                            <h4 class="title">
-                                <a href="properties-details.html">{{recent_pro_detail.title}}</a>
-                            </h4>
-                            <!-- Property address -->
-                            <h3 class="property-address">
-                                <a href="properties-details.html">
-                                    <i class="fa fa-map-marker"></i>{{recent_pro_detail.location}} Kathal St. Tampa City,
-                                </a>
-                            </h3>
-                        </div>
-                        <!-- Facilities List -->
-                        <ul class="facilities-list clearfix">
-                            <li>
-                                <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                <span>{{recent_pro_detail.sqr_feet}} sq ft</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-bed"></i>
-                                <span>{{recent_pro_detail.bedrooms}} Bed</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-holidays"></i>
-                                <span>{{recent_pro_detail.bathrooms}} Bath</span>
-                            </li>
-                        </ul>
                     </div>
                 </div>
-            </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

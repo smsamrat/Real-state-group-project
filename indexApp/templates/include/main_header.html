@@ -2,81 +2,15 @@
 {% load static %}
 {% load menu_filter %}
 <style>
-@media (max-width: 992px){
-    .main-header-7.header-shrink {
-        top: 0px !important;
-    }
-}
-
-    header#main-header-2 {
-    margin-top: 50px;
-}
-    #main-header-2::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -3%;
-    width: 22%;
-    height: 50px;
-    z-index: -1;
-    background-color: #fff;
-    -webkit-transform: skew(23deg);
-    transform: skew(23deg);
-    border-radius: 0 10px 10px 0;
-}
-
-.main-header .logo img {
-    height: 44px;
-    display: block;
-    margin-top: -28px;
-}
-
-    ul.navbar-nav.ml-auto {
-    margin-top: -24px;
-}
-    .dropdown:hover > .dropdown-menu {
-    display: block;
-    max-width: 100%;
-    margin: auto;
-    opacity: 1;
-    visibility: visible;
-    margin-top: -28px;
-}
-.header-with-top2.sticky-header {
-    background: #95c41f;
-    height: 50px;
-}
 .custom_icon i {
-    background: lightseagreen;
+    background: rgb(0 0 0 / 50%);
     padding: 10px;
     border-radius: 5px;
 }
-
 </style>
 <!-- Top header start -->
 <header class="top-header th10 d-none d-lg-block top-header-5" id="top-header-1">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-7 col-7">
-                <div class="list-inline">
-                    <a href="tel:+55-4XX-634-7071"><i class="fa fa-phone"></i>Need Support? +00-4X6-634-781</a>
-                    <a href="tel:info@themevessel.com"><i class="fa fa-envelope"></i>info@themevessel.com</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-5 col-5">
-                <ul class="top-social-media pull-right">
-                    <li>
-                        <a href="login.html" class="sign-in"><i class="fa fa-book"></i> Booking Now</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Top header end -->
-<!-- Top header start -->
-<header class="top-header th10 d-none d-lg-block top-header-5" id="top-header-1">
-    <div class="container-fluid bg-success">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-7 col-7">
                 <div class="list-inline">
@@ -94,18 +28,22 @@
                             <i class="fa fa-youtube"></i>
                         </a>
                     </li>
+                    <!-- <li>
+                        <a href="login.html" class="sign-in"><i class="fa fa-book"></i> Booking Now</a>
+                    </li> -->
                 </ul>
             </div>
         </div>
     </div>
 </header>
 <!-- Top header end -->
+
 <!-- Main header start -->
 <header class="main-header sticky-header header-with-top2 main-header-7" id="main-header-2">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand logo" href="">
-                <img src="{% static 'indexApp/img/logos/logo.png' %}" alt="logo">
+                <img src="{% static 'indexApp/img/logos/vanture_logo.png' %}" alt="logo">
             </a>
             <button class="navbar-toggler" id="drawer" type="button">
                 <span class="fa fa-bars"></span>

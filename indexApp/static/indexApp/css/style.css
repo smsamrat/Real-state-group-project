@@ -1409,10 +1409,11 @@ input[type=checkbox]:checked + label:before {
     padding: 17px 20px;
     color: #343434;
     font-size: 15px;
+    text-align: center;
 }
 
 .property-content .property-footer .right {
-    float: right;
+    /* float: right; */
 }
 
 .property-content .property-footer a {
@@ -9238,6 +9239,7 @@ table.manage-table .action a {
         margin: auto;
         opacity: 1;
         visibility: visible;
+        margin-top: -25px;
     }
 
     .dropdown .dropdown-item:hover > .dropdown-menu {

@@ -358,7 +358,6 @@ input[type=checkbox]:checked + label:before {
 
 .main-header .navbar-light .navbar-toggler {
     background: #95c41f;
-    margin-top: -28px;
 }
 
 .out-line-btn{

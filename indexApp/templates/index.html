@@ -52,7 +52,6 @@
         </div>
         <div class="row">
             {% for feature_detail in feature_details %}
-            {% if feature_detail.post_type == 'feature' %}
             <div class="col-lg-6 col-md-12 col-sm-12 wow fadeInLeft delay-04s">
                 <div class="row g-0 property fp2">
                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -114,7 +113,6 @@
                     </div>
                 </div>
             </div>
-            {% endif %}
             {% endfor %}
         </div>
     </div>
@@ -173,11 +171,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-sm-12 text-center wow fadeInUp delay-04s">
+            <!-- <div class="col-lg-12 col-sm-12 text-center wow fadeInUp delay-04s">
                 <a class="btn-1 btn-outline-1" href="services-1.html">
                     <span>Read More</span> <i class="arrow"></i>
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -192,9 +190,7 @@
             <h1>Recently Properties</h1>
         </div>
         <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
-            {% for feature_detail in feature_details %}
-            {% if feature_detail.post_type == 'recent' %}
-            
+            {% for feature_detail in recent_property %}
                 <div class="item slide-box wow fadeInRight delay-04s">
                     <div class="property-2">
                         <div class="property-inner">
@@ -246,7 +242,6 @@
                         </div>
                     </div>
                 </div>
-            {% endif %}
             {% endfor %}
         </div>
     </div>

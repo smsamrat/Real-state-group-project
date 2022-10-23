@@ -6,7 +6,7 @@
     margin: 10px 0 20px;
     padding: 5px;
     border-radius: 5px;
-    background: #95C41F;
+    background: #199388;
     display: inline-block;
     width: 60px;
     text-align: center;
@@ -19,7 +19,7 @@
     .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #95c41f;
+    background-color: #199388;
     border-color: #0d6efd;
 }
 
@@ -115,20 +115,20 @@ input.form-check-input.project_phase, .project_type{
                                     </div>
                                     <div class="col-md-10">
                                         <div class="d-flex">
-                                                    <div class="form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input type="radio" class="form-check-input project_phase" value="1" name="project_phase">On going
-                                                        </label>
-                                                    </div>
                                             <div class="form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input type="radio" class="form-check-input project_phase" value="2" name="project_phase">Completed                                                        </label>
-                                                    </div>
-                                                                                                <div class="form-check-inline">
-                                                        <label class="form-check-label">
-                                                            <input type="radio" class="form-check-input project_phase" value="3" name="project_phase">Up Coming                                                        </label>
-                                                    </div>
-                                                                                    </div>
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input project_phase" value="1" name="project_phase">On going
+                                                </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input project_phase" value="2" name="project_phase">Completed                                                        </label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input project_phase" value="3" name="project_phase">Up Coming                                                        </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -138,15 +138,15 @@ input.form-check-input.project_phase, .project_type{
                                     <div class="col-md-10">
                                         <div class="d-flex">
                                             <div class="d-flex">
-                                                                                                        <div class="form-check-inline">
+                                                        <div class="form-check-inline">
                                                             <label class="form-check-label">
                                                                 <input type="radio" class="form-check-input project_type" value="1" name="type">Residential                                                            </label>
                                                         </div>
-                                                                                                        <div class="form-check-inline">
+                                                        <div class="form-check-inline">
                                                             <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input project_type" value="2" name="type">Commerical                                                            </label>
+                                                            <input type="radio" class="form-check-input    project_type" value="2" name="type">Commerical                             </label>
                                                         </div>
-                                                                                            </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -159,22 +159,17 @@ input.form-check-input.project_phase, .project_type{
                                             <div class="col-md-3 col-4">
                                                 <select class="form-control custom-form-control" id="division">
                                                     <option value=""> - select a division - </option>
-                                                    <option value="1">Barisal</option>
-                                                    <option value="2">Chittagong</option>
-                                                    <option value="3">Dhaka</option>
-                                                    <option value="4">Khulna</option>
-                                                    <option value="5">Rajshahi</option>
-                                                    <option value="6">Rangpur</option>
-                                                    <option value="7">Sylhet</option>
-                                                    <option value="8">Mymensingh</option>
+                                                    {% for i in divisions %}
+                                                    <option value="1"><a href="">{{i.name}}</a></option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                             <div class="col-md-3 col-4">
                                                 <select class="form-control" id="district">
                                                     <option value=""> - select a district - </option>
-                                                    <option value="1">Gazipur</option>
-                                                    <option value="2">Foridpur</option>
-                                                    <option value="3">Gopalganj</option>
+                                                    {% for i in cities %}
+                                                       <option value="1"><a href="/?location={{i.name}}">{{i.name}}</a></option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
                                             <div class="col-md-3 col-4">
@@ -219,7 +214,7 @@ input.form-check-input.project_phase, .project_type{
                 <!-- Property grid start -->
                 <div class="row">
                     {% for feature_detail in feature_details %}
-                    {% if feature_detail.post_type == 'apartment' %}
+                    
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 wow fadeInUp delay-03s">
                         <!-- Property start -->
                         <div class="property fp2">
@@ -280,14 +275,13 @@ input.form-check-input.project_phase, .project_type{
                                     <a href=""><p>Call</p></a>
                                 </span>
                                     <span class="right">
-                                        <a href=""><p>Details</p></a>
+                                        <a href="{% url 'details_property' %}"><p>Details</p></a>
                                 </span>
                                 </div>
                             </div>
                         </div>
                         <!-- Property end -->
                     </div> 
-                    {% endif %} 
                     {% endfor %}                   
                 </div>
                 <!-- Property grid end -->

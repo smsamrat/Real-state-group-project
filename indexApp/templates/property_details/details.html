@@ -1,0 +1,442 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    * {
+  box-sizing: border-box;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+  position: relative;
+  width: 100%;
+    padding-right:0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.mt{
+    margin-top: 100px;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+/* ------------------------menu--------------------------------- */
+.prop_title_zone_menu {
+    margin-bottom: 30px;
+  width: 100%;
+  height: 100%;
+  display:block;
+}
+
+.prop_title_zone_menu .prop_title_zone_menu_container {
+  width: 100%;
+  margin: 0px auto;
+}
+
+.prop_title_zone_menu .prop_title_zone_menu_container .property_menu {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    text-align: center;
+}
+
+.prop_title_zone_menu .prop_title_zone_menu_container .property_menu li {
+  display: inline;
+  width: 100%;
+  padding: 0 15px;
+  font-weight: 300;
+}
+
+.prop_title_zone_menu .prop_title_zone_menu_container .property_menu li:nth-child(1) {
+  padding-left: 0;
+}
+
+.prop_title_zone_menu .prop_title_zone_menu_container .property_menu li:hover a {
+  color: #199388;
+}
+
+.prop_title_zone_menu .prop_title_zone_menu_container .property_menu li a {
+  color: #010101;
+}
+</style>
+
+<!-- Properties details page start -->
+<div class="properties-details-page content-area clearfix mt">
+    <div class="container">
+        <div class="row mb-20">
+            			<!-- project deatils navigation menu  -->
+			<div class="prop_title_zone_menu">
+				<div class="container">
+					<div class="card">
+						<div class="card-body">
+							<div class="prop_title_zone_menu_container">
+								<ul class="property_menu">
+									<li><a href="#project_details">Description</a></li>
+									<li><a href="#appartment_details">Aparmetnt Details</a></li>
+									<!-- <li><a href="#project_gallery">Gallery</a></li>
+									<li><a href="#project_feature_location">Features</a></li> -->
+									<li><a href="#project_floor_plan">Floor Plan</a></li>
+									<li><a href="https://www.youtube.com/watch?v=DVq733kbRS8" class="popup">Video</a></li>
+									<!-- <li><a href="https://matrichayabd.com/assets/files/broucher/1629101984.pdf" download>Broucher</a></li> -->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <!-- Header properties start -->
+                <div class="heading-properties clearfix sidebar-widget">
+                    <div class="pull-left">
+                        <h3>Modern Family Home</h3>
+                        <p>
+                            <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
+                        </p>
+                    </div>
+                    <div class="pull-right">
+                        <h3><span>$362,100</span></h3>
+                        <h5>
+                            Per Manth
+                        </h5>
+                    </div>
+                </div>
+                <!-- Header properties end -->
+
+                <!-- Properties slider section start -->
+                    <!-- Container for the image gallery -->
+                    <div class="container">
+
+                        <!-- Full-width images with number text -->
+                        <div class="mySlides">
+                        <div class="numbertext">1 / 6</div>
+                            <img src="{% static 'indexApp/slider/img_woods_wide.jpg' %}" style="width:100%">
+                        </div>
+                    
+                        <div class="mySlides">
+                        <div class="numbertext">2 / 6</div>
+                            <img src="{% static 'indexApp/slider/img_5terre_wide.jpg' %}" style="width:100%">
+                        </div>
+                    
+                        <div class="mySlides">
+                        <div class="numbertext">3 / 6</div>
+                            <img src="{% static 'indexApp/slider/img_mountains_wide.jpg'%}" style="width:100%">
+                        </div>
+                    
+                        <div class="mySlides">
+                        <div class="numbertext">4 / 6</div>
+                            <img src="{% static 'indexApp/slider/img_lights_wide.jpg'%}" style="width:100%">
+                        </div>
+                    
+                        <div class="mySlides">
+                        <div class="numbertext">5 / 6</div>
+                            <img src="{% static 'indexApp/slider/img_nature_wide.jpg'%}" style="width:100%">
+                        </div>
+                    
+                        <div class="mySlides">
+                        <div class="numbertext">6 / 6</div>
+                            <img src="{% static 'indexApp/slider/img_snow_wide.jpg'%}" style="width:100%">
+                        </div>
+                    
+                        <!-- Next and previous buttons -->
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    
+                        <!-- Image text -->
+                        <div class="caption-container">
+                        <p id="caption"></p>
+                        </div>
+                    
+                        <!-- Thumbnail images -->
+                        <div class="row">
+                        <div class="column">
+                            <img class="demo cursor" src=" {% static 'indexApp/slider/img_woods.jpg'%}" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+                        </div>
+                        <div class="column">
+                            <img class="demo cursor" src="{% static 'indexApp/slider/img_5terre.jpg'%}" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+                        </div>
+                        <div class="column">
+                            <img class="demo cursor" src="{% static 'indexApp/slider/img_mountains.jpg'%}" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+                        </div>
+                        <div class="column">
+                            <img class="demo cursor" src="{% static 'indexApp/slider/img_lights.jpg'%}" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+                        </div>
+                        <div class="column">
+                            <img class="demo cursor" src="{% static 'indexApp/slider/img_nature.jpg'%}" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
+                        </div>
+                        <div class="column">
+                            <img class="demo cursor" src="{% static 'indexApp/slider/img_snow.jpg'%}" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
+                        </div>
+                        </div>
+                    </div>
+                <!-- Properties slider section end -->
+
+                    <!-- Properties description start -->
+                    <div class="properties-description mb-30 mt-5" id="project_details">
+                        <div class="main-title-4">
+                            <h1><span>Description</span></h1>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra</p>
+                        <br>
+                        <p>felis imperdiet felis, et iaculis dui magna vitae diam. Donec mattis diam nisl, quis ullamcorper enim malesuada non. Curabitur lobortis eu mauris nec vestibulum. Nam efficitur, ex ac semper malesuada nisi odio consequat dui, hendrerit vulputate odio dui</p>
+                    </div>
+                    <!-- Properties description end -->
+
+                <!-- Location start -->
+                <div class="location sidebar-widget">
+                    <div class="map">
+                        <div class="main-title-4">
+                            <h1><span>Location</span></h1>
+                        </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.1699262110997!2d90.38039091429674!3d23.741319095041565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b7a5378967%3A0xb85bf866e02922e2!2sVenture%20Group%20Head%20Office!5e0!3m2!1sen!2sbd!4v1666523844697!5m2!1sen!2sbd" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <!-- Location end -->
+            </div>
+
+
+
+
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" id="appartment_details">
+                <!-- Properties details section start -->
+                <div class="sidebar-widget">
+                    <!-- Properties condition start -->
+                    <div class="properties-condition mb-20">
+                        <div class="main-title-4">
+                            <h1><span>Floor Details</span></h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <ul class="condition">
+                                    <li>
+                                        <i class="flaticon-bed"></i>3 Beds
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-holidays"></i>Bathroom
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <ul class="condition">
+                                    <li>
+                                        <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>4800 sq ft
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-monitor"></i>TV
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <ul class="condition">
+                                    <li>
+                                        <i class="flaticon-vehicle"></i>1 Garage
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-building"></i>Balcony
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Properties condition end -->
+
+                    <!-- Properties amenities start -->
+                    <div class="properties-amenities">
+                        <div class="main-title-4">
+                            <h1><span>Amenities</span></h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <ul class="amenities">
+                                    <li>
+                                        <i class="flaticon-air-conditioner"></i>Air conditioning
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-bars"></i>Balcony
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-people-2"></i>Pool
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-monitor"></i>TV
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-weightlifting"></i>Gym
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <ul class="amenities">
+                                    <li>
+                                        <i class="flaticon-wifi"></i>Wifi
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-transport"></i>Parking
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-bed"></i>Double Bed
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-machine"></i>Iron
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <ul class="amenities">
+                                    <li>
+                                        <i class="flaticon-old-telephone-ringing"></i>Telephone
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-person-enjoying-jacuzzi-hot-water-bath"></i>Jacuzzi
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-clock"></i>Alarm
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-vehicle"></i>Garage
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Properties amenities end -->
+                </div>
+                <!-- Properties details section end -->
+                <!-- Floor plans start -->
+                <div class="floor-plans sidebar-widget" id="project_floor_plan">
+                    <div class="main-title-4">
+                        <h1><span>Floor Plans</span></h1>
+                    </div>
+                    <table>
+                        <tbody><tr>
+                            <td><strong>Size</strong></td>
+                            <td><strong>Rooms</strong></td>
+                            <td><strong>2 Bathrooms</strong></td>
+                        </tr>
+                        <tr>
+                            <td>1600</td>
+                            <td>3</td>
+                            <td>2</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <img src="{% static 'indexApp/img/properties/floor-plans.png' %}" alt="floor-plans" class="img-fluid">
+                </div>
+                <!-- Floor plans end -->
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!-- Properties details page end -->
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+    
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("demo");
+      let captionText = document.getElementById("caption");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+      captionText.innerHTML = dots[slideIndex-1].alt;
+    }
+</script>
+
+{% endblock %}

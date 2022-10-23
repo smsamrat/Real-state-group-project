@@ -766,7 +766,7 @@
 
 .top-header .list-inline a {
     font-weight: 400;
-    color: #fff;
+    color: black;
     margin-right: 10px;
     font-size: 15px;
     opacity: 0.9;
@@ -911,7 +911,7 @@
 }
 
 .top-header-5{
-    background-color: #199388!important;
+    background-color: white;
 }
 
 .top-header-5 .container-fluid{
@@ -963,7 +963,7 @@
 .main-header .navbar-expand-lg .navbar-nav .nav-link {
     padding: 40px 13px;
     line-height: 20px;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.5px;
     color: #515151;
@@ -1838,7 +1838,7 @@
     }
 
     .header-shrink {
-        background: #95C41F!important;
+        background: #199388!important;
         -webkit-transition: 0.5s;
         -moz-transition: 0.5s;
         -ms-transition: 0.5s;

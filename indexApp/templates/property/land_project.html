@@ -21,7 +21,7 @@
     .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #95c41f;
+    background-color: #199388;
     border-color: #0d6efd;
 }
 
@@ -29,7 +29,7 @@
     margin: 10px 0 20px;
     padding: 5px;
     border-radius: 5px;
-    background: #95C41F;
+    background: #199388;
     display: inline-block;
     width: 60px;
     text-align: center;
@@ -42,7 +42,7 @@
     .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #95c41f;
+    background-color: #199388;
     border-color: #0d6efd;
 }
 
@@ -251,7 +251,7 @@ input.form-check-input.project_phase, .project_type{
                                 <span class="heading-icon">
                                     <i class="fa fa-th-large"></i>
                                 </span>
-                                <span class="title">Apartment Properties</span>
+                                <span class="title">Land Properties</span>
                             </h4>
                         </div>
                    </div>
@@ -262,7 +262,6 @@ input.form-check-input.project_phase, .project_type{
                 <!-- Property grid start -->
                 <div class="row">
                     {% for feature_detail in feature_details %}
-                    {% if feature_detail.post_type == 'land' %}
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 wow fadeInUp delay-03s">
                         <!-- Property start -->
                         <div class="property fp2">
@@ -304,7 +303,6 @@ input.form-check-input.project_phase, .project_type{
                         </div>
                         <!-- Property end -->
                     </div> 
-                    {% endif %} 
                     {% endfor %}                   
                 </div>
                 <!-- Property grid end -->

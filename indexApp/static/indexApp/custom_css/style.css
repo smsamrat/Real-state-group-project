@@ -1,6 +1,6 @@
 .work {
   padding-bottom: 40px;
-  margin-top: 60px;
+  margin-top: 100px;
 }
 .work * {
   box-sizing: border-box;
@@ -35,12 +35,14 @@
   }
 }
 .work .category-buttons a {
-  color: #9A9A9A;
+  color: #199388;
   text-decoration: none;
   padding: 9px 15px;
-  border: 1px solid #9A9A9A;
+  border: 1px solid #199388;
   margin: 0 10px;
   cursor: pointer;
+  font-family: ui-monospace;
+  text-transform: uppercase;
 }
 .work .category-buttons a.active {
   color: #373B3D;

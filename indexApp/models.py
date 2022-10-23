@@ -109,6 +109,27 @@ class Gallery(models.Model):
     def __str__(self):
         return f"Image type: {self.img_type}/{self.img}"
 
+
+class Division(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+
+class District(models.Model):
+    country = models.ForeignKey(Division, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class Area(models.Model):
+    city = models.ForeignKey(District, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 # class blog(models.Model):
 #     blog_img = models.ImageField(upload_to="blog_images")
 #     title = models.CharField(max_length=250)

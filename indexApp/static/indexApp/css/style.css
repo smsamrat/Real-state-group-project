@@ -2134,6 +2134,12 @@ input[type=checkbox]:checked + label:before {
     background: transparent;
 }
 
+.property_service{
+    margin-top: 100px;
+}
+.mt_blog{
+    margin-top: 100px;
+}
 .content-area {
     padding: 0px 0 30px;
 }
@@ -7461,8 +7467,9 @@ a:hover {
 
 .mb-30 {
     margin-bottom: 30px!important;
+    background: white;
+    padding: 25px;
 }
-
 .mb-40 {
     margin-bottom: 40px;
 }
@@ -10061,7 +10068,7 @@ table.manage-table .action a {
     }
 
     .content-area {
-        padding: 70px 0 40px;
+        padding: 20px 0 40px;
     }
 
     .content-area-2 {

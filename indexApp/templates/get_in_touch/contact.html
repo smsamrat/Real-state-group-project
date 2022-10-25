@@ -17,36 +17,37 @@
                     <!-- Contact form start -->
                     <div class="contact-form contact-pad">
                         <h3>Send us a Message</h3>
-                        <form id="contact_form" action="https://storage.googleapis.com/theme-vessel-items/checking-sites/nest-html/HTML/main/index.html" method="GET" enctype="multipart/form-data">
+                        <form  method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group name">
-                                        <input type="text" name="name" class="form-control" placeholder="Name" aria-label="Full Name">
+                                        {{ form.name }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group email">
-                                        <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email Address">
+                                        {{ form.email }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group subject">
-                                        <input type="text" name="subject" class="form-control" placeholder="Subject" aria-label="Subject">
+                                        {{ form.subject }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group number">
-                                        <input type="text" name="phone" class="form-control" placeholder="Phone" aria-label="Phone Number">
+                                        {{ form.phone }}
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group message">
-                                        <textarea  class="form-control" name="message" placeholder="Write message" aria-label="Write message"></textarea>
+                                        {{ form.message }}
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="send-btn text-center">
-                                        <button type="submit" class="button-md button-theme btn-3">Send Message</button>
+                                        <button type="submit" type="submit" value="Submit Now" class="button-md button-theme btn-3">Send Message</button>
                                     </div>
                                 </div>
                             </div>

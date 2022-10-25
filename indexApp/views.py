@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from indexApp.forms import JobApplicationForm,ContactForm
 from .models import *
 from django.core.paginator import Paginator
+from django.contrib import messages
 # Create your views here.
 
 def Home(request):
@@ -111,15 +113,56 @@ def gallay(request):
 def video(request):
     return render(request,'gallery/video.html')
 
-def career(request):
-    return render(request,'get_in_touch/career.html')
 
-def contact(request):
-    return render(request,'get_in_touch/contact.html')
-
-def notice(request):
-    return render(request,'get_in_touch/notice.html')
 
 def our_team(request):
-    return render(request,'get_in_touch/our_team.html')
+    team_profile = OurTeam.objects.all()
 
+    context={
+        'team_profile':team_profile
+    }
+    return render(request, 'get_in_touch/our_team.html',context)
+
+def contact(request):
+    form = ContactForm(request.POST)
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('contactus')
+        else:
+            form = ContactForm(request.POST)
+            return render(request, 'get_in_touch/contact.html',{'form':form})
+    return render(request, 'get_in_touch/contact.html',{'form':form})
+
+
+def career(request):
+    career = Career.objects.all()
+    context ={
+        'career':career
+    }
+    return render(request, 'get_in_touch/career.html',context)
+
+def career_detail(request,slug):
+    careers = Career.objects.get(slug=slug)
+    form = JobApplicationForm(request.POST, request.FILES)
+    if request.method == 'POST':
+        form = JobApplicationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('career-detail', slug=slug)
+        else:
+            form = JobApplicationForm()
+            return render(request, 'get_in_touch/career-details.html',{'form':form})
+
+    context={
+        'careers':careers,
+        'form':form
+    }
+    return render(request, 'get_in_touch/career-details.html',context)
+
+def notice(request):
+    notice = Notice.objects.all()
+    return render(request, 'get_in_touch/notice.html', {'notice':notice})

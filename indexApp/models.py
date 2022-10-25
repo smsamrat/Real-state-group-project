@@ -201,3 +201,14 @@ class ContactUs(models.Model):
 
     def __str__(self):
         return self.email
+
+class JobApplication(models.Model):
+    full_name= models.CharField(max_length = 150)
+    email = models.EmailField()
+    phone= models.CharField(max_length = 150)
+    expected_salary= models.CharField(max_length = 150)
+    cv= models.FileField(upload_to='ApplicationCV')
+    message = models.TextField()
+    
+    def __str__(self):
+        return self.email

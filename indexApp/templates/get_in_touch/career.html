@@ -6,18 +6,9 @@
     .notice_area {
         margin-top: 100px!important;
     }
-    /* .notice_area h1 {
-    text-align: center;
-    background: #199388;
-    display: inline-block;
-    width: 100%;
-    text-shadow: 2px 2px #8d0d0d;
-    color: white;
-    text-transform: uppercase;
-    font-size: 20px;
-    border: 1px solid red;
-    padding: 5px;
-} */
+    p {
+    text-align: justify;
+}
 
 .animate-text {
 	background-image: linear-gradient(-225deg,
@@ -58,32 +49,24 @@
             background: linear-gradient(8deg, #7f31ff 0%, #4279f1 100%);
         }
     </style>
-    <div class="rs-services style2 pt-40 pb-120  mt-5">
-        <div class="animate-text">
-            <h2 class="text-center mt-4 "> Our Job Offers </h2>
-           <p><hr style="background: #199388;"></p>
-        </div>
+<div class="rs-services style2 pt-40 pb-120  mt-5">
+    <div class="animate-text">
+        <h2 class="text-center mt-4 "> Our Job Offers</h2>
+        <hr>
     </div>
-    <div class="card border-0 shadow col-12 col-md-8 mx-auto my-4 pb-5">         
-        <div class="card-body border-bottom">
-            <h3 style="
-            text-transform: uppercase;
-            font-size: 15px;
-            font-weight: 400;
-        ">Support IT*</h3>
-            <p style="font-size: 12px ; margin-top: 25px;">Date: 22/02/2022</p>
-            <p style="font-size: 12px ; margin-top: 25px;">Description: </p>
-            <p style="margin-top: -20px;"></p>
+    <div class="container">       
+        {% for c in career %}
+        <div class="card border-0 shadow col-12 col-md-8 mx-auto my-4 pb-5">         
+            <div class="card-body border-bottom">
+                <h3 style="font-size:15px;margin-bottom: 20px;">{{ c.title }}</h3>
+                <p style="font-size: 12px ; margin-top: -25px;">Posted at {{ c.post_date }} </p>
+                <p style="text-align: justify;">{{ c.job_description|truncatechars_html:200|safe }}</p>
+                <a style="margin-top: -15px;" class="btn btn-sm text-white" href="{% url 'career-detail' c.slug %}">Show details and Apply</a>
+            </div>
         </div>
-        <div class="card-body border-bottom">
-            <h3 style="
-            text-transform: uppercase;
-            font-size: 15px;
-            font-weight: 400;
-        ">Support IT*</h3>
-            <p style="font-size: 12px ; margin-top: 25px;">Date: 22/02/2022</p>
-            <p style="font-size: 12px ; margin-top: 25px;">Description: </p>
-            <p style="margin-top: -20px;"></p>
-        </div>
+
+        {% endfor %}         
     </div>
+    </div>
+
 {% endblock content %}

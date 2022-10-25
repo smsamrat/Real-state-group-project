@@ -42,14 +42,7 @@
 }
    
 </style>
-    <div class="container notice_area">
-        <!-- <div class="row">
-            <h1>Career</h1>
-            <div class="col-sm-12 col-md-12 col-lg-6">
-                
-            </div>
-        </div> -->
-    </div>
+    <div class="container notice_area"></div>
     <style>
         .container{
             color: #1b0234;
@@ -64,26 +57,22 @@
            <p><hr style="background: #199388;"></p>
         </div>
     </div>
-    <div class="card border-0 shadow col-12 col-md-8 mx-auto my-4 pb-5">         
-        <div class="card-body border-bottom">
-            <h3 style="
-            text-transform: uppercase;
-            font-size: 15px;
-            font-weight: 400;
-        ">Notice Name*</h3>
-            <p style="font-size: 12px ; margin-top: 25px;">Date: 22/02/2022</p>
-            <p style="font-size: 12px ; margin-top: 25px;">File: </p>
-            <p style="margin-top: -20px;"></p>
-        </div>
-        <div class="card-body border-bottom">
-            <h3 style="
-            text-transform: uppercase;
-            font-size: 15px;
-            font-weight: 400;
-        ">Notice Name*</h3>
-            <p style="font-size: 12px ; margin-top: 25px;">Date: 22/02/2022</p>
-            <p style="font-size: 12px ; margin-top: 25px;">File: </p>
-            <p style="margin-top: -20px;"></p>
-        </div>
+<!-- Services Section Start -->
+<div class="rs-services style2 pt-70 pb-120 md-pt-70 md-pb-80 mt-5">
+    <div class="container">      
+            {% for n in notice %}
+            <div class="wow zoomInUp border-bottom" data-wow-duration="1s">
+                <div class="row">
+                    <div class="col-9">
+                        <p>#{{ forloop.counter }} |</span>  {{ n.title }}</p>
+                    </div>
+                    <div class="col-3 text-right">
+                        <a  href="{{ n.notice_file.url }}">Download</a>
+                    </div> 
+                </div>
+            </div> 
+            {% endfor %}
     </div>
+</div>
+<!-- Services Section End -->
 {% endblock content %}

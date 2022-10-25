@@ -8,7 +8,7 @@ urlpatterns = [
     #properties url
     path('landProject/',views.land_project, name='land_project'),
     path('apnartmentProject/',views.apartment_project, name='apartment_project'),
-    path('details/property/',views.details_property, name='details_property'),
+    path('details/property/<str:id>/',views.details_property, name='details_property'),
 
     #service url
     path('service/',views.service, name='service'),
@@ -25,7 +25,7 @@ urlpatterns = [
 
     #get_in_touch
     path('career/',views.career, name='career'),
-    path('contact/',views.career, name='contactus'),
+    path('contact/',views.contact, name='contactus'),
     path('notice/',views.notice, name='notice'),
     path('our_team/',views.our_team, name='ourteam'),
 

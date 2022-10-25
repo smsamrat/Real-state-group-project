@@ -71,8 +71,13 @@ def apartment_project(request):
     }
     return render(request,'property/apartment_project.html',context)
 
-def details_property(request):
-    return render(request,'property_details/details.html')
+def details_property(request,id):
+    single_post = Post.objects.get(id=id)
+    context= {
+        'feature_details':single_post
+    }
+
+    return render(request,'property_details/details.html',context)
 
 
 def service(request):

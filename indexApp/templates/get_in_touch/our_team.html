@@ -1,3 +1,171 @@
-<h1>
-    Work Running
-</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .notice_area {
+        margin-top: 100px!important;
+    }
+    /* .notice_area h1 {
+    text-align: center;
+    background: #199388;
+    display: inline-block;
+    width: 100%;
+    text-shadow: 2px 2px #8d0d0d;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    border: 1px solid red;
+    padding: 5px;
+} */
+.animate-text {
+	background-image: linear-gradient(-225deg,
+			#a00000 0%,
+			#29B841 29%,
+			#1148d7 67%,
+			#fff800 100%);
+	background-size: auto auto;
+	background-clip: border-box;
+	background-size: 200% auto;
+	color: #fff;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: textanim 4s linear infinite;
+	/* display: inline-block; */
+}
+@keyframes textanim {
+	to {
+		background-position: 200% center;
+	}
+}
+   
+</style>
+    <div class="container notice_area">
+        <!-- <div class="row">
+            <h1>Career</h1>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                
+            </div>
+        </div> -->
+    </div>
+    <style>
+        .container{
+            color: #1b0234;
+        }
+        .btn{
+            background: linear-gradient(8deg, #7f31ff 0%, #4279f1 100%);
+        }
+    </style>
+    <div class="rs-services style2 pt-40 pb-120  mt-5">
+        <div class="animate-text">
+            <h2 class="text-center mt-4 ">Meet Our Team </h2>
+           <p><hr style="background: #199388;"></p>
+        </div>
+        <div class="container">       
+                     
+        </div>
+        </div>
+    
+    </div>
+    <div class="container notice_area">
+        <!-- <div class="row">
+            <h1>Meet Our team</h1>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                
+            </div>
+        </div> -->
+    </div>
+
+<!-- Agent section start -->
+<div class="agent-section content-area-17">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title-3">
+            <!-- <p class="section-subtitle">Our Professionals</p> -->
+            <!-- <h1>Meet Our Agent</h1> -->
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 wow fadeInLeft delay-04s">
+                <div class="row agent-2 a-two g-0">
+                    <div class="col-lg-5 col-md-12 col-sm-12">
+                        <div class="photo">
+                            <img src="{% static 'indexApp/img/team/team-1.jpg' %}" alt="agent-2" class="img-fluid">
+                            <!-- <ul class="social-list clearfix">
+                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-12 col-sm-12 align-self-center">
+                        <div class="detail">
+                            <h4>
+                                <a href="agent-single.html">Karen Paran</a>
+                            </h4>
+                            <h5>Office Manager</h5>
+                            <div class="contact">
+                                <ul>
+                                    <li>
+                                        <strong>Address:</strong><a href="#"> 44 New Design Street,</a>
+                                    </li>
+                                    <li>
+                                        <strong>Email:</strong><a href="mailto:info@themevessel.com"> info@themevessel.com</a>
+                                    </li>
+                                    <li>
+                                        <strong>Mobile:</strong><a href="tel:+554XX-634-7071"> +55 4XX-634-7071</a>
+                                    </li>
+                                    <li>
+                                        <strong>Fax:</strong><a href="#"> +0477 85X6 552</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 wow fadeInRight delay-04s">
+                <div class="row agent-2 a-two g-0">
+                    <div class="col-lg-5 col-md-12 col-sm-12">
+                        <div class="photo">
+                            <img src="{% static 'indexApp/img/team/team-2.jpg' %}" alt="agent-2" class="img-fluid">
+                            <!-- <ul class="social-list clearfix">
+                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-12 col-sm-12 align-self-center">
+                        <div class="detail">
+                            <h4>
+                                <a href="agent-single.html">David Jackson Roy</a>
+                            </h4>
+                            <h5>Creative Director</h5>
+                            <div class="contact">
+                                <ul>
+                                    <li>
+                                        <strong>Address:</strong><a href="#"> 44 New Design Street,</a>
+                                    </li>
+                                    <li>
+                                        <strong>Email:</strong><a href="mailto:info@themevessel.com"> info@themevessel.com</a>
+                                    </li>
+                                    <li>
+                                        <strong>Mobile:</strong><a href="tel:+554XX-634-7071"> +55 4XX-634-7071</a>
+                                    </li>
+                                    <li>
+                                        <strong>Fax:</strong><a href="#"> +0477 85X6 552</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Agent section end -->
+{% endblock content %}

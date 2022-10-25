@@ -14,7 +14,7 @@ urlpatterns = [
     path('service/',views.service, name='service'),
 
     #blog url
-    path('blog/',views.blog, name='blog'),
+    path('blog/',views.blogs, name='blog'),
 
     #about url
     path('about/',views.about, name='about'),

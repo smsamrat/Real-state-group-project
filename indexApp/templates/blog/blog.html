@@ -2,33 +2,19 @@
 {% load static %}
 
 {% block content %}
-    <!-- Blog body start -->
-<!-- Sub banner start -->
-<!-- <div class="sub-banner">
-    <div class="overlay">
-        <div class="container">
-            <div class="breadcrumb-area">
-                <h1>Blog</h1>
-                <ul class="breadcrumbs">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active">Blog</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- Sub Banner end -->
+
 <div class="blog-body content-area mt_blog">
     <div class="container">
         <div class="row">
             <!-- <h1 style="text-align: center; font-weight:500;text-shadow: 0 0 red;margin-bottom: 30px; background-color:darkgray">BLOG</h1> -->
+            {% for blog in blog_query %}
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <!-- Blog 1 start -->
                 <div class="blog-1">
                     <div class="blog-inner">
                         <div class="blog-overflow">
                             <div class="blog-photo">
-                                <img src="{% static 'indexApp/img/blog/blog-1.jpg' %}" alt="blog-1" class="img-fluid w-100">
+                                <img src="{{blog.blog_img.url}}" alt="blog-1" class="img-fluid w-100">
                             </div>
                         </div>
                     </div>
@@ -38,14 +24,14 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="detail">
                     <h3>
-                        <a href="blog-single-sidebar-right.html">Two Extra Hours a Day!</a>
+                        <a href="blog-single-sidebar-right.html">{{blog.title}}!</a>
                     </h3>
                     <ul class="post-meta clearfix d-flex">
                         <li style="padding-right:10px;">
                             <i class="fa fa-user-o"></i> admin
                         </li>
                         <li>
-                            <i class="fa fa-calendar-check-o"></i> Sep 14, 2020
+                            <i class="fa fa-calendar-check-o"></i> {{blog.get_date}}
                         </li>
                         <li>
                             <!-- <i class="fa fa-comment"></i> Comment -->
@@ -59,60 +45,8 @@
             </div>
             <br>
             <br>
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <!-- Blog 1 start -->
-                <div class="blog-1">
-                    <div class="blog-inner">
-                        <div class="blog-overflow">
-                            <div class="blog-photo">
-                                <img src="{% static 'indexApp/img/blog/blog-1.jpg' %}" alt="blog-1" class="img-fluid w-100">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="detail">
-                    <h3>
-                        <a href="blog-single-sidebar-right.html">Two Extra Hours a Day!</a>
-                    </h3>
-                    <ul class="post-meta clearfix">
-                        <li>
-                            <i class="fa fa-user-o"></i> admin
-                        </li>
-                        <li>
-                            <i class="fa fa-calendar-check-o"></i> Sep 14, 2020
-                        </li>
-                        <li>
-                            <!-- <i class="fa fa-comment"></i> Comment -->
-                        </li>
-                    </ul>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with....</p>
-                    <a href="#" class="read-more">Read More...</a>
-                </div>
-            </div>
-            <br>
-            <br>
-
-            <!-- Pagination box start -->
-            <div class="pagination-box text-center">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#">Prev</a>
-                        </li>
-                        <li class="page-item"><a class="page-link  active" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            {% endfor %}
             <!-- Pagination box end -->
-
         </div>
     </div>
 </div>

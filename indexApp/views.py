@@ -83,8 +83,12 @@ def details_property(request,id):
 def service(request):
     return render(request,'service/service.html')
 
-def blog(request):
-    return render(request,'blog/blog.html')
+def blogs(request):
+    blog_query = blog.objects.all()
+    context= {
+        'blog_query':blog_query
+    }
+    return render(request,'blog/blog.html',context)
 
 def about(request):
     agent_query = Agent.objects.all()

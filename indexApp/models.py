@@ -1,9 +1,12 @@
+from django.utils import timezone
 from email.policy import default
 from random import choices
 from secrets import choice
 from tkinter import CASCADE
 from unittest.util import _MAX_LENGTH
 from django.db import models
+
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
@@ -130,8 +133,71 @@ class Area(models.Model):
         return self.name
 
 
-# class blog(models.Model):
-#     blog_img = models.ImageField(upload_to="blog_images")
-#     title = models.CharField(max_length=250)
-#     details = models.TextField()
-#     created = models.DateTimeField(auto_now_add=True)
+class blog(models.Model):
+    blog_img = models.ImageField(upload_to="blog_images")
+    title = models.CharField(max_length=250)
+    details = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_date(self):
+        return self.created.date()
+
+
+class OurTeam(models.Model):
+    name  = models.CharField(max_length = 150)
+    designation = models.CharField(max_length = 150)
+    image  = models.ImageField(upload_to='TeamImage')
+    cover_image  = models.ImageField(upload_to='TeamImage')
+    facebook_link = models.URLField(max_length = 500, blank=True,null=True)
+    twitter_link = models.URLField(max_length = 500,blank=True,null=True)
+    linkedin_link = models.URLField(max_length = 500,blank=True,null=True)
+    instagram_link = models.URLField(max_length = 500,blank=True,null=True)
+    ordering  = models.IntegerField(blank=True,null=True)
+    
+    class Meta:
+        ordering =['ordering']
+        verbose_name = 'OurTeam'
+        verbose_name_plural = 'OurTeam'
+
+    def __str__(self):
+        return self.name
+
+class Career(models.Model):
+    title = models.CharField(max_length = 150)
+    slug = models.SlugField(max_length = 50)
+    active_status = models.BooleanField(default=True)
+    job_description =RichTextUploadingField()
+    post_date = models.DateField(auto_now=False, auto_now_add=False)
+    end_date = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+
+class Notice(models.Model):
+    title  = models.CharField(max_length = 150)
+    notice_file  = models.FileField(upload_to='Notice')
+    
+    class Meta:
+        verbose_name = 'Notice'
+        verbose_name_plural = 'Notices'
+
+    def __str__(self):
+        return self.title
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length = 150)
+    email = models.EmailField()
+    phone = models.CharField(max_length = 150)
+    subject = models.CharField(max_length = 150)
+    message  = models.TextField()
+    
+    class Meta:
+        verbose_name = 'ContactUs'
+        verbose_name_plural = 'ContactUs'
+
+    def __str__(self):
+        return self.email

@@ -1,8 +1,5 @@
 from django.utils import timezone
 from email.policy import default
-from random import choices
-from secrets import choice
-from tkinter import CASCADE
 from unittest.util import _MAX_LENGTH
 from django.db import models
 
@@ -144,6 +141,9 @@ class blog(models.Model):
 
     def get_date(self):
         return self.created.date()
+
+    def get_month(self):
+        return self.created.strftime("%B")
 
 
 class OurTeam(models.Model):

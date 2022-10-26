@@ -72,31 +72,6 @@ i.fa.fa-youtube {
             <button class="navbar-toggler" id="drawer" type="button">
                 <span class="fa fa-bars"></span>
             </button>
-            <!-- <div class="navbar-collapse collapse w-100 justify-content-end" id="navbar">
-                <ul class="navbar-nav ml-auto">
-                    {% for menu in request|menu_filter %}
-                        {% if not menu.children.all %}
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{menu.name}}
-                            </a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{menu.name}}
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                {% for sub_menu in menu.children.all %}
-                                <li><a class="dropdown-item" href="index.html">{{sub_menu}}</a></li>
-                                {% endfor %}
-                            </ul>
-                            
-                        </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div> -->
 
             <div class="navbar-collapse collapse w-100 justify-content-end" id="navbar">
                 <ul class="navbar-nav ml-auto">
@@ -160,8 +135,8 @@ i.fa.fa-youtube {
     </div>
     <div class="sidebar-inner">
         <div class="sidebar-logo">
-            <a href="index.html">
-                <img src="img/logos/logo.png" alt="sidebarlogo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'indexApp/img/logos/vanture_logo.png' %}" alt="sidebarlogo">
             </a>
         </div>
         <div class="sidebar-navigation">
@@ -215,48 +190,6 @@ i.fa.fa-youtube {
                     <a href="{% url 'about' %}">About</a>
                 </li>
             </ul>
-        </div>
-        <div class="get-in-touch">
-            <h3 class="heading">Get in Touch</h3>
-            <div class="sidebar-contact-info">
-                <div class="icon">
-                    <i class="fa fa-phone"></i>
-                </div>
-                <div class="body-info">
-                    <a href="tel:0477-0477-8556-552">0477 8556 552</a>
-                </div>
-            </div>
-            <div class="sidebar-contact-info">
-                <div class="icon">
-                    <i class="fa fa-envelope"></i>
-                </div>
-                <div class="body-info">
-                    <a href="#">info@themevessel.com</a>
-                </div>
-            </div>
-            <div class="sidebar-contact-info mb-0">
-                <div class="icon">
-                    <i class="fa fa-fax"></i>
-                </div>
-                <div class="body-info">
-                    <a href="tel:0477-0477-8556-552">0266 8556 787</a>
-                </div>
-            </div>
-        </div>
-        <div class="get-social">
-            <h3 class="heading">Get Social</h3>
-            <a href="#" class="facebook-bg">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <a href="#" class="twitter-bg">
-                <i class="fa fa-twitter"></i>
-            </a>
-            <a href="#" class="google-bg">
-                <i class="fa fa-google"></i>
-            </a>
-            <a href="#" class="linkedin-bg">
-                <i class="fa fa-linkedin"></i>
-            </a>
         </div>
     </div>
 </nav>

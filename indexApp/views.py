@@ -201,12 +201,11 @@ def notice(request):
     return render(request, 'get_in_touch/notice.html', {'notice':notice})
 
 def location(request,location_name):
+    if location_name:
+        location_query = Post.objects.filter(post_location__location_name = location_name)
 
-
-    location_query = Post.objects.filter(post_location__location_name = location_name)
-
-    context ={
-        'feature_details':location_query
-    }
+        context ={
+            'feature_details':location_query
+        }
 
     return render(request,'location_wise_post.html',context)

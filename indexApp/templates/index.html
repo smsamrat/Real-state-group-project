@@ -432,7 +432,7 @@
                 <div class="blog-2">
                     <img src="{{blog.blog_img.url}}" alt="blog-photo" class="img-fluid w-100">
                     <div class="date-box">
-                        <span>24</span> May
+                        <span>{{blog.created.day}}</span> {{blog.get_month}}
                     </div>
                     <div class="blog-info">
                         <h3><a href="{% url 'read-more' blog.id %}">{{blog.title}}</a></h3>

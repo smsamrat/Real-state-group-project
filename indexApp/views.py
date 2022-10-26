@@ -75,13 +75,37 @@ def apartment_project(request):
     }
     return render(request,'property/apartment_project.html',context)
 
-def details_property(request,id):
+def apartment_details_property(request,id):
     single_post = Post.objects.get(id=id)
     context= {
-        'feature_details':single_post
+        'apartment_details':single_post
     }
 
-    return render(request,'property_details/details.html',context)
+    return render(request,'property_details/apartment_details.html',context)
+
+def feature_details_property(request,id):
+    single_post = Post.objects.get(id=id)
+    context= {
+        'single_post':single_post
+    }
+
+    return render(request,'property_details/feature_details_property.html',context)
+    
+def recent_details_property(request,id):
+    single_post = Post.objects.get(id=id)
+    context= {
+        'single_post':single_post
+    }
+
+    return render(request,'property_details/recent_details_property.html',context)
+
+def land_details_property(request,id):
+    single_post = Post.objects.get(id=id)
+    context= {
+        'single_post':single_post
+    }
+
+    return render(request,'property_details/land_details_property.html',context)
 
 
 def service(request):
@@ -175,3 +199,14 @@ def career_detail(request,slug):
 def notice(request):
     notice = Notice.objects.all()
     return render(request, 'get_in_touch/notice.html', {'notice':notice})
+
+def location(request,location_name):
+
+
+    location_query = Post.objects.filter(post_location__location_name = location_name)
+
+    context ={
+        'feature_details':location_query
+    }
+
+    return render(request,'location_wise_post.html',context)

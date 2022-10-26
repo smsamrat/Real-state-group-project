@@ -4,11 +4,15 @@ from . import views
 
 urlpatterns = [
     path('',views.Home, name='home'),
+    path('location-post/<str:location_name>/',views.location, name='location'),
+    path('feature-details-property/<str:id>/',views.feature_details_property, name='feature_details_property'),
+    path('recent-details-property/<str:id>/',views.recent_details_property, name='recent_details_property'),
 
     #properties url
     path('landProject/',views.land_project, name='land_project'),
+    path('recent-details-property/<str:id>/',views.land_details_property, name='land_details_property'),
     path('apnartmentProject/',views.apartment_project, name='apartment_project'),
-    path('details/property/<str:id>/',views.details_property, name='details_property'),
+    path('details/property/<str:id>/',views.apartment_details_property, name='details_property'),
 
     #service url
     path('service/',views.service, name='service'),

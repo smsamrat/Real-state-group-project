@@ -61,7 +61,7 @@
                             <div class="property-price">${{feature_detail.price}}</div>
                             <img src="{{feature_detail.post_pic.url}}" alt="fp-list" class="img-responsive hp-2">
                             <div class="property-overlay">
-                                <a href="properties-details.html" class="overlay-link">
+                                <a href="{% url 'feature_details_property' feature_detail.id %}" class="overlay-link">
                                     <div class="overlay-link">{{feature_detail.post_title}}</div>
                                 </a>
                             </div>
@@ -72,7 +72,7 @@
                         <div class="info">
                             <!-- title -->
                             <h1 class="title">
-                                <a href="properties-details.html">{{feature_detail.post_title}}</a>
+                                <a href="{% url 'feature_details_property' feature_detail.id %}">{{feature_detail.post_title}}</a>
                             </h1>
                             <!-- Property address -->
                             <h3 class="property-address">
@@ -195,9 +195,10 @@
                     <div class="property-2">
                         <div class="property-inner">
                             <div class="property-overflow">
+                            <a href="{% url 'recent_details_property' feature_detail.id %}">
                                 <div class="property-photo">
                                     <img src="{{feature_detail.post_pic.url}}" alt="rp" class="img-fluid">
-                                    <!-- <div class="listing-badges">
+                                    <div class="listing-badges">
                                         <span class="featured active">
                                             {% if feature_detail.for_sale %}
                                             {{feature_detail.for_sale}}
@@ -205,17 +206,18 @@
                                             {{feature_detail.for_rent}}
                                             {% endif %}
                                         </span>
-                                    </div> -->
+                                    </div>
                                     <div class="price-ratings">
                                         <div class="price">${{feature_detail.price}}</div>
                                     </div>
                                 </div>
+                            </a>
                             </div>
                             <!-- content -->
                             <div class="content">
                                 <!-- title -->
                                 <h4 class="title">
-                                    <a href="properties-details.html">{{feature_detail.post_title}}</a>
+                                    <a href="{% url 'recent_details_property' feature_detail.id %}">{{feature_detail.post_title}}</a>
                                 </h4>
                                 <!-- Property address -->
                                 <h3 class="property-address">
@@ -297,45 +299,6 @@
         </div>
 
         <div class="row">
-
-            <!-- <div class="col-lg-4 col-md-12 col-sm-12 wow fadeInLeft delay-04s col-pad">
-                <div class="row">
-                    <div class="col-lg-12 col-md-6 col-sm-12">
-                        <div class="popular-places-box">
-                            <div class="popular-places-overflow">
-                                <div class="popular-places-photo">
-                                    <img class="img-fluid w-100" src="{% static 'indexApp/img/popular-places/popular-places-1.jpg'%}" alt="popular-places">
-                                </div>
-                            </div>
-                            <div class="ling">
-                                <div class="ling-section">
-                                    <h3>
-                                        <a href="#">Florida</a>
-                                        <span class="float-end">27 Properties</span>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-6 col-sm-12">
-                        <div class="popular-places-box">
-                            <div class="popular-places-overflow">
-                                <div class="popular-places-photo">
-                                    <img class="img-fluid w-100" src="{% static 'indexApp/img/popular-places/popular-places-2.jpg'%}" alt="popular-places">
-                                </div>
-                            </div>
-                            <div class="ling">
-                                <div class="ling-section">
-                                    <h3>
-                                        <a href="#">Rome</a>
-                                        <span class="float-end">12 Properties</span>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             {% for location in location_details %}
             <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp delay-04s col-pad">
                 <div class="popular-places-box">
@@ -347,7 +310,7 @@
                     <div class="ling">
                         <div class="ling-section">
                             <h3>
-                                <a href="#">{{location.location_name}}</a>
+                                <a href="{% url 'location' location.location_name %}">{{location.location_name}}</a>
                                 <span class="float-end">06 Properties</span>
                             </h3>
                         </div>
@@ -413,12 +376,12 @@
                     <div class="col-lg-5 col-md-12 col-sm-12">
                         <div class="photo">
                             <img src="{{agent.images.url}}" alt="agent-2" class="img-fluid">
-                            <!-- <ul class="social-list clearfix">
+                            <ul class="social-list clearfix">
                                 <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
                                 <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
-                            </ul> -->
+                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-12 col-sm-12 align-self-center">

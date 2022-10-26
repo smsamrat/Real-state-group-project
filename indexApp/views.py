@@ -77,8 +77,10 @@ def apartment_project(request):
 
 def apartment_details_property(request,id):
     single_post = Post.objects.get(id=id)
+    related_images = Post_related_images.objects.filter(post=single_post)
     context= {
-        'apartment_details':single_post
+        'apartment_details':single_post,
+        'related_images':related_images
     }
 
     return render(request,'property_details/apartment_details.html',context)

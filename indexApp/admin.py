@@ -2,10 +2,17 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
+class relatedPostImageAdmin(admin.StackedInline):
+    model = Post_related_images
+
+class PostAdmin(admin.ModelAdmin):
+    inlines = [relatedPostImageAdmin]
+    # prepopulated_fields ={'slug': ('name',)}
+
 
 admin.site.register(Menu)
 admin.site.register(Baner_video)
-admin.site.register(Post)
+admin.site.register(Post,PostAdmin)
 admin.site.register(Recently_Properties)
 admin.site.register(Counters)
 admin.site.register(Location)

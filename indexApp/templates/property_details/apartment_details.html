@@ -187,10 +187,46 @@
 
                         <!-- Full-width images with number text -->
                         <div class="mySlides">
+                        {% for i in related_images %}
                         <div class="numbertext">1 / 6</div>
-                            <img src="{{apartment_details.post_pic.url}}" style="width:100%">
+                            <img src="{{i.image.url}}" style="width:100%">
                         </div>
-                    
+                        <div class="row">
+  
+                            <div class="column">
+                                <img class="demo cursor" src=" {{i.image.url}}" style="width:100%" onclick="currentSlide('{{ forloop.counter }}')" alt="The Woods">
+                            </div>
+                        <script>
+                            let slideIndex = '{{ forloop.counter }}';
+                            showSlides(slideIndex);
+                            
+                            function plusSlides(n) {
+                              showSlides(slideIndex += n);
+                            }
+                            
+                            function currentSlide(n) {
+                              showSlides(slideIndex = n);
+                            }
+                            
+                            function showSlides(n) {
+                              let i;
+                              let slides = document.getElementsByClassName("mySlides");
+                              let dots = document.getElementsByClassName("demo");
+                              let captionText = document.getElementById("caption");
+                              if (n > slides.length) {slideIndex = 1}
+                              if (n < 1) {slideIndex = slides.length}
+                              for (i = 0; i < slides.length; i++) {
+                                slides[i].style.display = "none";
+                              }
+                              for (i = 0; i < dots.length; i++) {
+                                dots[i].className = dots[i].className.replace(" active", "");
+                              }
+                              slides[slideIndex-1].style.display = "block";
+                              dots[slideIndex-1].className += " active";
+                              captionText.innerHTML = dots[slideIndex-1].alt;
+                            }
+                        </script>
+                        {% endfor %}
                         <!-- <div class="mySlides">
                         <div class="numbertext">2 / 6</div>
                             <img src="{% static 'indexApp/slider/img_5terre_wide.jpg' %}" style="width:100%">
@@ -226,11 +262,9 @@
                         </div>
                     
                         <!-- Thumbnail images -->
-                        <div class="row">
-                        <div class="column">
-                            <img class="demo cursor" src=" {{apartment_details.post_pic.url}}" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
-                        </div>
-                        <div class="column">
+                        
+
+                        <!-- <div class="column">
                             <img class="demo cursor" src="{% static 'indexApp/slider/img_5terre.jpg'%}" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
                         </div>
                         <div class="column">
@@ -244,7 +278,7 @@
                         </div>
                         <div class="column">
                             <img class="demo cursor" src="{% static 'indexApp/slider/img_snow.jpg'%}" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
-                        </div>
+                        </div> -->
                         </div>
                     </div>
                 <!-- Properties slider section end -->
@@ -409,35 +443,5 @@
 
 </div>
 <!-- Properties details page end -->
-<script>
-    let slideIndex = 1;
-    showSlides(slideIndex);
-    
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-    
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
-    
-    function showSlides(n) {
-      let i;
-      let slides = document.getElementsByClassName("mySlides");
-      let dots = document.getElementsByClassName("demo");
-      let captionText = document.getElementById("caption");
-      if (n > slides.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = slides.length}
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-      }
-      slides[slideIndex-1].style.display = "block";
-      dots[slideIndex-1].className += " active";
-      captionText.innerHTML = dots[slideIndex-1].alt;
-    }
-</script>
 
 {% endblock %}

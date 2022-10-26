@@ -56,6 +56,13 @@ class Post(models.Model):
     class Meta:
         ordering= ['-created_date']
 
+class Post_related_images(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='Post_related_images')
+    created = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.post.post_title
 
 class Recently_Properties(models.Model):
     images = models.ImageField(upload_to='Recently_Properties/')

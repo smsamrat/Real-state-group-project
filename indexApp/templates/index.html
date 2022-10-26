@@ -464,54 +464,20 @@
             <h1>Our Blog</h1>
         </div>
         <div class="slick row comon-slick-inner" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+            {% for blog in blog_querys %}
             <div class="item slide-box wow fadeInUp delay-04s">
                 <div class="blog-2">
-                    <img src="{% static 'indexApp/img/blog/blog-4.jpg'%}" alt="blog-photo" class="img-fluid w-100">
+                    <img src="{{blog.blog_img.url}}" alt="blog-photo" class="img-fluid w-100">
                     <div class="date-box">
                         <span>24</span> May
                     </div>
                     <div class="blog-info">
-                        <h3><a href="blog-single-sidebar-right.html">Find Your Best Real Estate</a></h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
+                        <h3><a href="{% url 'read-more' blog.id %}">{{blog.title}}</a></h3>
+                        <p>{{blog.details|truncatewords:"10"|safe}}</p>
                     </div>
                 </div>
             </div>
-            <div class="item slide-box wow fadeInRight delay-04s">
-                <div class="blog-2">
-                    <img src="{% static 'indexApp/img/blog/blog-5.jpg'%}" alt="blog-photo" class="img-fluid w-100">
-                    <div class="date-box">
-                        <span>21</span> July
-                    </div>
-                    <div class="blog-info">
-                        <h3><a href="blog-single-sidebar-right.html">Selling Your Real House</a></h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item slide-box wow fadeInUp delay-04s">
-                <div class="blog-2">
-                    <img src="{% static 'indexApp/img/blog/blog-6.jpg'%}" alt="blog-photo" class="img-fluid w-100">
-                    <div class="date-box">
-                        <span>27</span> April
-                    </div>
-                    <div class="blog-info">
-                        <h3><a href="blog-single-sidebar-right.html">Buying a Best House</a></h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item slide-box wow fadeInLeft delay-04s">
-                <div class="blog-2">
-                    <img src="{% static 'indexApp/img/blog/blog-6.jpg'%}" alt="blog-photo" class="img-fluid w-100">
-                    <div class="date-box">
-                        <span>27</span> April
-                    </div>
-                    <div class="blog-info">
-                        <h3><a href="blog-single-sidebar-right.html">Buying a Best House</a></h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting...</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

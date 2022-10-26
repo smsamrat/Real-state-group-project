@@ -15,6 +15,7 @@ urlpatterns = [
 
     #blog url
     path('blog/',views.blogs, name='blog'),
+    path('read/more/<str:id>/',views.readMore, name='read-more'),
 
     #about url
     path('about/',views.about, name='about'),

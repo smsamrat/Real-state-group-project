@@ -27,6 +27,7 @@ def Home(request):
 
     counters = Counters.objects.all()
     agent_query = Agent.objects.all()
+    blog_query = blog.objects.all()
     context ={
         'banner_details':banner_query,
         'feature_details':page_obj,
@@ -36,6 +37,7 @@ def Home(request):
         'location_details':location_query,
         'agent_details':agent_query,
         'recent_property':recent_query_obj,
+        'blog_querys':blog_query,
     }
     return render(request,'index.html',context)
 
@@ -91,6 +93,13 @@ def blogs(request):
         'blog_query':blog_query
     }
     return render(request,'blog/blog.html',context)
+
+def readMore(request,id):
+    single_blog = blog.objects.get(id=id)
+    context= {
+        'single_blog':single_blog
+    }
+    return render(request,'blog/read_More.html',context)
 
 def about(request):
     agent_query = Agent.objects.all()

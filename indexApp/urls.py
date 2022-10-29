@@ -10,7 +10,7 @@ urlpatterns = [
 
     #properties url
     path('landProject/',views.land_project, name='land_project'),
-    path('recent-details-property/<str:id>/',views.land_details_property, name='land_details_property'),
+    path('land-details-property/<str:id>/',views.land_details_property, name='land_details_property'),
     path('apnartmentProject/',views.apartment_project, name='apartment_project'),
     path('details/property/<str:id>/',views.apartment_details_property, name='details_property'),
 

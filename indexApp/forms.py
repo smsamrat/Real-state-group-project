@@ -1,5 +1,7 @@
+from dataclasses import fields
+from msilib.schema import Control
 from django import forms 
-from .models import ContactUs,JobApplication
+from .models import ContactUs,JobApplication,FeedBack
 
 class ContactForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={
@@ -69,3 +71,19 @@ class JobApplicationForm(forms.ModelForm):
         fields = ['full_name', 'email', 'phone', 'expected_salary','cv','message']
 
 
+class UserFeedbackForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'class':'form-control hidden',
+        'placeholder':'Your Phone',
+        
+    }))
+
+    description = forms.CharField(widget=forms.Textarea(attrs={
+        'class':'form-control',
+        'placeholder':'Write a short descripton',
+        'rows':3,
+    }))
+
+    class Meta:
+        model = FeedBack
+        fields =['name','description']

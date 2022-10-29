@@ -1,3 +1,6 @@
+from pydoc import describe
+from random import choice
+from tabnanny import verbose
 from django.utils import timezone
 from email.policy import default
 from unittest.util import _MAX_LENGTH
@@ -27,23 +30,32 @@ class Location(models.Model):
     def __str__(self):
         return f'{self.location_name}'
 
+class Property_type(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
 
-class Post(models.Model):
-    POST_TYPE=(
-        ('feature','feature'),
-        ('apartment','apartment'),
-        ('land','land'),
-        ('recent','recent'),
+class PropertyPost(models.Model):
+    LIFT=(
+        ('Yes','Yes'),
+        ('No','No'),
     )
-    post_pic = models.ImageField(upload_to='features_post_img/',null=True)
+    post_pic = models.ImageField(upload_to='features_post_img/',blank=True,null=True)
     price = models.FloatField(default='0.00')
-    post_title = models.CharField(max_length=250,null=True)
+    post_title = models.CharField(max_length=250,blank=True,null=True)
     post_location = models.ForeignKey(Location,on_delete=models.CASCADE,related_name='location',blank=True,null=True)
-    post_type = models.CharField(max_length=100,choices=POST_TYPE)
-    sqr_feet = models.CharField(max_length=250)
-    bedrooms = models.CharField(max_length=250)
-    bathrooms = models.CharField(max_length=250)
-    garage = models.CharField(max_length=250)
+    post_type = models.ManyToManyField(Property_type, related_name='pro_type',blank=True)
+    land_size = models.IntegerField(blank=True,null=True)
+    bedrooms = models.IntegerField(blank=True,null=True)
+    bathrooms = models.IntegerField(blank=True,null=True)
+    apartment_size = models.IntegerField(blank=True,null=True)
+    total_apartment = models.IntegerField(blank=True,null=True)
+    parking_area = models.CharField(max_length=100,blank=True,null=True)
+    parking_size = models.IntegerField(blank=True,null=True)
+    facing = models.CharField(max_length=100,blank=True,null=True)
+    lift = models.CharField(max_length=100,choices=LIFT,blank=True,null=True)
+    description = models.TextField(blank=True,null=True)
+    floor_plan_image_or_land_layout_img = models.ImageField(upload_to='floor_plan_image/',blank=True, null=True)
     developer_name = models.CharField(max_length=250,blank=True, null=True)
     created_date =models.DateTimeField(auto_now_add=True)
 
@@ -57,7 +69,7 @@ class Post(models.Model):
         ordering= ['-created_date']
 
 class Post_related_images(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(PropertyPost, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='Post_related_images')
     created = models.DateTimeField(auto_now_add=True)
     
@@ -103,6 +115,24 @@ class Agent(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+ 
+    def __str__(self):
+        return f"{self.option_name}"
+    class Meta:
+        verbose_name = 'Why_chosse_us_option'
+        verbose_name_plural = 'Why_chosse_us_options'
+
+
+class Why_chosse_us(models.Model):
+    title = models.CharField(max_length=100,null=True)
+    description = models.TextField()
+     
+    def __str__(self):
+        return f"{self.title}"
+    class Meta:
+        verbose_name = 'Why_chosse_us'
+        verbose_name_plural = 'Why_chosse_us'
 
 class Gallery(models.Model):
     IMG_TYPE = (
@@ -219,3 +249,14 @@ class JobApplication(models.Model):
     
     def __str__(self):
         return self.email
+
+class FeedBack(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    is_feedback_show = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+

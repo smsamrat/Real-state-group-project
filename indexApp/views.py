@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from indexApp.forms import JobApplicationForm,ContactForm
+from indexApp.forms import JobApplicationForm,ContactForm,UserFeedbackForm
 from .models import *
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -10,21 +10,22 @@ def Home(request):
     location_query = Location.objects.filter()
     location_filter= request.GET.get('location')
     if location_filter:
-        feature_query = Post.objects.filter(post_location__location_name = location_filter)
+        feature_query = PropertyPost.objects.filter(post_location__location_name = location_filter)
         paginator = Paginator(feature_query,10)
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
     else:
-        feature_query = Post.objects.filter(post_type='feature')
+        feature_query = PropertyPost.objects.filter(post_type__name='Feature Property')
         paginator = Paginator(feature_query,10)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
 
-    recent_query = Post.objects.filter(post_type='recent')
+    recent_query = PropertyPost.objects.filter(post_type__name='Recent Property')
     paginator = Paginator(recent_query,12)
     page_number = request.GET.get('page', 1)
     recent_query_obj = paginator.get_page(page_number)
 
+    why_chosse_us_q = Why_chosse_us.objects.all()
     counters = Counters.objects.all()
     agent_query = Agent.objects.all()
     blog_query = blog.objects.all()
@@ -38,12 +39,13 @@ def Home(request):
         'agent_details':agent_query,
         'recent_property':recent_query_obj,
         'blog_querys':blog_query,
+        'why_chosse_us_q':why_chosse_us_q,
     }
     return render(request,'index.html',context)
 
 
 def land_project(request):
-    feature_query = Post.objects.filter(post_type='land')
+    feature_query = PropertyPost.objects.filter(post_type__name='Land Property')
     paginator = Paginator(feature_query,9,orphans=1)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
@@ -56,7 +58,7 @@ def land_project(request):
     return render(request,'property/land_project.html',context)
 
 def apartment_project(request):
-    feature_query = Post.objects.filter(post_type='apartment')
+    feature_query = PropertyPost.objects.filter(post_type__name='Apartment Property')
     paginator = Paginator(feature_query,9,orphans=1)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
@@ -76,17 +78,31 @@ def apartment_project(request):
     return render(request,'property/apartment_project.html',context)
 
 def apartment_details_property(request,id):
-    single_post = Post.objects.get(id=id)
+    single_post = PropertyPost.objects.get(id=id)
     related_images = Post_related_images.objects.filter(post=single_post)
+
+    form = UserFeedbackForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submitted')
+            return redirect('details_property',id=id)
+        else:
+            form = ContactForm(request.POST)
+            messages.error(request,'Message Not Submitted')
+            return redirect('details_property',id=id)
+           
     context= {
         'apartment_details':single_post,
-        'related_images':related_images
+        'related_images':related_images,
+        'form': form
     }
+
 
     return render(request,'property_details/apartment_details.html',context)
 
 def feature_details_property(request,id):
-    single_post = Post.objects.get(id=id)
+    single_post = PropertyPost.objects.get(id=id)
     context= {
         'single_post':single_post
     }
@@ -94,17 +110,46 @@ def feature_details_property(request,id):
     return render(request,'property_details/feature_details_property.html',context)
     
 def recent_details_property(request,id):
-    single_post = Post.objects.get(id=id)
+    single_post = PropertyPost.objects.get(id=id)
+    related_images = Post_related_images.objects.filter(post=single_post)
+
+    form = UserFeedbackForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submitted')
+            return redirect('details_property',id=id)
+        else:
+            form = ContactForm(request.POST)
+            messages.error(request,'Message Not Submitted')
+            return redirect('details_property',id=id)
     context= {
-        'single_post':single_post
+        'recent_property_details':single_post,
+        'related_images':related_images,
+        'form':form,
+        
     }
 
     return render(request,'property_details/recent_details_property.html',context)
 
 def land_details_property(request,id):
-    single_post = Post.objects.get(id=id)
+    single_post = PropertyPost.objects.get(id=id)
+    related_images = Post_related_images.objects.filter(post=single_post)
+
+    form = UserFeedbackForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submitted')
+            return redirect('details_property',id=id)
+        else:
+            form = ContactForm(request.POST)
+            messages.error(request,'Message Not Submitted')
+            return redirect('details_property',id=id)
     context= {
-        'single_post':single_post
+        'land_details':single_post,
+        'related_images':related_images,
+        'form':form
     }
 
     return render(request,'property_details/land_details_property.html',context)
@@ -204,7 +249,7 @@ def notice(request):
 
 def location(request,location_name):
     if location_name:
-        location_query = Post.objects.filter(post_location__location_name = location_name)
+        location_query = PropertyPost.objects.filter(post_location__location_name = location_name)
 
         context ={
             'feature_details':location_query

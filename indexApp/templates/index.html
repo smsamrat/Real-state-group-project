@@ -129,6 +129,7 @@
         </div>
 
         <div class="row">
+            {% for choose in why_chosse_us_q %}
             <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInLeft delay-04s">
                 <div class="service-info-2 df-box">
                     <div class="number">01</div>
@@ -137,40 +138,15 @@
                     </div>
                     <div class="detail">
                         <h5>
-                            <a href="services-1.html">Trusted By Thousands</a>
+                            <a href="services-1.html">{{choose.title}}</a>
                         </h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy Lorem Ipsum has been standard dummy.</p>
+                        <p>{{choose.description}}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp delay-04s">
-                <div class="service-info-2 df-box">
-                    <div class="number">02</div>
-                    <div class="icon">
-                        <i class="flaticon-symbol-1"></i>
-                    </div>
-                    <div class="detail">
-                        <h5>
-                            <a href="services-1.html">Financing Made Easy</a>
-                        </h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy Lorem Ipsum has been standard dummy text.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInRight delay-04s">
-                <div class="service-info-2 df-box">
-                    <div class="number">03</div>
-                    <div class="icon">
-                        <i class="flaticon-apartment"></i>
-                    </div>
-                    <div class="detail">
-                        <h5>
-                            <a href="services-1.html">Find Your Property </a>
-                        </h5>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. simply dummy Lorem Ipsum has been standard dummy text.</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+            
+            
             <!-- <div class="col-lg-12 col-sm-12 text-center wow fadeInUp delay-04s">
                 <a class="btn-1 btn-outline-1" href="services-1.html">
                     <span>Read More</span> <i class="arrow"></i>
@@ -362,9 +338,8 @@
 <!-- Popular places end -->
 
 <!-- Agent section start -->
-<div class="agent-section content-area-17">
+<!-- <div class="agent-section content-area-17">
     <div class="container">
-        <!-- Main title -->
         <div class="main-title-3">
             <p class="section-subtitle">Our Professionals</p>
             <h1>Meet Our Agent</h1>
@@ -413,7 +388,7 @@
             {% endfor %}
         </div>
     </div>
-</div>
+</div> -->
 <!-- Agent section end -->
 
 <div class="clearfix"></div>
@@ -445,26 +420,6 @@
     </div>
 </div>
 <!-- Blog end -->
-
-<!-- Our newslatters strat -->
-<div class="our-newslatters">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Get Newsletter</h3>
-                <p>Your download should start automatically, if not Click here. Should I give up, huh?.</p>
-                <div class="form-info">
-                    <form class="form-inline d-flex" action="#">
-                        <input class="form-control" type="email" id="email2" placeholder="Email Address...">
-                        <button class="btn button-theme btn-md" type="submit">Get it now</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Our newslatters end -->
-
 
 
 <!-- Property Video Modal -->

@@ -58,7 +58,6 @@
                         <!-- Property img -->
                         <div class="property-img">
                             <div class="property-tag button alt featured">Featured</div>
-                            <div class="property-price">${{feature_detail.price}}</div>
                             <img src="{{feature_detail.post_pic.url}}" alt="fp-list" class="img-responsive hp-2">
                             <div class="property-overlay">
                                 <a href="{% url 'feature_details_property' feature_detail.id %}" class="overlay-link">
@@ -66,6 +65,7 @@
                                 </a>
                             </div>
                         </div>
+
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 property-content">
                         <!-- Info -->
@@ -76,7 +76,7 @@
                             </h1>
                             <!-- Property address -->
                             <h3 class="property-address">
-                                <a href="/?location={{feature_detail.post_location}}">
+                                <a href="{% url 'feature_details_property' feature_detail.id %}">
                                     <i class="fa fa-map-marker"> {{feature_detail.post_location}}</i>
                                 </a>
                             </h3>
@@ -84,7 +84,7 @@
                             <ul class="facilities-list fl-2 clearfix">
                                 <li>
                                     <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                    <span>{{feature_detail.sqr_feet}} sq ft</span>
+                                    <span>{{feature_detail.apartment_size}} sq ft</span>
                                 </li>
                                 <li>
                                     <i class="flaticon-bed"></i>
@@ -113,6 +113,7 @@
                     </div>
                 </div>
             </div>
+
             {% endfor %}
         </div>
     </div>
@@ -197,7 +198,7 @@
                                 </h4>
                                 <!-- Property address -->
                                 <h3 class="property-address">
-                                    <a href="properties-details.html">
+                                    <a>
                                         <i class="fa fa-map-marker"></i> {{feature_detail.post_location}}
                                     </a>
                                 </h3>
@@ -206,7 +207,7 @@
                             <ul class="facilities-list clearfix">
                                 <li>
                                     <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                    <span>{{feature_detail.sqr_feet}} sq ft</span>
+                                    <span>{{feature_detail.apartment_size}} sq ft</span>
                                 </li>
                                 <li>
                                     <i class="flaticon-bed"></i>

@@ -103,8 +103,22 @@ def apartment_details_property(request,id):
 
 def feature_details_property(request,id):
     single_post = PropertyPost.objects.get(id=id)
+    related_images = Post_related_images.objects.filter(post=single_post)
+
+    form = UserFeedbackForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submitted')
+            return redirect('feature_details_property',id=id)
+        else:
+            form = ContactForm(request.POST)
+            messages.error(request,'Message Not Submitted')
+            return redirect('feature_details_property',id=id)
     context= {
-        'single_post':single_post
+        'feature_property_details':single_post,
+        'related_images':related_images,
+        'form':form,
     }
 
     return render(request,'property_details/feature_details_property.html',context)
@@ -118,11 +132,11 @@ def recent_details_property(request,id):
         if form.is_valid():
             form.save()
             messages.success(request,'Successfully Submitted')
-            return redirect('details_property',id=id)
+            return redirect('recent_details_property',id=id)
         else:
             form = ContactForm(request.POST)
             messages.error(request,'Message Not Submitted')
-            return redirect('details_property',id=id)
+            return redirect('recent_details_property',id=id)
     context= {
         'recent_property_details':single_post,
         'related_images':related_images,
@@ -141,11 +155,11 @@ def land_details_property(request,id):
         if form.is_valid():
             form.save()
             messages.success(request,'Successfully Submitted')
-            return redirect('details_property',id=id)
+            return redirect('land_details_property',id=id)
         else:
             form = ContactForm(request.POST)
             messages.error(request,'Message Not Submitted')
-            return redirect('details_property',id=id)
+            return redirect('land_details_property',id=id)
     context= {
         'land_details':single_post,
         'related_images':related_images,

@@ -96,9 +96,10 @@
 <div class="work">
     <div class="category-buttons">
       <a href="#" class="active all" data-group="all">All</a>
-      <a href="#" data-group="office">office</a>
-      <a href="#" data-group="project">project</a>
-      <a href="#" data-group="client">client</a>
+      <a href="#" data-group="management">Management</a>
+      <a href="#" data-group="realstate">Realstate Property</a>
+      <a href="#" data-group="ecommerce">E-commerce</a>
+      <a href="#" data-group="client">Client Area</a>
       <!-- <a href="#" data-group="sports">sports</a>
       <a href="#" data-group="people">people</a> -->
     </div>
@@ -106,22 +107,27 @@
     <div id="grid" class="grid">
       {% for i in gallery_office %}
       
-      {% if i.img_type == 'Office' %}
-      <a class="card" data-groups="office,">  
+      {% if i.img_type == 'Management' %}
+      <a class="card" data-groups="management,">  
         <img id="myImg{{ forloop.counter }}" src="{{i.img.url}}" />
-        <div class="title">Office</div>
+        <div class="title">Management</div>
       </a>
 
-      {% elif i.img_type == 'Client' %} 
-      <a class="card" href="#" data-groups="client,">
+      {% elif i.img_type == 'Realstate Property' %} 
+      <a class="card" href="#" data-groups="realstate,">
         <img id="myImg{{ forloop.counter }}" src="{{i.img.url}}" />
-        <div class="title">Client</div>
+        <div class="title">Realstate Property</div>
       </a>
 
-      {% elif i.img_type == 'Project' %}
-      <a class="card" href="#" data-groups="project,">       
+      {% elif i.img_type == 'E-commerce' %}
+      <a class="card" href="#" data-groups="ecommerce,">       
         <img id="myImg{{ forloop.counter }}" src="{{i.img.url}}" />
-        <div class="title">Project</div>       
+        <div class="title">E-commerce</div>       
+      </a>
+      {% elif i.img_type == 'Client Area' %}
+      <a class="card" href="#" data-groups="client,">       
+        <img id="myImg{{ forloop.counter }}" src="{{i.img.url}}" />
+        <div class="title">Client Area</div>       
       </a>
       {% endif %}
       

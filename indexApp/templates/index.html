@@ -52,6 +52,7 @@
         </div>
         <div class="row">
             {% for feature_detail in feature_details %}
+            <a href="{% url 'feature_details_property' feature_detail.id %}">
             <div class="col-lg-6 col-md-12 col-sm-12 wow fadeInLeft delay-04s">
                 <div class="row g-0 property fp2">
                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
@@ -60,12 +61,11 @@
                             <div class="property-tag button alt featured">Featured</div>
                             <img src="{{feature_detail.post_pic.url}}" alt="fp-list" class="img-responsive hp-2">
                             <div class="property-overlay">
-                                <a href="{% url 'feature_details_property' feature_detail.id %}" class="overlay-link">
+                                <a href="" class="overlay-link">
                                     <div class="overlay-link">{{feature_detail.post_title}}</div>
                                 </a>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 property-content">
                         <!-- Info -->
@@ -112,8 +112,9 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
-
+            </a>
             {% endfor %}
         </div>
     </div>
@@ -431,77 +432,6 @@
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body">
-                <div class="row modal-raw g-0">
-                    <div class="col-lg-5 modal-left">
-                        <div class="modal-left-content">
-                            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <iframe class="modalIframe w-100" src="https://www.youtube.com/embed/V7IrnC9MISU" allowfullscreen></iframe>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="img/img-1.jpg" alt="model-photo" class="w-100 img-fluid">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="img/img-2.jpg" alt="model-photo" class="w-100 img-fluid">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 modal-right">
-                        <div class="modal-right-content bg-white">
-                            <div class="heading comon-section">
-                                <h2>Find Your Dream House</h2>
-                                <p class="location">123 Kathal St. Tampa City,</p>
-                            </div>
-                            <div class="features comon-section">
-                                <strong class="price">
-                                    $178,000
-                                </strong>
-                                <section>
-                                    <h3>Features</h3>
-                                </section>
-                                <ul class="bullets">
-                                    <li><i class="flaticon-air-conditioner"></i>Air conditioning</li>
-                                    <li><i class="flaticon-wifi"></i>Wifi</li>
-                                    <li><i class="flaticon-transport"></i>Parking</li>
-                                    <li><i class="flaticon-people-2"></i>Pool</li>
-                                    <li><i class="flaticon-weightlifting"></i>Gym</li>
-                                    <li><i class="flaticon-building"></i>Alarm</li>
-                                    <li><i class="flaticon-old-telephone-ringing"></i>Balcony</li>
-                                    <li><i class="flaticon-monitor"></i>TV</li>
-                                </ul>
-                            </div>
-                            <div class="0verview comon-section cs-none">
-                                <section>
-                                    <h3>Overview</h3>
-                                </section>
-                                <dl>
-                                    <dt>Model</dt>
-                                    <dd>Maxima</dd>
-                                    <dt>Condition</dt>
-                                    <dd>Brand New</dd>
-                                    <dt>Year</dt>
-                                    <dd>2018</dd>
-                                    <dt>Price</dt>
-                                    <dd>$178,000</dd>
-                                </dl>
-                                <a href="properties-details.html" class="btn button-sm button-theme">Show Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

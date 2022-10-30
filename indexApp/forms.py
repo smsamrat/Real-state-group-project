@@ -74,8 +74,7 @@ class JobApplicationForm(forms.ModelForm):
 class UserFeedbackForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={
         'class':'form-control hidden',
-        'placeholder':'Your Phone',
-        
+        'placeholder':'Your Phone',     
     }))
 
     description = forms.CharField(widget=forms.Textarea(attrs={

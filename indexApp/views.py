@@ -84,6 +84,7 @@ def apartment_details_property(request,id):
     form = UserFeedbackForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
+            form.instance.property_id = single_post.id
             form.save()
             messages.success(request,'Successfully Submitted')
             return redirect('details_property',id=id)
@@ -187,9 +188,13 @@ def readMore(request,id):
     return render(request,'blog/read_More.html',context)
 
 def about(request):
-    agent_query = Agent.objects.all()
+    about_query = AboutUs.objects.all()
+    LookingSection = AboutLookingSection.objects.all()
+    about_estimotial = AboutTestimotial.objects.all()
     context = {
-        'agent_details':agent_query
+        'about_query' : about_query,
+        'LookingSections' : LookingSection,
+        'about_testimotial' : about_estimotial,
     }
     return render(request,'about/about.html',context)
 

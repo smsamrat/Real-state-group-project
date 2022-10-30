@@ -267,27 +267,31 @@ input.form-check-input.project_phase, .project_type{
                     {% for feature_detail in feature_details %}
                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 wow fadeInUp delay-03s">
                         <!-- Property start -->
+                        <a href="{% url 'land_details_property' feature_detail.id %}">
                         <div class="property fp2">
                             <!-- Property img -->
                             <div class="property-img">
                                 <img src="{{feature_detail.post_pic.url}}" alt="fp" class="img-fluid">
+                                
                                 <div class="property-overlay">
                                     
                                      <div class="overlay-link">{{feature_detail.post_title}}</div>
 
                                 </div>
+                               
                             </div>
+                            </a>
                             <!-- Property content -->
                             <div class="property-content">
                                 <!-- info -->
                                 <div class="info">
                                     <!-- title -->
                                     <h1 class="title">
-                                        <a href="properties-details.html">{{feature_detail.post_title}}</a>
+                                        <a href="{% url 'land_details_property' feature_detail.id %}">{{feature_detail.post_title}}</a>
                                     </h1>
                                     <!-- Property address -->
                                     <h3 class="property-address">
-                                        <a href="properties-details.html">
+                                        <a href="{% url 'land_details_property' feature_detail.id %}">
                                             <i class="fa fa-map-marker"></i>{{feature_detail.post_location}}
                                         </a>
                                     </h3>

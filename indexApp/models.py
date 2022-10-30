@@ -136,10 +136,11 @@ class Why_chosse_us(models.Model):
 
 class Gallery(models.Model):
     IMG_TYPE = (
-        ('Office','Office'),
-        ('Client','Client'),
-        ('Project','Project'),
-    )
+        ('Management','Management'),
+        ('Realstate Property','Realstate Property'),
+        ('E-commerce','E-commerce'),
+        ('Client Area','Client Area')
+    )   
     img = models.ImageField(upload_to='gallery/office/',blank=True,null=True)
     img_type = models.CharField(max_length=100, choices=IMG_TYPE, blank=True, null=True)
 
@@ -181,6 +182,45 @@ class blog(models.Model):
 
     def get_month(self):
         return self.created.strftime("%B")
+
+
+class AboutUs(models.Model):
+    main_image =  models.ImageField(upload_to='about-us_img/')
+    shadow_image = models.ImageField(upload_to='about-us_img/')
+    experience_year = models.IntegerField()
+    title = models.CharField(max_length=150,null=True)
+    description = models.TextField(null=True)
+
+    def __str__(self):
+        return f'{self.experience_year} of year experience'
+
+    class Meta:
+        verbose_name = 'AboutUs'
+        verbose_name_plural = 'About Us'
+
+class AboutLookingSection(models.Model):
+    title = models.CharField(max_length=150)
+    description = models.TextField()
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'AboutLookingSection'
+        verbose_name_plural = 'About looking section'
+
+class AboutTestimotial(models.Model):
+    name = models.CharField(max_length=100)
+    designation = models.CharField(max_length=100)
+    short_description = models.TextField()
+    image =  models.ImageField(upload_to='about-us_img/')
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'AboutTestimotial'
+        verbose_name_plural = 'About Testimotial'
 
 
 class OurTeam(models.Model):
@@ -252,6 +292,7 @@ class JobApplication(models.Model):
 
 class FeedBack(models.Model):
     name = models.CharField(max_length=50)
+    property_id = models.IntegerField(blank=True,null=True)
     description = models.TextField()
     is_feedback_show = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True, null=True)

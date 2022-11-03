@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'indexApp',
     'ckeditor',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

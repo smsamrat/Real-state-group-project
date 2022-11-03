@@ -2141,7 +2141,7 @@ input[type=checkbox]:checked + label:before {
     margin-top: 100px;
 }
 .content-area {
-    padding: 0px 0 30px;
+    padding: 35px 0 30px;
 }
 
 .content-area-2 {
@@ -2180,12 +2180,12 @@ input[type=checkbox]:checked + label:before {
     padding: 100px 0 70px;
 }
 
-.content-area-11 {
+/* .content-area-11 {
     margin-bottom: 100px;
-}
+} */
 
 .content-area-12 {
-    padding: 100px 0 80px;
+    padding-top: 15px;
 }
 
 .content-area-13 {
@@ -2206,9 +2206,9 @@ input[type=checkbox]:checked + label:before {
     padding: 100px 0 50px;
 }
 
-.content-area-17{
+/* .content-area-17{
     margin-bottom: 70px;
-}
+} */
 
 .theme img {
     margin-bottom: 30px;
@@ -3742,7 +3742,7 @@ input[type=checkbox]:checked + label:before {
 
 /** Counters 1 start **/
 .counters-1 {
-    padding: 100px 0 70px;
+    padding: 50px 0 25px;
     background: #fff;
     text-align: center;
 }
@@ -9246,7 +9246,6 @@ table.manage-table .action a {
         margin: auto;
         opacity: 1;
         visibility: visible;
-        margin-top: -25px;
     }
 
     .dropdown .dropdown-item:hover > .dropdown-menu {

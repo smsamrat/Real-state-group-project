@@ -15,7 +15,13 @@ urlpatterns = [
     path('details/property/<str:id>/',views.apartment_details_property, name='details_property'),
 
     #service url
-    path('service/',views.service, name='service'),
+    # path('service/',views.service, name='service'),
+    path('service/venture-rending/',views.venture_trending, name='venture_rending'),
+    path('service/Venture-Security',views.Venture_Security, name='Venture_Security'),
+    path('service/Venture-design-Development/',views.Venture_design_Development, name='Venture_design_Development'),
+    path('service/Venture-it',views.Venture_it, name='Venture_it'),
+    path('service/Venture-tourism/',views.Venture_tourism, name='Venture_tourism'),
+    path('service/details-page/<str:id>/',views.service_details, name='service_details'),
 
     #blog url
     path('blog/',views.blogs, name='blog'),
@@ -40,6 +46,10 @@ urlpatterns = [
     path('career-detail/<slug>', views.career_detail, name='career-detail'),
     path('notice', views.notice, name='notice'),
     # path('about-us', views.about_us, name='about-us'),
+
+    #booking now
+    path('booking-now', views.booking_now, name='booking_now'),
+    
 
 
 

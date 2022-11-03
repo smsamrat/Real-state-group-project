@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from indexApp.forms import JobApplicationForm,ContactForm,UserFeedbackForm
+from .forms import *
 from .models import *
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -29,6 +29,7 @@ def Home(request):
     counters = Counters.objects.all()
     agent_query = Agent.objects.all()
     blog_query = blog.objects.all()
+    faq_query = Faq.objects.all()
     context ={
         'banner_details':banner_query,
         'feature_details':page_obj,
@@ -40,6 +41,7 @@ def Home(request):
         'recent_property':recent_query_obj,
         'blog_querys':blog_query,
         'why_chosse_us_q':why_chosse_us_q,
+        'faq_query':faq_query,
     }
     return render(request,'index.html',context)
 
@@ -170,8 +172,49 @@ def land_details_property(request,id):
     return render(request,'property_details/land_details_property.html',context)
 
 
-def service(request):
-    return render(request,'service/service.html')
+def venture_trending(request):
+    venture_trending_q = ServicePost.objects.filter(service_type__name='Venture Trending')
+    context ={
+        'venture_trending_q':venture_trending_q
+    }
+    return render(request,'service/Venture Trending.html',context)
+
+def Venture_Security(request):
+    Venture_Security_q = ServicePost.objects.filter(service_type__name='Venture Security')
+    context ={
+    'Venture_Security_q':Venture_Security_q
+    }
+    return render(request,'service/Venture Security.html',context)
+
+def Venture_design_Development(request):
+    Venture_design_Development_q = ServicePost.objects.filter(service_type__name='Venture Design & Development')
+    context ={
+        'Venture_design_Development_q':Venture_design_Development_q
+    }
+    return render(request,'service/Venture Design Development .html',context)
+
+def Venture_it(request):
+    Venture_it_q = ServicePost.objects.filter(service_type__name='Venture IT')
+    context ={
+        'Venture_it_q':Venture_it_q
+    }
+    return render(request,'service/Venture IT.html',context)
+    
+def Venture_tourism(request):
+    Venture_tourism_q = ServicePost.objects.filter(service_type__name='Venture Tourism & Hospital')
+    context ={
+        'Venture_tourism_q':Venture_tourism_q
+    }
+    return render(request,'service/Venture Tourism & Hospital.html',context)
+
+def service_details(request,id):
+    service_detail_q = ServicePost.objects.get(id=id)
+    related_images = Service_related_images.objects.filter(service=service_detail_q)
+    context= {
+        'service_detail_q':service_detail_q,
+        'related_images':related_images,
+    }
+    return render(request,'service/service_details.html',context)
 
 def blogs(request):
     blog_query = blog.objects.all()
@@ -275,3 +318,21 @@ def location(request,location_name):
         }
 
     return render(request,'location_wise_post.html',context)
+
+def booking_now(request):
+    form = BookingNowForm()
+    if request.method == 'POST':
+        form = BookingNowForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('booking_now')
+        else:
+            form = BookingNowForm(request.POST)
+            messages.success(request,'Not Successfully Submit')
+            return render(request, 'booking_now.html',{'form':form})
+
+    context = {
+        'form':form
+    }
+    return render(request,'booking_now.html',context)

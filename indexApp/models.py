@@ -1,12 +1,10 @@
-from pydoc import describe
-from random import choice
+
 from tabnanny import verbose
 from django.utils import timezone
-from email.policy import default
-from unittest.util import _MAX_LENGTH
 from django.db import models
-
 from ckeditor_uploader.fields import RichTextUploadingField
+from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import RegexValidator
 
 # Create your models here.
 
@@ -35,6 +33,26 @@ class Property_type(models.Model):
     def __str__(self):
         return self.name
 
+class ProjectTypeFilter(models.Model):
+    name = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'ProjectTypeFilter'
+        verbose_name_plural = 'Project Type Filter'
+
+class PropertyTypeFilter(models.Model):
+    name = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'ProjectTypeFilter'
+        verbose_name_plural = 'Property Type Filter'
+
 class PropertyPost(models.Model):
     LIFT=(
         ('Yes','Yes'),
@@ -44,6 +62,7 @@ class PropertyPost(models.Model):
     price = models.FloatField(default='0.00')
     post_title = models.CharField(max_length=250,blank=True,null=True)
     post_location = models.ForeignKey(Location,on_delete=models.CASCADE,related_name='location',blank=True,null=True)
+    project_type_filter = models.ForeignKey(ProjectTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
     post_type = models.ManyToManyField(Property_type, related_name='pro_type',blank=True)
     land_size = models.IntegerField(blank=True,null=True)
     bedrooms = models.IntegerField(blank=True,null=True)
@@ -58,6 +77,8 @@ class PropertyPost(models.Model):
     floor_plan_image_or_land_layout_img = models.ImageField(upload_to='floor_plan_image/',blank=True, null=True)
     developer_name = models.CharField(max_length=250,blank=True, null=True)
     created_date =models.DateTimeField(auto_now_add=True)
+
+    
 
     def get_date(self):
         return self.created_date.date()
@@ -148,11 +169,13 @@ class Gallery(models.Model):
         return f"Image type: {self.img_type}/{self.img}"
 
 
+
+
 class Division(models.Model):
     name = models.CharField(max_length=50)
     def __str__(self):
         return self.name
-
+      
 class District(models.Model):
     country = models.ForeignKey(Division, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
@@ -301,3 +324,59 @@ class FeedBack(models.Model):
         return self.name
 
 
+class ServiceType(models.Model):
+    name =  models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True,null=True)
+
+    def __str__(self):
+        return self.name
+
+class ServicePost(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image =  models.ImageField(upload_to = 'services/')
+    service_type = models.ManyToManyField(ServiceType,related_name='service')
+    created = models.DateTimeField(auto_now_add=True,null=True)
+    
+    def __str__(self):
+        return self.title
+
+class Service_related_images(models.Model):
+    service = models.ForeignKey(ServicePost, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='Post_related_images')
+    created = models.DateTimeField(auto_now_add=True,null=True)
+    
+    def __str__(self):
+        return self.service.title
+
+class Faq(models.Model):
+    queations = models.CharField(max_length=250)
+    answers = models.TextField()
+
+    def __str__(self):
+        return self.queations
+
+class BookingPropertyType(models.Model):
+    name = models.CharField(max_length=30)
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name='BookingPropertyType'
+        verbose_name_plural='Booking Property Type'
+
+phone_validator = RegexValidator(r"^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$", "The phone number provided is invalid")
+class BookingNow(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
+    phone = models.CharField (max_length=15,validators=[phone_validator], unique = True, null = False, blank = False)
+    job_designation = models.CharField(max_length=50)
+    property_type = models.ForeignKey(BookingPropertyType,on_delete=models.CASCADE, null=True)
+    property_size = models.IntegerField()
+    roperty_description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name='BookingNow'
+        verbose_name_plural='Booking Now'

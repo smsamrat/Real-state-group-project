@@ -45,12 +45,12 @@ i.fa.fa-youtube {
             <div class="col-lg-4 col-md-4 col-sm-5 col-5">
                 <ul class="top-social-media pull-right">
                     <li class="custom_icon">
-                        <a href="" >
-                            <i class="fa fa-facebook"></i>
-                            <i class="fa fa-twitter"></i>
-                            <i class="fa fa-linkedin"></i>
-                            <i class="fa fa-youtube"></i>
-                        </a>
+                        
+                        <a href="" ><i class="fa fa-facebook"></i></a>
+                        <a href="" > <i class="fa fa-twitter"></i></a>
+                            <a href="" ></a><i class="fa fa-linkedin"></i></a>
+                            <a href="" ></a><i class="fa fa-youtube"></i></a>
+                        
                     </li>
                     <!-- <li>
                         <a href="login.html" class="sign-in"><i class="fa fa-book"></i> Booking Now</a>
@@ -73,7 +73,8 @@ i.fa.fa-youtube {
                 <span class="fa fa-bars"></span>
             </button>
 
-            <div class="navbar-collapse collapse w-100 justify-content-end" id="navbar">
+            <div class="navbar-collapse collapse w-100 justify-content-center" id="navbar">
+                <button style="background-color: #199388; border:1px solid blue" type="button" class="btn btn-success"><a href="{% url 'booking_now' %}" style="color:white; text-transform:uppercase;font-size:13px;font-weight: 600">Booking Now</a></button>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="{% url 'home' %}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,9 +91,16 @@ i.fa.fa-youtube {
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{% url 'service' %}" id="navbarDropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Services
                         </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'venture_rending' %}">Venture Trending</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Venture_Security' %}">Venture Security</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Venture_it' %}">Venture IT</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Venture_tourism' %}">Venture Tourism & Hospital</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Venture_design_Development' %}">Venture Design & Development </a></li>
+                        </ul>
                     </li>
                     <li class="nav-item dropdown megamenu-li">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gallery</a>
@@ -138,6 +146,7 @@ i.fa.fa-youtube {
             <a href="{% url 'home' %}">
                 <img src="{% static 'indexApp/img/logos/vanture_logo.png' %}" alt="sidebarlogo">
             </a>
+            <button style="background-color: #199388; border:1px solid blue;margin-right: 60px;top: 30px;" type="button" class="btn btn-success"><a href="{% url 'booking_now' %}" style="color:white; text-transform:uppercase;font-size:13px;font-weight: 600">Booking Now</a></button>
         </div>
         <div class="sidebar-navigation">
             <h3 class="heading">Pages</h3>
@@ -159,7 +168,14 @@ i.fa.fa-youtube {
                     </ul>
                 </li>
                 <li>
-                    <a href="{% url 'service' %}">Services</a>
+                    <a href="#">Services<em class="fa fa-chevron-down"></em></a>
+                    <ul>
+                        <li><a class="dropdown-item" href="{% url 'venture_rending' %}">Venture Trending</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Venture_Security' %}">Venture Security</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Venture_design_Development' %}">Venture Design & Development</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Venture_tourism' %}">Venture Tourism & Hospital</a></li>
+                            <li><a class="dropdown-item" href="{% url 'Venture_design_Development' %}">Venture Design & Development</a></li>
+                    </ul>
                 </li>
                 
                 <li>

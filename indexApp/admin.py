@@ -19,6 +19,8 @@ admin.site.register(Location)
 admin.site.register(Why_chosse_us)
 admin.site.register(Agent)
 admin.site.register(Gallery)
+admin.site.register(ProjectTypeFilter)
+admin.site.register(PropertyTypeFilter)
 admin.site.register(Division)
 admin.site.register(District)
 admin.site.register(Area)
@@ -30,4 +32,17 @@ admin.site.register(OurTeam)
 admin.site.register(Notice)
 admin.site.register(Career)
 admin.site.register(ContactUs)
-admin.site.register(FeedBack)
+admin.site.register(FeedBack) 
+admin.site.register(ServiceType) 
+admin.site.register(Faq)
+admin.site.register(BookingNow)
+admin.site.register(BookingPropertyType)
+
+class ServiceRelatedImageAdmin(admin.StackedInline):
+    model = Service_related_images
+
+class ServiceAdmin(admin.ModelAdmin):
+    inlines = [ServiceRelatedImageAdmin]
+    # prepopulated_fields ={'slug': ('name',)}
+
+admin.site.register(ServicePost,ServiceAdmin) 

@@ -972,7 +972,7 @@
 }
 
 .main-header .navbar-expand-lg .navbar-nav .nav-link {
-    padding: 40px 13px;
+    padding: 15px 13px;
     line-height: 20px;
     font-size: 13px;
     font-weight: 600;
@@ -1001,7 +1001,7 @@
 }
 
 .main-header .dropdown-menu {
-    min-width: 13rem;
+    min-width: 16rem;
     padding: 0;
     margin: 0;
     font-size: 16px;

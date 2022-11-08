@@ -73,7 +73,8 @@ def apartment_project(request):
     city = District.objects.filter()
 
     project_type_filters = ProjectTypeFilter.objects.all()
-    print(project_type_filters)
+    property_type_filters = PropertyTypeFilter.objects.all()
+
     context ={
         'feature_details':page_obj,
         'page_number':int(page_number),
@@ -81,6 +82,7 @@ def apartment_project(request):
         'divisions':division,
         'cities':city,
         'project_type_filters':project_type_filters,
+        'property_type_filters':property_type_filters,
     }
     return render(request,'property/apartment_project.html',context)
 
@@ -347,12 +349,24 @@ def booking_now(request):
     return render(request,'booking_now.html',context)
 
 def filter_data(request):
-    categories = request.GET.getlist('projectType[]')
+    projectType = request.GET.getlist('projectType[]')
+    propertyType = request.GET.getlist('propertyType[]')
 
 
-    allProducts = PropertyPost.objects.all().order_by('-id')
-    if len(categories) > 0:
-        feature_details = allProducts.filter(project_type_filter__id__in=categories)
+    allPosts = PropertyPost.objects.all().order_by('-id').distinct()
+    if len(projectType) > 0:
+        feature_details = allPosts.filter(project_type_filter__id__in=projectType).distinct()
+
+    if len(propertyType) > 0:
+        feature_details = allPosts.filter(property_type_filter__id__in=propertyType).distinct() 
+
+    if len(projectType) > 0 and len(propertyType) > 0:
+        feature_details = allPosts.filter(project_type_filter__id__in=projectType,property_type_filter__id__in=propertyType).distinct()
+    
+
+
+
+
 
     t = render_to_string('filter.html', {'feature_details': feature_details})
 

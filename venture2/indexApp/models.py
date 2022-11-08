@@ -33,9 +33,19 @@ class Property_type(models.Model):
     def __str__(self):
         return self.name
 
+
+class PropertyTypeFilter(models.Model):
+    name = models.CharField(max_length = 100)
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'ProjectTypeFilter'
+        verbose_name_plural = 'Property Type Filter'
+
 class ProjectTypeFilter(models.Model):
     name = models.CharField(max_length = 100)
-
+    
     def __str__(self):
         return self.name
 
@@ -43,15 +53,6 @@ class ProjectTypeFilter(models.Model):
         verbose_name = 'ProjectTypeFilter'
         verbose_name_plural = 'Project Type Filter'
 
-class PropertyTypeFilter(models.Model):
-    name = models.CharField(max_length = 100)
-    project_type_filter = models.ForeignKey(ProjectTypeFilter,on_delete=models.CASCADE, related_name='project_type_filters',blank=True,null=True)
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'ProjectTypeFilter'
-        verbose_name_plural = 'Property Type Filter'
 
 class PropertyPost(models.Model):
     LIFT=(
@@ -63,6 +64,7 @@ class PropertyPost(models.Model):
     post_title = models.CharField(max_length=250,blank=True,null=True)
     post_location = models.ForeignKey(Location,on_delete=models.CASCADE,related_name='location',blank=True,null=True)
     project_type_filter = models.ForeignKey(ProjectTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
+    property_type_filter = models.ForeignKey(PropertyTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
     post_type = models.ManyToManyField(Property_type, related_name='pro_type',blank=True)
     land_size = models.IntegerField(blank=True,null=True)
     bedrooms = models.IntegerField(blank=True,null=True)

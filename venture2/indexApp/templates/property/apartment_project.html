@@ -4,9 +4,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
-        $(".filter-checkbox").on('click', function(){
+        $(".form-check-input").on('click', function(){
             var filter_object={};
-            $(".filter-checkbox").each(function(index,ele){
+            $(".form-check-input").each(function(index,ele){
                 var filter_value=$(this).val();
                 var filter_key=$(this).data('filter');
                 console.log(filter_key,filter_value);
@@ -142,10 +142,16 @@ input.form-check-input.project_phase, .project_type{
                                             {% for project_type_filter in project_type_filters %}
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                   <input type="radio" class="filter-checkbox" data-filter="projectType" id="{{project_type_filter.id}}" value="{{project_type_filter.id}}">{{project_type_filter.name}}
-                                                </label>
+                                                    <input type="radio" class="form-check-input project_phase" name="project_phase" data-filter="projectType" id="{{project_type_filter.id}}" value="{{project_type_filter.id}}" >{{project_type_filter.name}}                                                        </label>
                                             </div>
                                             {% endfor %}
+                                            <!-- {% for project_type_filter in project_type_filters %}
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                   <input type="radio" class="form-check-input project_phase" name="project_phase" data-filter="projectType" id="{{project_type_filter.id}}" value="{{project_type_filter.id}}">{{project_type_filter.name}} 
+                                                </label>
+                                            </div>
+                                            {% endfor %} -->
                                         </div>
                                     </div>
                                 </div>
@@ -156,14 +162,22 @@ input.form-check-input.project_phase, .project_type{
                                     <div class="col-md-10">
                                         <div class="d-flex">
                                             <div class="d-flex">
-                                                        <div class="form-check-inline">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input project_type" value="1" name="type">Residential                                                            </label>
-                                                        </div>
-                                                        <div class="form-check-inline">
-                                                            <label class="form-check-label">
-                                                            <input type="radio" class="form-check-input    project_type" value="2" name="type">Commercial                             </label>
-                                                        </div>
+                                                {% for property_type in property_type_filters %}
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="radio" class="form-check-input project_type" name="type" data-filter="propertyType" id="{{property_type.id}}" value="{{property_type.id}}">{{property_type.name}}
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
+                                                                                                
+                                                <!-- {% for property_type in property_type_filters %}
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="radio" class="form-check-input project_phase" name="project_phase" data-filter="propertyType" id="{{property_type.id}}" value="{{property_type.id}}">{{property_type.name}}
+                                                        
+                                                    </label>
+                                                </div>
+                                                {% endfor %} -->
                                             </div>
                                         </div>
                                     </div>

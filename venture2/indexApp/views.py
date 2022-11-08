@@ -69,9 +69,8 @@ def apartment_project(request):
     print(page_obj)
 
     division = Division.objects.all()
-    dis_name = request.GET.get('dis')
-    district = District.objects.all()
-    area = Area.objects.all()
+
+
 
     # divisionid = request.GET.get('subject_id',None)
     # districtid = request.GET.get('district',None)
@@ -98,8 +97,6 @@ def apartment_project(request):
         'page_number':int(page_number),
         'paginator':paginator,
         'divisions':division,
-        'districts':district,
-        'areas':area,
         'project_type_filters':project_type_filters,
         'property_type_filters':property_type_filters,
     }
@@ -392,20 +389,20 @@ def filter_data(request):
 
 def get_district_ajax(request):
     if request.method == "GET":
-        subject_id = request.GET['division_id']
+        division_id = request.GET['division_id']
         try:
-            subject = Division.objects.filter(id = subject_id).first()
-            topics = District.objects.filter(country = subject)
+            division = Division.objects.filter(id = division_id).first()
+            districts = District.objects.filter(country = division)
         except Exception:
             pass
-        return JsonResponse(list(topics.values('id', 'name')), safe = False)
+        return JsonResponse(list(districts.values('id', 'name')), safe = False)
 
 def get_area_ajax(request):
     if request.method == "GET":
         district_id = request.GET['district_id']
         try:
             district = District.objects.filter(id = district_id).first()
-            topics = Area.objects.filter(city = district)
+            areas = Area.objects.filter(city = district)
         except Exception:
             pass
-        return JsonResponse(list(topics.values('id', 'name')), safe = False)
+        return JsonResponse(list(areas.values('id', 'name')), safe = False)

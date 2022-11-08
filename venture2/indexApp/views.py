@@ -70,17 +70,36 @@ def apartment_project(request):
 
     division = Division.objects.all()
     dis_name = request.GET.get('dis')
-    city = District.objects.filter()
+    district = District.objects.all()
+    area = Area.objects.all()
+
+    # divisionid = request.GET.get('subject_id',None)
+    # districtid = request.GET.get('district',None)
+
+    # district = None
+    # area = None
+
+    # if divisionid:
+    #     getdivision = Division.objects.get(id=divisionid)
+    #     district = District.objects.filter(country=getdivision)
+
+    # if districtid:
+    #     getdistrict = District.objects.get(id=districtid)
+    #     area = Area.objects.filter(city=getdistrict)
+
+    # division =Division.objects.all()
 
     project_type_filters = ProjectTypeFilter.objects.all()
     property_type_filters = PropertyTypeFilter.objects.all()
+
 
     context ={
         'feature_details':page_obj,
         'page_number':int(page_number),
         'paginator':paginator,
         'divisions':division,
-        'cities':city,
+        'districts':district,
+        'areas':area,
         'project_type_filters':project_type_filters,
         'property_type_filters':property_type_filters,
     }
@@ -367,8 +386,26 @@ def filter_data(request):
 
 
 
-
     t = render_to_string('filter.html', {'feature_details': feature_details})
 
     return JsonResponse({'data': t})
 
+def get_district_ajax(request):
+    if request.method == "GET":
+        subject_id = request.GET['division_id']
+        try:
+            subject = Division.objects.filter(id = subject_id).first()
+            topics = District.objects.filter(country = subject)
+        except Exception:
+            pass
+        return JsonResponse(list(topics.values('id', 'name')), safe = False)
+
+def get_area_ajax(request):
+    if request.method == "GET":
+        district_id = request.GET['district_id']
+        try:
+            district = District.objects.filter(id = district_id).first()
+            topics = Area.objects.filter(city = district)
+        except Exception:
+            pass
+        return JsonResponse(list(topics.values('id', 'name')), safe = False)

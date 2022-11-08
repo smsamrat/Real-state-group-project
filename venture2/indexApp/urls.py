@@ -15,6 +15,11 @@ urlpatterns = [
     path('details/property/<str:id>/',views.apartment_details_property, name='details_property'),
     path('product/filter-data',views.filter_data,name="filter-data"),
 
+    # path('dropdown/filter-dropdown',views.filter_dropdown,name="filter-dropdown"),
+
+    path('get-district-ajax/', views.get_district_ajax, name="get_district_ajax"),
+    path('get-area-ajax/', views.get_area_ajax, name="get_area_ajax"),
+
     #service url
     # path('service/',views.service, name='service'),
     path('service/venture-rending/',views.venture_trending, name='venture_rending'),

@@ -190,24 +190,80 @@ input.form-check-input.project_phase, .project_type{
                                         <div class="row">
                                             <div class="col-md-3 col-4">
                                                 <select class="form-control custom-form-control" id="division">
-                                                    <option value=""> - select a division - </option>
-                                                    <option value="1"><a href=""></a></option>
-
+                                                    <option selected> - select a division - </option>
+                                                    {% for i in divisions %}
+                                                    <option value="{{i.id}}">{{i.name}}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </div>
+                                            
                                             <div class="col-md-3 col-4">
                                                 <select class="form-control" id="district">
-                                                    <option value=""> - select a district - </option>
-                                                       <option value="1"><a href=""></a></option>
+                                                    <option selected> - select a district - </option>
+                                                    
                                                 </select>
                                             </div>
                                             <div class="col-md-3 col-4">
-                                                <select class="form-control" id="area">
-                                                    <option value=""> - select an area - </option>
+                                                <select class="form-control" id="area" >
+                                                    <option selected> - select an area - </option>
+                                                    <!-- {% for i in areas %}
+                                                    <option value="{{i.id}}">{{i.name}}</option>
+                                                    {% endfor %} -->
                                                 </select>
                                             </div>
                                         </div>
 
+                                        <script>
+                                            $("#division").change(function () {
+                                                const divisionId = $(this).val();  // get the selected subject ID from the HTML dropdown list 
+                                                $.ajax({                       // initialize an AJAX request
+                                                    type: "GET",
+                                                    url: '{% url "get_district_ajax" %}',
+                                                    data: {
+                                                        'division_id': divisionId,       // add the country id to the POST parameters
+                                                        'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+                                                    },
+                                                    success: function (data) {   // `data` is from `get_topics_ajax` view function
+                                                        let html_data = '<option value="">---------</option>';
+                                                        data.forEach(function (data) {
+                                                            html_data += `<option value="${data.id}">${data.name}</option>`
+                                                        });
+                                                        $("#district").html(html_data); // replace the contents of the topic input with the data that came from the server
+                                                    }
+                                                });
+                                            });
+                                            $("#district").change(function () {
+                                                const districtId = $(this).val();  // get the selected subject ID from the HTML dropdown list 
+                                                $.ajax({                       // initialize an AJAX request
+                                                    type: "GET",
+                                                    url: '{% url "get_area_ajax" %}',
+                                                    data: {
+                                                        'district_id': districtId,       // add the country id to the POST parameters
+                                                        'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+                                                    },
+                                                    success: function (data) {   // `data` is from `get_topics_ajax` view function
+                                                        let html_data = '<option value="">---------</option>';
+                                                        data.forEach(function (data) {
+                                                            html_data += `<option value="${data.id}">${data.name}</option>`
+                                                        });
+                                                        $("#area").html(html_data); // replace the contents of the topic input with the data that came from the server
+                                                    }
+                                                });
+                                            });
+                                        </script>
+
+                                        <!-- <script>
+                                            function divisionfields(){
+                                                divisionid= document.getElementById('division').value;
+                                                window.location="{% url 'apartment_project' %}?division="+divisionid;
+                                            }
+                                            function districtfields(){
+                                                districtid = document.getElementById('district').value;
+                                                window.location = "{% url 'apartment_project' %}?division="+'{{request.GET.division}}'+"&district="+districtid;
+
+                                            }
+                                        </script> -->
+                                                
                                     </div>
                                 </div>
                             </form>

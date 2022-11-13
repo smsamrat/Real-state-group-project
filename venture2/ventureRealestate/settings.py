@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     'indexApp',
     'ckeditor',
     'phonenumber_field',
+    'dashboard',
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
+SPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +62,7 @@ ROOT_URLCONF = 'ventureRealestate.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates','dashboard/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

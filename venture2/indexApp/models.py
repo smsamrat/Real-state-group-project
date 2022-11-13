@@ -54,17 +54,40 @@ class ProjectTypeFilter(models.Model):
         verbose_name_plural = 'Project Type Filter'
 
 
+class Division(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+      
+class District(models.Model):
+    country = models.ForeignKey(Division, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class Area(models.Model):
+    city = models.ForeignKey(District, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+
 class PropertyPost(models.Model):
     LIFT=(
         ('Yes','Yes'),
         ('No','No'),
     )
     post_pic = models.ImageField(upload_to='features_post_img/',blank=True,null=True)
-    price = models.FloatField(default='0.00')
+    price = models.FloatField(default='0.00',blank=True,null=True)
     post_title = models.CharField(max_length=250,blank=True,null=True)
     post_location = models.ForeignKey(Location,on_delete=models.CASCADE,related_name='location',blank=True,null=True)
-    project_type_filter = models.ForeignKey(ProjectTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
-    property_type_filter = models.ForeignKey(PropertyTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
+    select_project_type = models.ForeignKey(ProjectTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
+    select_property_type = models.ForeignKey(PropertyTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
+    select_division = models.ForeignKey(Division,on_delete=models.CASCADE,blank=True,null=True)
+    select_district = models.ForeignKey(District,on_delete=models.CASCADE,blank=True,null=True)
     post_type = models.ManyToManyField(Property_type, related_name='pro_type',blank=True)
     land_size = models.IntegerField(blank=True,null=True)
     bedrooms = models.IntegerField(blank=True,null=True)
@@ -173,27 +196,6 @@ class Gallery(models.Model):
     def __str__(self):
         return f"Image type: {self.img_type}/{self.img}"
 
-
-
-
-class Division(models.Model):
-    name = models.CharField(max_length=50)
-    def __str__(self):
-        return self.name
-      
-class District(models.Model):
-    country = models.ForeignKey(Division, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-class Area(models.Model):
-    city = models.ForeignKey(District, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
 
 
 class blog(models.Model):
@@ -345,6 +347,10 @@ class ServicePost(models.Model):
     
     def __str__(self):
         return self.title
+    class Meta:
+        ordering= ['-created']
+
+
 
 class Service_related_images(models.Model):
     service = models.ForeignKey(ServicePost, on_delete=models.CASCADE)

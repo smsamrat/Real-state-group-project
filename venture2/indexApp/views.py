@@ -69,6 +69,7 @@ def apartment_project(request):
     print(page_obj)
 
     division = Division.objects.all()
+    districts = District.objects.all()
 
 
 
@@ -97,6 +98,7 @@ def apartment_project(request):
         'page_number':int(page_number),
         'paginator':paginator,
         'divisions':division,
+        'districts':districts,
         'project_type_filters':project_type_filters,
         'property_type_filters':property_type_filters,
     }
@@ -367,17 +369,33 @@ def booking_now(request):
 def filter_data(request):
     projectType = request.GET.getlist('projectType[]')
     propertyType = request.GET.getlist('propertyType[]')
+    divisions = request.GET.getlist('divisionAll[]')
+    district = request.GET.getlist('districtAll[]')
 
 
     allPosts = PropertyPost.objects.all().order_by('-id').distinct()
+        
+
     if len(projectType) > 0:
-        feature_details = allPosts.filter(project_type_filter__id__in=projectType).distinct()
+        feature_details = allPosts.filter(select_project_type__id__in=projectType).distinct()
 
     if len(propertyType) > 0:
-        feature_details = allPosts.filter(property_type_filter__id__in=propertyType).distinct() 
+        feature_details = allPosts.filter(select_property_type__id__in=propertyType).distinct() 
+    
+    # if len(divisions) > 0:
+    #     feature_details = allPosts.filter(select_division__id__in=divisions).distinct()
 
     if len(projectType) > 0 and len(propertyType) > 0:
-        feature_details = allPosts.filter(project_type_filter__id__in=projectType,property_type_filter__id__in=propertyType).distinct()
+        feature_details = allPosts.filter(select_project_type__id__in=projectType,select_property_type__id__in=propertyType).distinct()
+
+    
+
+
+    
+
+   
+    # if len(district) > 0:
+    #     feature_details = allPosts.filter(select_district__id__in=district).distinct()
     
 
 

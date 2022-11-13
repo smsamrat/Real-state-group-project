@@ -3,6 +3,9 @@
 {% block content %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+
+    // project type and property type wise find post
+
     $(document).ready(function(){
         $(".form-check-input").on('click', function(){
             var filter_object={};
@@ -11,6 +14,52 @@
                 var filter_key=$(this).data('filter');
                 console.log(filter_key,filter_value);
                 filter_object[filter_key]=Array.from(document.querySelectorAll('input[data-filter='+filter_key+']:checked')).map(function(el){
+                     return el.value;
+                });
+            });
+            $.ajax({
+                url:"{% url 'filter-data' %}",
+                data:filter_object,
+                dataType:'json',			
+                success:function(res){				
+                    $("#filteredProducts").html(res.data);				
+                }
+            });
+        });
+    });
+
+    // division wise find post
+    $(document).ready(function(){
+        $("#division").on('click', function(){
+            var filter_object={};
+            $(".divi").each(function(index,ele){
+                var filter_value=$(this).val();
+                var filter_key=$(this).data('filter');
+                console.log(filter_key,filter_value);
+                filter_object[filter_key]=Array.from(document.querySelectorAll('option[data-filter='+filter_key+']:checked')).map(function(el){
+                     return el.value;
+                });
+            });
+            $.ajax({
+                url:"{% url 'filter-data' %}",
+                data:filter_object,
+                dataType:'json',			
+                success:function(res){				
+                    $("#filteredProducts").html(res.data);				
+                }
+            });
+        });
+    });
+
+    // district wise find post
+    $(document).ready(function(){
+        $("#district").on('click', function(){
+            var filter_object={};
+            $(".divi").each(function(index,ele){
+                var filter_value=$(this).val();
+                var filter_key=$(this).data('filter');
+                console.log(filter_key,filter_value);
+                filter_object[filter_key]=Array.from(document.querySelectorAll('option[data-filter='+filter_key+']:checked')).map(function(el){
                      return el.value;
                 });
             });
@@ -192,7 +241,8 @@ input.form-check-input.project_phase, .project_type{
                                                 <select class="form-control custom-form-control" id="division">
                                                     <option selected> - select a division - </option>
                                                     {% for i in divisions %}
-                                                    <option value="{{i.id}}">{{i.name}}</option>
+                                                    <option class="divi" data-filter="divisionAll" id="{{i.id}}" value="{{i.id}}" >{{i.name}}</option>
+                                                    <!-- <input type="radio" class="form-check-input project_type" name="type" data-filter="propertyType" id="{{property_type.id}}" value="{{property_type.id}}">{{property_type.name}} -->
                                                     {% endfor %}
                                                 </select>
                                             </div>
@@ -228,9 +278,10 @@ input.form-check-input.project_phase, .project_type{
                                                     success: function (data) {   // `data` is from `get_division_ajax` view function
                                                         let html_data = '<option value="">--Select District--</option>';
                                                         data.forEach(function (data) {
-                                                            html_data += `<option value="${data.id}">${data.name}</option>`
+                                                            html_data += `<option class="divi" data-filter="districtAll" id="${data.id}" value="${data.id}">${data.name}</option>`
                                                         });
-                                                        $("#district").html(html_data); // replace the contents of the topic input with the data that came from the server
+                                                        // <option class="divi" data-filter="divisionAll" id="{{i.id}}" value="{{i.id}}" >{{i.name}}</option>
+                                                        $("#district").html(html_data); // replace the contents of the district input with the data that came from the server
                                                     }
                                                 });
                                             });

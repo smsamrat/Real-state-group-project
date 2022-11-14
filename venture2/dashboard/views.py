@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .forms import *
 from indexApp.models import *
 from django.contrib import messages
+from django.utils.text import slugify
 
 # Create your views here.
 def dashboard(request):
@@ -274,3 +275,178 @@ def service_delete(request,id):
     return redirect('service_view')
 
 
+#Gallery functionality
+
+def gallery_add(request):
+    form = GalleryPostForm()
+    if request.method=='POST':
+        form = GalleryPostForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('gallery_view')
+        else:
+            form = GalleryPostForm(request.POST)
+            return render(request, 'dashboard/gallery/gallery_add.html',{'form':form})
+    return render(request,'dashboard/gallery/gallery_add.html',{'form':form})
+
+def gallery_view(request):
+    query = Gallery.objects.all()
+    return render(request,'dashboard/gallery/gallery_view.html',{'query':query})
+
+def gallery_edit(request,id):
+    query = Gallery.objects.get(id=id)
+    form = GalleryPostForm(instance =query)
+    if request.method=='POST':
+
+        form = GalleryPostForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('gallery_view')
+        else:
+            form = GalleryPostForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/gallery/gallery_edit.html',{'form':form})
+
+    return render(request,'dashboard/gallery/gallery_edit.html',{'form':form})
+
+def gallery_delete(request,id):
+    query = Gallery.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('gallery_view')
+
+
+#get in touch functionality
+
+def career_add(request):
+    form = CareerForm()
+    if request.method=='POST':
+        form = CareerForm(request.POST,request.FILES)
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            #assign the current slug and user to the post
+            # new_post.title = request.user
+            new_post.slug = slugify(new_post.title)
+            #save post to database
+            new_post.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('career_view')
+        else:
+            form = CareerForm(request.POST)
+            return render(request, 'dashboard/get_in_touch/career_add.html',{'form':form})
+    return render(request,'dashboard/get_in_touch/career_add.html',{'form':form})
+
+def career_view(request):
+    query = Career.objects.all()
+    return render(request,'dashboard/get_in_touch/career_view.html',{'query':query})
+
+def career_edit(request,id):
+    query = Career.objects.get(id=id)
+    form = CareerForm(instance =query)
+    if request.method=='POST':
+
+        form = CareerForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('career_view')
+        else:
+            form = GalleryPostForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/get_in_touch/career_edit.html',{'form':form})
+
+    return render(request,'dashboard/get_in_touch/career_edit.html',{'form':form})
+
+def career_delete(request,id):
+    query = Career.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('career_view')
+
+
+    #Our team functionality
+
+def team_add(request):
+    form = OurTeamForm()
+    if request.method=='POST':
+        form = OurTeamForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('team_view')
+        else:
+            form = OurTeamForm(request.POST)
+            return render(request, 'dashboard/get_in_touch/team/team_add.html',{'form':form})
+    return render(request,'dashboard/get_in_touch/team/team_add.html',{'form':form})
+
+def team_view(request):
+    query = OurTeam.objects.all()
+    return render(request,'dashboard/get_in_touch/team/team_view.html',{'query':query})
+
+def team_edit(request,id):
+    query = OurTeam.objects.get(id=id)
+    form = OurTeamForm(instance =query)
+    if request.method=='POST':
+
+        form = OurTeamForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('team_view')
+        else:
+            form = OurTeamForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/get_in_touch/team/team_edit.html',{'form':form})
+
+    return render(request,'dashboard/get_in_touch/team/team_edit.html',{'form':form})
+
+def team_delete(request,id):
+    query = OurTeam.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('team_view')
+
+
+    #Notice functionality
+
+def notice_add(request):
+    form = NoticeForm()
+    if request.method=='POST':
+        form = NoticeForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('notice_view')
+        else:
+            form = NoticeForm(request.POST)
+            return render(request, 'dashboard/get_in_touch/notice/notice_add.html',{'form':form})
+    return render(request,'dashboard/get_in_touch/notice/notice_add.html',{'form':form})
+
+def notice_view(request):
+    query = Notice.objects.all()
+    return render(request,'dashboard/get_in_touch/notice/notice_view.html',{'query':query})
+
+def notice_edit(request,id):
+    query = Notice.objects.get(id=id)
+    form = NoticeForm(instance =query)
+    if request.method=='POST':
+
+        form = NoticeForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('notice_view')
+        else:
+            form = NoticeForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/get_in_touch/notice/notice_edit.html',{'form':form})
+
+    return render(request,'dashboard/get_in_touch/notice/notice_edit.html',{'form':form})
+
+def notice_delete(request,id):
+    query = Notice.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('notice_view')

@@ -196,7 +196,8 @@ class Gallery(models.Model):
     def __str__(self):
         return f"Image type: {self.img_type}/{self.img}"
 
-
+    class Meta:
+        ordering= ['-id']
 
 class blog(models.Model):
     blog_img = models.ImageField(upload_to="blog_images")
@@ -282,6 +283,9 @@ class Career(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ['-id']
 
 
 class Notice(models.Model):

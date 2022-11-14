@@ -61,7 +61,7 @@
                 <h3 style="font-size:15px;margin-bottom: 20px;">{{ c.title }}</h3>
                 <p style="font-size: 12px ; margin-top: -25px;">Posted at {{ c.post_date }} </p>
                 <p style="text-align: justify;">{{ c.job_description|truncatechars_html:200|safe }}</p>
-                <a style="margin-top: -15px;" class="btn btn-sm text-white" href="{% url 'career-detail' c.slug %}">Show details and Apply</a>
+                <a style="margin-top: -15px;" class="btn btn-sm text-white" href="{% url 'career-detail' c.slug c.id %}">Show details and Apply</a>
             </div>
         </div>
 

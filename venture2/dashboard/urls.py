@@ -39,4 +39,30 @@ urlpatterns = [
     path('service-view/',service_view, name='service_view'),
     path('service-edit/<str:id>/',service_edit, name='service_edit'),
     path('service-delete/<str:id>/',service_delete, name='service_delete'),
+
+    #gallery_service
+
+    path('gallery-add/',gallery_add, name='gallery_add'),
+    path('gallery-view/',gallery_view, name='gallery_view'),
+    path('gallery-edit/<str:id>/',gallery_edit, name='gallery_edit'),
+    path('gallery-delete/<str:id>/',gallery_delete, name='gallery_delete'),
+
+    #get in touch
+        #career
+    path('career-add/',career_add, name='career_add'),
+    path('career-view/',career_view, name='career_view'),
+    path('career-edit/<str:id>/',career_edit, name='career_edit'),
+    path('career-delete/<str:id>/',career_delete, name='career_delete'),
+
+    #our team
+    path('team-add/',team_add, name='team_add'),
+    path('team-view/',team_view, name='team_view'),
+    path('team-edit/<str:id>/',team_edit, name='team_edit'),
+    path('team-delete/<str:id>/',team_delete, name='team_delete'),
+
+    #our notice
+    path('notice-add/',notice_add, name='notice_add'),
+    path('notice-view/',notice_view, name='notice_view'),
+    path('notice-edit/<str:id>/',notice_edit, name='notice_edit'),
+    path('notice-delete/<str:id>/',notice_delete, name='notice_delete'),
 ]

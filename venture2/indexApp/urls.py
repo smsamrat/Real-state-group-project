@@ -49,7 +49,7 @@ urlpatterns = [
     path('our-team', views.our_team, name='ourteam'),
     path('contact', views.contact, name='contactus'),
     path('career', views.career, name='career'),
-    path('career-detail/<slug>', views.career_detail, name='career-detail'),
+    path('career-detail/<slug>-<str:id>/', views.career_detail, name='career-detail'),
     path('notice', views.notice, name='notice'),
     # path('about-us', views.about_us, name='about-us'),
 

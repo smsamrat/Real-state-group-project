@@ -63,8 +63,10 @@
                     <i class="flaticon-381-internet"></i>
                     <span class="nav-text">Blog</span>
                 </a>
-                <li><a href="{% url 'blog_add' %}">Add Blog</a></li>
-                <li><a href="{% url 'blog_view' %}">View Blog</a></li>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'blog_add' %}">Add Blog</a></li>
+                    <li><a href="{% url 'blog_view' %}">View Blog</a></li>
+                </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-heart"></i>
@@ -75,21 +77,45 @@
                     <li><a href="{% url 'service_view' %}">View service</a></li>
                 </ul>
             </li>
-            <li><a href="widget-basic.html" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-381-settings-2"></i>
-                    <span class="nav-text">Widget</span>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-heart"></i>
+                <span class="nav-text">Gallery</span>
                 </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'gallery_add' %}">Add Image</a></li>
+                    <li><a href="{% url 'gallery_view' %}">View Image</a></li>
+                </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-notepad"></i>
-                    <span class="nav-text">Forms</span>
+                    <span class="nav-text">Get In Touch</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="form-element.html">Form Elements</a></li>
-                    <li><a href="form-wizard.html">Wizard</a></li>
-                    <li><a href="form-editor-summernote.html">Summernote</a></li>
-                    <li><a href="form-pickers.html">Pickers</a></li>
-                    <li><a href="form-validation-jquery.html">Jquery Validate</a></li>
+                    <li><a class="has-arrow" href="form-element.html">Career</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'career_add' %}">Add Career</a></li>
+                            <li><a href="{% url 'career_view' %}">View Career</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="form-wizard.html">Our Team</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'team_add' %}">Add Our Team</a></li>
+                            <li><a href="{% url 'team_view' %}">View Our Team</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="form-editor-summernote.html">Notice</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'notice_add' %}">Add Notice</a></li>
+                            <li><a href="{% url 'notice_view' %}">View Notice</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="form-pickers.html">Contact</a>
+                        <ul aria-expanded="false">
+                            <li><a href="form-wizard.html"></a></li>
+                            <li><a href="form-wizard.html">View Contact</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

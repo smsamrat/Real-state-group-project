@@ -319,15 +319,15 @@ def career(request):
     }
     return render(request, 'get_in_touch/career.html',context)
 
-def career_detail(request,slug):
-    careers = Career.objects.get(slug=slug)
+def career_detail(request,slug,id):
+    careers = Career.objects.get(slug=slug,id=id)
     form = JobApplicationForm(request.POST, request.FILES)
     if request.method == 'POST':
         form = JobApplicationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request,'Successfully Submit')
-            return redirect('career-detail', slug=slug)
+            return redirect('career-detail', slug=slug ,id=id)
         else:
             form = JobApplicationForm()
             return render(request, 'get_in_touch/career-details.html',{'form':form})

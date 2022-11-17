@@ -28,6 +28,7 @@
                                 </th> -->
                                 <th>Pro. ID</th>
                                 <th>Property Image</th>
+                                <th>Related Image</th>
                                 <th>Price</th>
                                 <th>Post title</th>
                                 <th>Post location</th>
@@ -87,6 +88,12 @@
                                         none
                                     {% endif %}
                                     
+                                </td>
+                                <td>
+                                    
+                                    {% for img in related_images %}
+                                        <img src="{{img.image.url}}" width="100" height="100">
+                                    {% endfor %}
                                 </td>
                                 <td>{{i.price}}</td>
                                 <td>{{i.post_title}}</td>

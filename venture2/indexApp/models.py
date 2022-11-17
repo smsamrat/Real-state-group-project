@@ -112,7 +112,7 @@ class PropertyPost(models.Model):
         return self.created_date.date()
 
     def __str__(self):
-        return f'{self.post_title}{self.post_pic.url}'
+        return self.post_title
 
     class Meta:
         ordering= ['-created_date']
@@ -307,6 +307,7 @@ class ContactUs(models.Model):
     message  = models.TextField()
     
     class Meta:
+        ordering = ['-id']
         verbose_name = 'ContactUs'
         verbose_name_plural = 'ContactUs'
 

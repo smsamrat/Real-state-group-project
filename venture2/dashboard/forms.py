@@ -3,10 +3,28 @@ from django.forms import ModelForm
 from indexApp.models import *
 from ckeditor.widgets import CKEditorWidget
 
-class PropertyPostForm(forms.ModelForm):
+
+
+############ start related image inlineformset form ##########
+from django.forms import ModelForm, inlineformset_factory
+
+
+class PropertyPostForm(ModelForm):
     class Meta:
         model = PropertyPost
-        fields ='__all__'
+        exclude = ()
+
+
+class RelatedImageForm(ModelForm):
+    class Meta:
+        model = Post_related_images
+        exclude = ()
+
+
+RelatedImageFormSet = inlineformset_factory(PropertyPost, Post_related_images,
+                                            form=RelatedImageForm, extra=1)
+
+############ end related image inlineformset form ##########
 
 class WhyChooseUsForm(forms.ModelForm):
     class Meta:
@@ -70,4 +88,19 @@ class OurTeamForm(forms.ModelForm):
 class NoticeForm(forms.ModelForm):
     class Meta:
         model = Notice
+        fields ='__all__'
+
+class AboutHeadForm(forms.ModelForm):
+    class Meta:
+        model = AboutUs
+        fields ='__all__'
+
+class AboutLookingSectionForm(forms.ModelForm):
+    class Meta:
+        model = AboutLookingSection
+        fields ='__all__'
+
+class AboutTestimotialForm(forms.ModelForm):
+    class Meta:
+        model = AboutTestimotial
         fields ='__all__'

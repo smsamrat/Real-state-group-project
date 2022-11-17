@@ -372,7 +372,6 @@ def filter_data(request):
     divisions = request.GET.getlist('divisionAll[]')
     district = request.GET.getlist('districtAll[]')
 
-
     allPosts = PropertyPost.objects.all().order_by('-id').distinct()
         
 

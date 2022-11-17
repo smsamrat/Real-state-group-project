@@ -62,7 +62,11 @@
                         <a href="{% url 'feature_details_property' feature_detail.id %}">
                         <div class="property-img">
                             <div class="property-tag button alt featured">Featured</div>
+                            {% if feature_detail.post_pic %}
                             <img src="{{feature_detail.post_pic.url}}" alt="fp-list" class="img-responsive hp-2">
+                            {% else %}
+                            <img src="" alt="fp-list" class="img-responsive hp-2">
+                            {% endif %}
                             <div class="property-overlay">
                                 <div class="overlay-link">
                                     <div class="overlay-link">{{feature_detail.post_title}}</div>

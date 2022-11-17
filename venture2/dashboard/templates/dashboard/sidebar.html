@@ -7,9 +7,10 @@
                     <span class="nav-text">Property</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="index.html"></a></li>
-                    <li><a href="{% url 'property_add' %}">Add Property</a></li>
-                    <li><a href="{% url 'property_view' %}">View Property</a></li>
+                    
+                    <li><a href="{% url 'PropertyPost-add' %}">Add Property</a></li>
+                    <li><a href="{% url 'PropertyPost-list' %}">View Property</a></li>
+                    
                 </ul>
             </li>
 
@@ -95,6 +96,7 @@
                         <ul aria-expanded="false">
                             <li><a href="{% url 'career_add' %}">Add Career</a></li>
                             <li><a href="{% url 'career_view' %}">View Career</a></li>
+                            <li><a href="{% url 'job_application_view' %}">View Job Application</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow" href="form-wizard.html">Our Team</a>
@@ -111,8 +113,39 @@
                     </li>
                     <li><a class="has-arrow" href="form-pickers.html">Contact</a>
                         <ul aria-expanded="false">
-                            <li><a href="form-wizard.html"></a></li>
-                            <li><a href="form-wizard.html">View Contact</a></li>
+                            <li><a href="{% url 'contact_view' %}">View Contact</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </li>
+
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-notepad"></i>
+                    <span class="nav-text">About Area</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a class="has-arrow" href="form-element.html">About Head section</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'about_head_add' %}">Add About Head section</a></li>
+                            <li><a href="{% url 'about_head_view' %}">View About Head section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="form-wizard.html">About Looking section</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'about_looking_add' %}">Add About Looking section</a></li>
+                            <li><a href="{% url 'about_looking_view' %}">View About Looking section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="form-editor-summernote.html">About testimonial Section</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'about_testimonial_add' %}">Add testimonial Section</a></li>
+                            <li><a href="{% url 'about_testimonial_view' %}">View testimonial Section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="form-pickers.html">Contact</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'contact_view' %}">View Contact</a></li>
                         </ul>
                     </li>
                     

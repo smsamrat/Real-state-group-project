@@ -3,10 +3,17 @@ from .views import *
 
 urlpatterns = [
     path('',dashboard, name='dashboard'),
-    path('propert-add',property_add, name='property_add'),
-    path('propert-view',property_view, name='property_view'),
-    path('propert-edit/<str:id>/',property_edit, name='property_edit'),
-    path('propert-delete/<str:id>/',property_delete, name='property_delete'),
+
+############# start related image inlineformset url ##############
+
+    path('inline-form/',PropertyPostList.as_view(), name='PropertyPost-list'),
+    path('PropertyPost/add/',PropertyPostRelatedImageCreate.as_view(), name='PropertyPost-add'),
+    path('PropertyPost/update/<int:pk>',PropertyPostRelatedImageUpdate.as_view(), name='PropertyPost-update'),
+    path('PropertyPost/details/view/<int:pk>',PropertyDetailsView.as_view(), name='PropertyPost-Details-view'),
+    # path('PropertyPost/<int:pk>',PropertyPostDelete.as_view(), name='PropertyPost-delete'),
+    path('property-delete/<str:id>/',property_delete, name='property_delete'),
+
+############# end related image inlineformset url ##############
 
     #why chose us
     path('why-choose-us-add/',why_choose_us_add, name='why_choose_us_add'),
@@ -54,6 +61,10 @@ urlpatterns = [
     path('career-edit/<str:id>/',career_edit, name='career_edit'),
     path('career-delete/<str:id>/',career_delete, name='career_delete'),
 
+    
+    path('job-application-view/',job_application_view, name='job_application_view'),
+    path('job-application-delete/<str:id>/',job_application_delete, name='job_application_delete'),
+
     #our team
     path('team-add/',team_add, name='team_add'),
     path('team-view/',team_view, name='team_view'),
@@ -65,4 +76,30 @@ urlpatterns = [
     path('notice-view/',notice_view, name='notice_view'),
     path('notice-edit/<str:id>/',notice_edit, name='notice_edit'),
     path('notice-delete/<str:id>/',notice_delete, name='notice_delete'),
+
+    #Contact notice
+    path('contact-view/',contact_view, name='contact_view'),
+    path('contact-delete/<str:id>/',contact_delete, name='contact_delete'),
+
+
+    # About area
+    # About head
+    path('about-head-add/',about_head_add, name='about_head_add'),
+    path('about-head-view/',about_head_view, name='about_head_view'),
+    path('about-head-edit/<str:id>/',about_head_edit, name='about_head_edit'),
+    path('about-head-delete/<str:id>/',about_head_delete, name='about_head_delete'),
+
+    # About looking section
+
+    path('about-looking-add/',about_looking_add, name='about_looking_add'),
+    path('about-looking-view/',about_looking_view, name='about_looking_view'),
+    path('about-looking-edit/<str:id>/',about_looking_edit, name='about_looking_edit'),
+    path('about-looking-delete/<str:id>/',about_looking_delete, name='about_looking_delete'),
+
+    # About looking section
+
+    path('about-testimonial-add/',about_testimonial_add, name='about_testimonial_add'),
+    path('about-testimonial-view/',about_testimonial_view, name='about_testimonial_view'),
+    path('about-testimonial-edit/<str:id>/',about_testimonial_edit, name='about_testimonial_edit'),
+    path('about-testimonial-delete/<str:id>/',about_testimonial_delete, name='about_testimonial_delete'),
 ]

@@ -4,60 +4,133 @@ from indexApp.models import *
 from django.contrib import messages
 from django.utils.text import slugify
 
+
+############ start related image inlineformset functionality ##########
+from django.db import transaction
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
+from .forms import RelatedImageFormSet
+# from .models import PropertyPost
+
 # Create your views here.
+
 def dashboard(request):
     return render(request,'dashboard/index.html')
 
 
-def property_add(request):
-    form = PropertyPostForm(request.POST)
-    if request.method=='POST':
-        form = PropertyPostForm(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request,'Successfully Post')
-            return redirect('property_view')
+
+class PropertyPostList(ListView):
+    model = PropertyPost
+    template_name='dashboard/Postprofile/profile_list.html'
+
+
+class PropertyPostCreate(CreateView):
+    model = PropertyPost
+    fields = '__all__'
+    template_name='dashboard/Postprofile/profile_form.html'
+
+
+class PropertyPostRelatedImageCreate(CreateView):
+    model = PropertyPost
+    fields = '__all__'
+    template_name='dashboard/Postprofile/profile_form.html'
+    success_url = reverse_lazy('PropertyPost-list')
+
+    def get_context_data(self, **kwargs):
+        data = super(PropertyPostRelatedImageCreate, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['relatedimages'] = RelatedImageFormSet(self.request.POST,self.request.FILES)
         else:
-            form = PropertyPostForm()
-            return render(request, 'dashboard/property_file/property_post.html',{'form':form})
-    context = {
-        'form':form
-    }
-    return render(request,'dashboard/property_file/property_post.html',context)
+            data['relatedimages'] = RelatedImageFormSet()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        relatedimages = context['relatedimages']
+        with transaction.atomic():
+            self.object = form.save()
+
+            if relatedimages.is_valid():
+                relatedimages.instance = self.object
+                relatedimages.save()
+        return super(PropertyPostRelatedImageCreate, self).form_valid(form)
 
 
-def property_view(request):
-    property_views = PropertyPost.objects.all()
-    context = {
-        'property_views':property_views
-    }
-    return render(request,'dashboard/property_file/property_view.html',context)
+class PropertyPostUpdate(UpdateView):
+    model = PropertyPost
+    success_url = '/'
+    fields = '__all__'
+    template_name='dashboard/Postprofile/profile_form.html'
 
-def property_edit(request,id):
-    property_edit_q = PropertyPost.objects.get(id=id)
-    form = PropertyPostForm(instance =property_edit_q)
-    if request.method=='POST':
 
-        form = PropertyPostForm(request.POST,request.FILES,instance=property_edit_q)
-        if form.is_valid():
-            form.save()
-            messages.success(request,'Successfully Update')
-            return redirect('property_view')
+class PropertyPostRelatedImageUpdate(UpdateView):
+    model = PropertyPost
+    fields = '__all__'
+    template_name='dashboard/Postprofile/profile_form.html'
+    success_url = reverse_lazy('PropertyPost-list')
+
+    def get_context_data(self, **kwargs):
+        data = super(PropertyPostRelatedImageUpdate, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['relatedimages'] = RelatedImageFormSet(self.request.POST,self.request.FILES, instance=self.object)
         else:
-            form = PropertyPostForm(instance =property_edit_q)
-            messages.success(request,'Successfully not Update')
-            return render(request, 'dashboard/property_file/property_edit.html',{'form':form})
-    context = {
-        'form':form
-    }
-    return render(request,'dashboard/property_file/property_edit.html',context)
+            data['relatedimages'] = RelatedImageFormSet(instance=self.object)
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        relatedimages = context['relatedimages']
+        with transaction.atomic():
+            self.object = form.save()
+            if relatedimages.is_valid():
+                relatedimages.instance = self.object
+                relatedimages.save()
+        return super(PropertyPostRelatedImageUpdate, self).form_valid(form)
+
+
+
+class PropertyDetailsView(UpdateView):
+    model = PropertyPost
+    fields = '__all__'
+    template_name='dashboard/Postprofile/property-details-view.html'
+    success_url = reverse_lazy('PropertyPost-list')
+
+    def get_context_data(self, **kwargs):
+        data = super(PropertyDetailsView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            data['relatedimages'] = RelatedImageFormSet(self.request.POST,self.request.FILES, instance=self.object)
+        else:
+            data['relatedimages'] = RelatedImageFormSet(instance=self.object)
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        relatedimages = context['relatedimages']
+        with transaction.atomic():
+            self.object = form.save()
+            if relatedimages.is_valid():
+                relatedimages.instance = self.object
+                relatedimages.save()
+        return super(PropertyDetailsView, self).form_valid(form)
+
+
+
+
+# class PropertyPostDelete(DeleteView):
+#     model = PropertyPost
+#     success_url = reverse_lazy('PropertyPost-list')
+
+
 
 def property_delete(request,id):
     property_views = PropertyPost.objects.get(id=id)
     property_views.delete()
     messages.success(request,'Delete Successfully')
-    return redirect('property_view')
-    return render(request,'dashboard/property_file/property_view.html')
+    return redirect('PropertyPost-list')
+
+
+############ end related image inlineformset functionality ##########
 
 
 #why_chosse_us
@@ -365,6 +438,19 @@ def career_delete(request,id):
     messages.success(request,'Delete Successfully')
     return redirect('career_view')
 
+    #Job Application 
+
+def job_application_view(request):
+    query = JobApplication.objects.all()
+    return render(request,'dashboard/get_in_touch/job_application_view.html',{'query':query})
+
+def  job_application_delete(request,id):
+    query = JobApplication.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('job_application_view')
+    
+
 
     #Our team functionality
 
@@ -450,3 +536,143 @@ def notice_delete(request,id):
     query.delete()
     messages.success(request,'Delete Successfully')
     return redirect('notice_view')
+
+#contact funtionality
+
+def contact_view(request):
+    query = ContactUs.objects.all()
+    return render(request,'dashboard/get_in_touch/contact_view.html',{'query':query})
+
+def contact_delete(request,id):
+    query = ContactUs.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('contact_view')
+
+
+# About Area
+
+def about_head_add(request):
+    form = AboutHeadForm()
+    if request.method=='POST':
+        form = AboutHeadForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('about_head_view')
+        else:
+            form = AboutHeadForm(request.POST)
+            return render(request, 'dashboard/about/about_head_section/about_head_add.html',{'form':form})
+    return render(request,'dashboard/about/about_head_section/about_head_add.html',{'form':form})
+
+def about_head_view(request):
+    query = AboutUs.objects.all()
+    return render(request,'dashboard/about/about_head_section/about_head_view.html',{'query':query})
+
+def about_head_edit(request,id):
+    query = AboutUs.objects.get(id=id)
+    form = AboutHeadForm(instance =query)
+    if request.method=='POST':
+
+        form = AboutHeadForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('about_head_view')
+        else:
+            form = AboutHeadForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/about/about_head_section/about_head_edit.html',{'form':form})
+
+    return render(request,'dashboard/about/about_head_section/about_head_edit.html',{'form':form})
+
+def about_head_delete(request,id):
+    query = AboutUs.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('about_head_view')
+
+    #about looking section
+
+def about_looking_add(request):
+    form = AboutLookingSectionForm()
+    if request.method=='POST':
+        form = AboutLookingSectionForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('about_looking_view')
+        else:
+            form = AboutHeadForm(request.POST)
+            return render(request, 'dashboard/about/about_looking_section/about_looking_add.html',{'form':form})
+    return render(request,'dashboard/about/about_looking_section/about_looking_add.html',{'form':form})
+
+def about_looking_view(request):
+    query = AboutLookingSection.objects.all()
+    return render(request,'dashboard/about/about_looking_section/about_looking_view.html',{'query':query})
+
+def about_looking_edit(request,id):
+    query = AboutLookingSection.objects.get(id=id)
+    form = AboutLookingSectionForm(instance =query)
+    if request.method=='POST':
+
+        form = AboutLookingSectionForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('about_looking_view')
+        else:
+            form = AboutLookingSectionForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/about/about_looking_section/about_looking_edit.html',{'form':form})
+
+    return render(request,'dashboard/about/about_looking_section/about_looking_edit.html',{'form':form})
+
+def about_looking_delete(request,id):
+    query = AboutLookingSection.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('about_looking_view')
+
+#about testimonial section
+
+def about_testimonial_add(request):
+    form = AboutTestimotialForm()
+    if request.method=='POST':
+        form = AboutTestimotialForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('about_testimonial_view')
+        else:
+            form = AboutTestimotialForm(request.POST)
+            return render(request, 'dashboard/about/about_testimonial_section/about_testimonial_add.html',{'form':form})
+    return render(request,'dashboard/about/about_testimonial_section/about_testimonial_add.html',{'form':form})
+
+def about_testimonial_view(request):
+    query = AboutTestimotial.objects.all()
+    return render(request,'dashboard/about/about_testimonial_section/about_testimonial_view.html',{'query':query})
+
+def about_testimonial_edit(request,id):
+    query = AboutTestimotial.objects.get(id=id)
+    form = AboutTestimotialForm(instance =query)
+    if request.method=='POST':
+
+        form = AboutTestimotialForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('about_testimonial_view')
+        else:
+            form = AboutTestimotialForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/about/about_testimonial_section/about_testimonial_edit.html',{'form':form})
+
+    return render(request,'dashboard/about/about_testimonial_section/about_testimonial_edit.html',{'form':form})
+
+def about_testimonial_delete(request,id):
+    query = AboutTestimotial.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('about_testimonial_view')
+    

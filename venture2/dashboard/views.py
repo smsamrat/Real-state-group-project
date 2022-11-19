@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.utils.text import slugify
 
 
-############ start related image inlineformset functionality ##########
+############ start related image module ##########
 from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
@@ -16,9 +16,52 @@ from .forms import RelatedImageFormSet
 # Create your views here.
 
 def dashboard(request):
-    return render(request,'dashboard/index.html')
+    property_count = PropertyPost.objects.count()
+    feedback_q  = FeedBack.objects.filter(is_feedback_show=True).order_by('-id')
+    job_query = JobApplication.objects.all()
+
+    context = {
+        'property_count':property_count,
+        'feedback':feedback_q,
+        'job_query':job_query,
+        
+    }
+    return render(request,'dashboard/index.html',context)
 
 
+
+def feedback_view(request):
+    feedback_view  = FeedBack.objects.all()
+    context ={
+        'feedback_view':feedback_view,
+    }
+    return render(request,'dashboard/feedback/feedback_view.html',context)
+
+def feedback_edit(request,id):
+    query = FeedBack.objects.get(id=id)
+    form = FeedBackForm(instance =query)
+    if request.method=='POST':
+
+        form = FeedBackForm(request.POST,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('feedback_view')
+        else:
+            form = FeedBackForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/feedback/feedback_edit.html',{'form':form})
+    return render(request,'dashboard/feedback/feedback_edit.html',{'form':form})
+
+def feedback_delete(request,id):
+    feedBack_delete =  FeedBack.objects.filter(id=id)
+    feedBack_delete.delete()
+    return redirect('feedback_view')
+
+
+
+
+############ start related image inlineformset functionality ##########
 
 class PropertyPostList(ListView):
     model = PropertyPost
@@ -443,6 +486,7 @@ def career_delete(request,id):
 def job_application_view(request):
     query = JobApplication.objects.all()
     return render(request,'dashboard/get_in_touch/job_application_view.html',{'query':query})
+
 
 def  job_application_delete(request,id):
     query = JobApplication.objects.get(id=id)

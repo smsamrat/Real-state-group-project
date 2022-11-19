@@ -104,3 +104,8 @@ class AboutTestimotialForm(forms.ModelForm):
     class Meta:
         model = AboutTestimotial
         fields ='__all__'
+
+class FeedBackForm(forms.ModelForm):
+    class Meta:
+        model = FeedBack
+        fields = '__all__'

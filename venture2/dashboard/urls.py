@@ -3,6 +3,9 @@ from .views import *
 
 urlpatterns = [
     path('',dashboard, name='dashboard'),
+    path('feedback-view/',feedback_view, name='feedback_view'),
+    path('feedback-edit/<str:id>/',feedback_edit, name='feedback_edit'),
+    path('feedback-delete/<str:id>/',feedback_delete, name='feedback_delete'),
 
 ############# start related image inlineformset url ##############
 
@@ -60,8 +63,6 @@ urlpatterns = [
     path('career-view/',career_view, name='career_view'),
     path('career-edit/<str:id>/',career_edit, name='career_edit'),
     path('career-delete/<str:id>/',career_delete, name='career_delete'),
-
-    
     path('job-application-view/',job_application_view, name='job_application_view'),
     path('job-application-delete/<str:id>/',job_application_delete, name='job_application_delete'),
 

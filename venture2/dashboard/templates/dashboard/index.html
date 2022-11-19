@@ -1,8 +1,17 @@
 {% extends 'dashboard/base.html'%}
 {% load static %}
 {% block content %}
-
-
+<!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'><link rel="stylesheet"> -->
+<style>
+.feedback-content{
+  display:none;
+}
+.noContent {
+  color: #000 !important;
+  background-color: transparent !important;
+  pointer-events: none;
+}
+</style>
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -34,485 +43,7 @@
 						<a class="nav-link active" data-toggle="tab" href="#chat">Chat</a>
 					</li>
 				</ul>
-				<div class="tab-content">
-					<div class="tab-pane fade active show" id="chat" role="tabpanel">
-						<div class="card mb-sm-3 mb-md-0 contacts_card dz-chat-user-box">
-							<div class="card-header chat-list-header text-center">
-								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect fill="#000000" x="4" y="11" width="16" height="2" rx="1"/><rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) " x="4" y="11" width="16" height="2" rx="1"/></g></svg></a>
-								<div>
-									<h6 class="mb-1">Chat List</h6>
-									<p class="mb-0">Show All</p>
-								</div>
-								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
-							</div>
-							<div class="card-body contacts_body p-0 dz-scroll  " id="DZ_W_Contacts_Body">
-								<ul class="contacts">
-									<li class="name-first-letter">A</li>
-									<li class="active dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon"></span>
-											</div>
-											<div class="user_info">
-												<span>Archie Parker</span>
-												<p>Kalid is online</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon offline"></span>
-											</div>
-											<div class="user_info">
-												<span>Alfie Mason</span>
-												<p>Taherah left 7 mins ago</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/3.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon"></span>
-											</div>
-											<div class="user_info">
-												<span>AharlieKane</span>
-												<p>Sami is online</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/4.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon offline"></span>
-											</div>
-											<div class="user_info">
-												<span>Athan Jacoby</span>
-												<p>Nargis left 30 mins ago</p>
-											</div>
-										</div>
-									</li>
-									<li class="name-first-letter">B</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/5.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon offline"></span>
-											</div>
-											<div class="user_info">
-												<span>Bashid Samim</span>
-												<p>Rashid left 50 mins ago</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon"></span>
-											</div>
-											<div class="user_info">
-												<span>Breddie Ronan</span>
-												<p>Kalid is online</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon offline"></span>
-											</div>
-											<div class="user_info">
-												<span>Ceorge Carson</span>
-												<p>Taherah left 7 mins ago</p>
-											</div>
-										</div>
-									</li>
-									<li class="name-first-letter">D</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/3.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon"></span>
-											</div>
-											<div class="user_info">
-												<span>Darry Parker</span>
-												<p>Sami is online</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/4.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon offline"></span>
-											</div>
-											<div class="user_info">
-												<span>Denry Hunter</span>
-												<p>Nargis left 30 mins ago</p>
-											</div>
-										</div>
-									</li>
-									<li class="name-first-letter">J</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/5.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon offline"></span>
-											</div>
-											<div class="user_info">
-												<span>Jack Ronan</span>
-												<p>Rashid left 50 mins ago</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon"></span>
-											</div>
-											<div class="user_info">
-												<span>Jacob Tucker</span>
-												<p>Kalid is online</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon offline"></span>
-											</div>
-											<div class="user_info">
-												<span>James Logan</span>
-												<p>Taherah left 7 mins ago</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/3.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon"></span>
-											</div>
-											<div class="user_info">
-												<span>Joshua Weston</span>
-												<p>Sami is online</p>
-											</div>
-										</div>
-									</li>
-									<li class="name-first-letter">O</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/4.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon offline"></span>
-											</div>
-											<div class="user_info">
-												<span>Oliver Acker</span>
-												<p>Nargis left 30 mins ago</p>
-											</div>
-										</div>
-									</li>
-									<li class="dz-chat-user">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont">
-												<img  src="public/images/avatar/5.jpg" class="rounded-circle user_img" alt=""/>
-												<span class="online_icon offline"></span>
-											</div>
-											<div class="user_info">
-												<span>Oscar Weston</span>
-												<p>Rashid left 50 mins ago</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="card chat dz-chat-history-box d-none">
-							<div class="card-header chat-list-header text-center">
-								<a href="#" class="dz-chat-history-back">
-									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000) " x="14" y="7" width="2" height="10" rx="1"/><path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) "/></g></svg>
-								</a>
-								<div>
-									<h6 class="mb-1">Chat with Khelesh</h6>
-									<p class="mb-0 text-success">Online</p>
-								</div>							
-								<div class="dropdown">
-									<a href="#" data-toggle="dropdown" ><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<li class="dropdown-item"><i class="fa fa-user-circle text-primary mr-2"></i> View profile</li>
-										<li class="dropdown-item"><i class="fa fa-users text-primary mr-2"></i> Add to close friends</li>
-										<li class="dropdown-item"><i class="fa fa-plus text-primary mr-2"></i> Add to group</li>
-										<li class="dropdown-item"><i class="fa fa-ban text-primary mr-2"></i> Block</li>
-									</ul>
-								</div>
-							</div>
-							<div class="card-body msg_card_body dz-scroll" id="DZ_W_Contacts_Body3">
-								<div class="d-flex justify-content-start mb-4">
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-									<div class="msg_cotainer">
-										Hi, how are you samim?
-										<span class="msg_time">8:40 AM, Today</span>
-									</div>
-								</div>
-								<div class="d-flex justify-content-end mb-4">
-									<div class="msg_cotainer_send">
-										Hi Khalid i am good tnx how about you?
-										<span class="msg_time_send">8:55 AM, Today</span>
-									</div>
-									<div class="img_cont_msg">
-								<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-								</div>
-								<div class="d-flex justify-content-start mb-4">
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-									<div class="msg_cotainer">
-										I am good too, thank you for your chat template
-										<span class="msg_time">9:00 AM, Today</span>
-									</div>
-								</div>
-								<div class="d-flex justify-content-end mb-4">
-									<div class="msg_cotainer_send">
-										You are welcome
-										<span class="msg_time_send">9:05 AM, Today</span>
-									</div>
-									<div class="img_cont_msg">
-								<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-								</div>
-								<div class="d-flex justify-content-start mb-4">
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-									<div class="msg_cotainer">
-										I am looking for your next templates
-										<span class="msg_time">9:07 AM, Today</span>
-									</div>
-								</div>
-								<div class="d-flex justify-content-end mb-4">
-									<div class="msg_cotainer_send">
-										Ok, thank you have a good day
-										<span class="msg_time_send">9:10 AM, Today</span>
-									</div>
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-								</div>
-								<div class="d-flex justify-content-start mb-4">
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-									<div class="msg_cotainer">
-										Bye, see you
-										<span class="msg_time">9:12 AM, Today</span>
-									</div>
-								</div>
-								<div class="d-flex justify-content-start mb-4">
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-									<div class="msg_cotainer">
-										Hi, how are you samim?
-										<span class="msg_time">8:40 AM, Today</span>
-									</div>
-								</div>
-								<div class="d-flex justify-content-end mb-4">
-									<div class="msg_cotainer_send">
-										Hi Khalid i am good tnx how about you?
-										<span class="msg_time_send">8:55 AM, Today</span>
-									</div>
-									<div class="img_cont_msg">
-								<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-								</div>
-								<div class="d-flex justify-content-start mb-4">
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-									<div class="msg_cotainer">
-										I am good too, thank you for your chat template
-										<span class="msg_time">9:00 AM, Today</span>
-									</div>
-								</div>
-								<div class="d-flex justify-content-end mb-4">
-									<div class="msg_cotainer_send">
-										You are welcome
-										<span class="msg_time_send">9:05 AM, Today</span>
-									</div>
-									<div class="img_cont_msg">
-								<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-								</div>
-								<div class="d-flex justify-content-start mb-4">
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-									<div class="msg_cotainer">
-										I am looking for your next templates
-										<span class="msg_time">9:07 AM, Today</span>
-									</div>
-								</div>
-								<div class="d-flex justify-content-end mb-4">
-									<div class="msg_cotainer_send">
-										Ok, thank you have a good day
-										<span class="msg_time_send">9:10 AM, Today</span>
-									</div>
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-								</div>
-								<div class="d-flex justify-content-start mb-4">
-									<div class="img_cont_msg">
-										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
-									</div>
-									<div class="msg_cotainer">
-										Bye, see you
-										<span class="msg_time">9:12 AM, Today</span>
-									</div>
-								</div>
-							</div>
-							<div class="card-footer type_msg">
-								<div class="input-group">
-									<textarea class="form-control" placeholder="Type your message..."></textarea>
-									<div class="input-group-append">
-										<button type="button" class="btn btn-primary"><i class="fa fa-location-arrow"></i></button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="alerts" role="tabpanel">
-						<div class="card mb-sm-3 mb-md-0 contacts_card">
-							<div class="card-header chat-list-header text-center">
-								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
-								<div>
-									<h6 class="mb-1">Notications</h6>
-									<p class="mb-0">Show All</p>
-								</div>
-								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/><path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"/></g></svg></a>
-							</div>
-							<div class="card-body contacts_body p-0 dz-scroll" id="DZ_W_Contacts_Body1">
-								<ul class="contacts">
-									<li class="name-first-letter">SEVER STATUS</li>
-									<li class="active">
-										<div class="d-flex bd-highlight">
-											<div class="img_cont primary">KK</div>
-											<div class="user_info">
-												<span>David Nester Birthday</span>
-												<p class="text-primary">Today</p>
-											</div>
-										</div>
-									</li>
-									<li class="name-first-letter">SOCIAL</li>
-									<li>
-										<div class="d-flex bd-highlight">
-											<div class="img_cont success">RU<i class="icon fa-birthday-cake"></i></div>
-											<div class="user_info">
-												<span>Perfection Simplified</span>
-												<p>Jame Smith commented on your status</p>
-											</div>
-										</div>
-									</li>
-									<li class="name-first-letter">SEVER STATUS</li>
-									<li>
-										<div class="d-flex bd-highlight">
-											<div class="img_cont primary">AU<i class="icon fa fa-user-plus"></i></div>
-											<div class="user_info">
-												<span>AharlieKane</span>
-												<p>Sami is online</p>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="d-flex bd-highlight">
-											<div class="img_cont info">MO<i class="icon fa fa-user-plus"></i></div>
-											<div class="user_info">
-												<span>Athan Jacoby</span>
-												<p>Nargis left 30 mins ago</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div class="card-footer"></div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="notes">
-						<div class="card mb-sm-3 mb-md-0 note_card">
-							<div class="card-header chat-list-header text-center">
-								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect fill="#000000" x="4" y="11" width="16" height="2" rx="1"/><rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) " x="4" y="11" width="16" height="2" rx="1"/></g></svg></a>
-								<div>
-									<h6 class="mb-1">Notes</h6>
-									<p class="mb-0">Add New Nots</p>
-								</div>
-								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/><path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"/></g></svg></a>
-							</div>
-							<div class="card-body contacts_body p-0 dz-scroll" id="DZ_W_Contacts_Body2">
-								<ul class="contacts">
-									<li class="active">
-										<div class="d-flex bd-highlight">
-											<div class="user_info">
-												<span>New order placed..</span>
-												<p>10 Aug 2020</p>
-											</div>
-											<div class="ml-auto">
-												<a href="#" class="btn btn-primary btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-												<a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="d-flex bd-highlight">
-											<div class="user_info">
-												<span>Youtube, a video-sharing website..</span>
-												<p>10 Aug 2020</p>
-											</div>
-											<div class="ml-auto">
-												<a href="#" class="btn btn-primary btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-												<a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="d-flex bd-highlight">
-											<div class="user_info">
-												<span>john just buy your product..</span>
-												<p>10 Aug 2020</p>
-											</div>
-											<div class="ml-auto">
-												<a href="#" class="btn btn-primary btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-												<a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="d-flex bd-highlight">
-											<div class="user_info">
-												<span>Athan Jacoby</span>
-												<p>10 Aug 2020</p>
-											</div>
-											<div class="ml-auto">
-												<a href="#" class="btn btn-primary btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-												<a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
 		<!--**********************************
@@ -546,10 +77,8 @@
                 <div class="form-head d-md-flex mb-sm-4 mb-3 align-items-start">
 					<div class="mr-auto  d-lg-block">
 						<h2 class="text-black font-w600">Dashboard</h2>
-						<p class="mb-0">Welcome to Omah Property Admin</p>
+						<p class="mb-0">Welcome to Venture Property Admin</p>
 					</div>
-					<a href="javascript:void(0);" class="btn btn-primary rounded light mr-3">Refresh</a>
-					<a href="javascript:void(0);" class="btn btn-primary rounded"><i class="flaticon-381-settings-2 mr-0"></i></a>
 				</div>
 				<div class="row">
 					<div class="col-xl-6 col-xxl-12">
@@ -568,256 +97,46 @@
 											<div class="media-body mb-sm-0 mb-3 mr-5">
 												<h4 class="fs-22 text-white">Total Properties</h4>
 												<div class="progress mt-3 mb-2" style="height:8px;">
-													<div class="progress-bar bg-white progress-animated" style="width: 86%; height:8px;" role="progressbar">
-														<span class="sr-only">86% Complete</span>
+													<div class="progress-bar bg-white progress-animated" style="width: {{property_count}}%; height:8px;" role="progressbar">
+														<span class="sr-only">{{property_count}}% Complete</span>
 													</div>
 												</div>
-												<span class="fs-14">431 more to break last month record</span>
+												<!-- <span class="fs-14">431 more to break last month record</span> -->
 											</div>
-											<span class="fs-46 font-w500">4,562</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-12 col-md-6">
-								<div class="card">
-									<div class="card-body">
-										<div class="media align-items-center">
-											<div class="media-body mr-3">	
-												<h2 class="fs-36 text-black font-w600">2,356</h2>
-												<p class="fs-18 mb-0 text-black font-w500">Properties for Sale</p>
-												<span class="fs-13">Target 3k/month</span>
-											</div>
-											<div class="d-inline-block position-relative donut-chart-sale">
-												<span class="donut1" data-peity='{ "fill": ["rgb(60, 76, 184)", "rgba(236, 236, 236, 1)"],   "innerRadius": 38, "radius": 10}'>5/8</span>
-												<small class="text-primary">71%</small>
-												<span class="circle bgl-primary"></span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-12 col-md-6">
-								<div class="card">
-									<div class="card-body">
-										<div class="media align-items-center">
-											<div class="media-body mr-3">	
-												<h2 class="fs-36 text-black font-w600">2,206</h2>
-												<p class="fs-18 mb-0 text-black font-w500">Properties for Rent</p>
-												<span class="fs-13">Target 3k/month</span>
-											</div>
-											<div class="d-inline-block position-relative donut-chart-sale">
-												<span class="donut1" data-peity='{ "fill": ["rgb(55, 209, 90)", "rgba(236, 236, 236, 1)"],   "innerRadius": 38, "radius": 10}'>7/8</span>
-												<small class="text-success">90%</small>
-												<span class="circle bgl-success"></span>
-											</div>
+											<span class="fs-46 font-w500">{{property_count}}</span>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-xl-6 col-xxl-12">
-						<div class="card">
-							<div class="card-header border-0 pb-0">
-								<h3 class="fs-20 text-black">Total Revenue</h3>
-								<div class="dropdown ml-auto">
-									<div class="btn-link" data-toggle="dropdown" >
-										<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-									</div>
-									<div class="dropdown-menu dropdown-menu-right" >
-										<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-										<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-									</div>
-								</div>
-							</div>
-							<div class="card-body pt-2 pb-0">
-								<div class="d-flex flex-wrap align-items-center">
-									<span class="fs-36 text-black font-w600 mr-3">$678,345</span>
-									<p class="mr-sm-auto mr-3 mb-sm-0 mb-3">last month $563,443</p>
-									<div class="d-flex align-items-center">
-										<svg class="mr-3" width="87" height="47" viewBox="0 0 87 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M29.8043 20.9254C15.2735 14.3873 5.88029 27.282 3 34.5466V46.2406H85V4.58005C70.8925 -0.868404 70.5398 8.66639 60.8409 19.5633C51.1419 30.4602 47.9677 29.0981 29.8043 20.9254Z" fill="url(#paint0_linear)"/>
-											<path d="M3 35.2468C5.88029 27.9822 15.2735 15.0875 29.8043 21.6257C47.9677 29.7984 51.1419 31.1605 60.8409 20.2636C70.5398 9.36665 70.8925 -0.168147 85 5.28031" stroke="#37D159" stroke-width="6"/>
-											<defs>
-											<linearGradient id="paint0_linear" x1="44" y1="-36.4332" x2="44" y2="45.9686" gradientUnits="userSpaceOnUse">
-											<stop stop-color="#37D159" offset=""/>
-											<stop offset="1" stop-color="#37D159" stop-opacity="0"/>
-											</linearGradient>
-											</defs>
-										</svg>
-										<span class="fs-22 text-success mr-2">7%</span>
-										<svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M0 6L6 2.62268e-07L12 6" fill="#37D159"/>
-										</svg>
-									</div>
-								</div>
-								<div id="chartTimeline"></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-9 col-xxl-8">
+
+
+					<div class="col-xl-3 col-xxl-4">
 						<div class="row">
-							<div class="col-xl-8 col-xxl-12">
+							<div class="col-xl-12 col-lg-6">
 								<div class="card">
 									<div class="card-header border-0 pb-0">
-										<h3 class="fs-20 text-black">Overview</h3>
-										<div class="dropdown ml-auto">
-											<div class="btn-link" data-toggle="dropdown" >
-												<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right" >
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
+										<h3 class="fs-20 text-black">Customer Feedback</h3>
 									</div>
-									<div class="card-body">
-										<div class="d-sm-flex flex-wrap  justify-content-around">
-											<div class="d-flex mb-4 align-items-center">
-												<span class="rounded mr-3 bg-primary p-3">
-													<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M10.3458 25.7292H1.35412C0.758283 25.7292 0.270782 25.2417 0.270782 24.6458V9.69583C0.270782 9.42499 0.379116 9.09999 0.595783 8.93749L9.58745 0.541659C9.91245 0.270825 10.3458 0.162492 10.725 0.324992C11.1583 0.541659 11.375 0.920825 11.375 1.35416V24.7C11.375 25.2417 10.8875 25.7292 10.3458 25.7292ZM2.38328 23.6167H9.26245V3.79166L2.38328 10.1833V23.6167Z" fill="white"/>
-														<path d="M24.6458 25.7292H10.2916C9.69578 25.7292 9.20828 25.2417 9.20828 24.6458V11.9167C9.20828 11.3208 9.69578 10.8333 10.2916 10.8333H24.6458C25.2416 10.8333 25.7291 11.3208 25.7291 11.9167V24.7C25.7291 25.2417 25.2416 25.7292 24.6458 25.7292ZM11.375 23.6167H23.6166V12.9458H11.375V23.6167Z" fill="white"/>
-														<path d="M19.5541 25.7292H15.3833C14.7874 25.7292 14.2999 25.2417 14.2999 24.6458V18.0375C14.2999 17.4417 14.7874 16.9542 15.3833 16.9542H19.5541C20.1499 16.9542 20.6374 17.4417 20.6374 18.0375V24.6458C20.6374 25.2417 20.1499 25.7292 19.5541 25.7292ZM16.4666 23.6167H18.5249V19.1208H16.4666V23.6167Z" fill="white"/>
-													</svg>
-												</span>
+									<div class="card-body pb-0">
+										<div class="pb-3 border-bottom mb-3">
+											{% for i in feedback %}
+											<div class=" feedback-content mb-3 flex-wrap align-items-end">
+									
 												<div>
-													<p class="fs-14 mb-1">Total Sale</p>
-													<span class="fs-18 text-black font-w700">2,346 Unit</span>
+													<h6 class="fs-16 text-black font-w600">{{i.name}}</h6>
+													<p>{{i.description}}</p>
+													
 												</div>
+												<span class="fs-14 float-end ml-auto">{{i.created.date}}</span>
+												<br>
 											</div>
-											<div class="d-flex mb-4 align-items-center">
-												<span class="rounded mr-3 bg-success p-3">
-													<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M10.3458 25.7292H1.35412C0.758283 25.7292 0.270782 25.2417 0.270782 24.6458V9.69583C0.270782 9.42499 0.379116 9.09999 0.595783 8.93749L9.58745 0.541659C9.91245 0.270825 10.3458 0.162492 10.725 0.324992C11.1583 0.541659 11.375 0.920825 11.375 1.35416V24.7C11.375 25.2417 10.8875 25.7292 10.3458 25.7292ZM2.38328 23.6167H9.26245V3.79166L2.38328 10.1833V23.6167Z" fill="white"/>
-														<path d="M24.6458 25.7292H10.2916C9.69578 25.7292 9.20828 25.2417 9.20828 24.6458V11.9167C9.20828 11.3208 9.69578 10.8333 10.2916 10.8333H24.6458C25.2416 10.8333 25.7291 11.3208 25.7291 11.9167V24.7C25.7291 25.2417 25.2416 25.7292 24.6458 25.7292ZM11.375 23.6167H23.6166V12.9458H11.375V23.6167Z" fill="white"/>
-														<path d="M19.5541 25.7292H15.3833C14.7874 25.7292 14.2999 25.2417 14.2999 24.6458V18.0375C14.2999 17.4417 14.7874 16.9542 15.3833 16.9542H19.5541C20.1499 16.9542 20.6374 17.4417 20.6374 18.0375V24.6458C20.6374 25.2417 20.1499 25.7292 19.5541 25.7292ZM16.4666 23.6167H18.5249V19.1208H16.4666V23.6167Z" fill="white"/>
-													</svg>
-												</span>
-												<div>
-													<p class="fs-14 mb-1">Total Rent</p>
-													<span class="fs-18 text-black font-w700">1,252 Unit</span>
-												</div>
-											</div>
-										</div>
-										<div id="chartBar"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-4 col-xxl-12">
-								<div class="row">
-									<div class="col-xl-12 col-xxl-6 col-md-6">
-										<div class="card">
-											<div class="card-body">
-												<div id="monocromeChart"></div>
-												<div class="d-flex flex-wrap mt-3">
-													<span class="text-black font-w600 mr-5 mb-2">
-													<svg class="mr-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<rect width="20" height="20" rx="8" fill="#FFB067"/>
-													</svg>Agent</span>
-													<span class="text-black font-w600 mb-2">
-													<svg class="mr-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<rect width="20" height="20" rx="8" fill="#B655E4"/>
-													</svg>Customers</span>
-												</div>
-											</div>
+											{% endfor %}
 										</div>
 									</div>
-									<div class="col-xl-12 col-xxl-6 col-md-6">
-										<div class="card">
-											<div class="card-body">
-												<p class="mb-2 d-flex  fs-16 text-black font-w500">Product Viewed
-													<span class="pull-right ml-auto text-dark fs-14">561/days</span>
-												</p>
-												<div class="progress mb-4" style="height:10px">
-													<div class="progress-bar bg-primary progress-animated" style="width:75%; height:10px;" role="progressbar">
-														<span class="sr-only">75% Complete</span>
-													</div>
-												</div>
-												<p class="mb-2 d-flex  fs-16 text-black font-w500">Product Listed
-													<span class="pull-right ml-auto text-dark fs-14">3,456 Unit</span>
-												</p>
-												<div class="progress mb-3" style="height:10px">
-													<div class="progress-bar bg-primary progress-animated" style="width:90%; height:10px;" role="progressbar">
-														<span class="sr-only">90% Complete</span>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-12">
-								<div class="card">
-									<div class="card-header border-0 pb-0">
-										<h3 class="fs-20 text-black">Properties Map Location</h3>
-										<div class="dropdown ml-auto">
-											<div class="btn-link" data-toggle="dropdown" >
-												<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right" >
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row">
-											<div class="col-lg-3">
-												<p class="mb-2 d-flex align-items-center  fs-16 text-black font-w500">Europe
-													<span class="pull-right text-dark fs-14 ml-2">653 Unit</span>
-												</p>
-												<div class="progress mb-4" style="height:10px">
-													<div class="progress-bar bg-primary progress-animated" style="width:75%; height:10px;" role="progressbar">
-														<span class="sr-only">75% Complete</span>
-													</div>
-												</div>
-												<p class="mb-2 d-flex align-items-center  fs-16 text-black font-w500">Asia
-													<span class="pull-right text-dark fs-14 ml-2">653 Unit</span>
-												</p>
-												<div class="progress mb-4" style="height:10px">
-													<div class="progress-bar bg-primary progress-animated" style="width:100%; height:10px;" role="progressbar">
-														<span class="sr-only">100% Complete</span>
-													</div>
-												</div>
-												<p class="mb-2 d-flex align-items-center  fs-16 text-black font-w500">Africa
-													<span class="pull-right text-dark fs-14 ml-2">653 Unit</span>
-												</p>
-												<div class="progress mb-4" style="height:10px">
-													<div class="progress-bar bg-primary progress-animated" style="width:75%; height:10px;" role="progressbar">
-														<span class="sr-only">75% Complete</span>
-													</div>
-												</div>
-												<p class="mb-2 d-flex align-items-center  fs-16 text-black font-w500">Australia
-													<span class="pull-right text-dark fs-14 ml-2">653 Unit</span>
-												</p>
-												<div class="progress mb-4" style="height:10px">
-													<div class="progress-bar bg-primary progress-animated" style="width:50%; height:10px;" role="progressbar">
-														<span class="sr-only">50% Complete</span>
-													</div>
-												</div>
-												<p class="mb-2 d-flex align-items-center  fs-16 text-black font-w500">America
-													<span class="pull-right text-dark fs-14 ml-2">653 Unit</span>
-												</p>
-												<div class="progress mb-4" style="height:10px">
-													<div class="progress-bar bg-primary progress-animated" style="width:70%; height:10px;" role="progressbar">
-														<span class="sr-only">70% Complete</span>
-													</div>
-												</div>
-												<p class="mb-2 d-flex align-items-center  fs-16 text-black font-w500">USA
-													<span class="pull-right text-dark fs-14 ml-2">653 Unit</span>
-												</p>
-												<div class="progress mb-4" style="height:10px">
-													<div class="progress-bar bg-primary progress-animated" style="width:40%; height:10px;" role="progressbar">
-														<span class="sr-only">40% Complete</span>
-													</div>
-												</div>
-											</div>
-											<div class="col-lg-9">
-												<div id="world-map"></div>
-											</div>
-										</div>
+									<div class="card-footer border-0 p-0">
+										<a href="" class="btn d-block btn-primary rounded load-more">See More Feedback</a>
 									</div>
 								</div>
 							</div>
@@ -828,130 +147,67 @@
 							<div class="col-xl-12 col-lg-6">
 								<div class="card">
 									<div class="card-header border-0 pb-0">
-										<h3 class="fs-20 text-black">Customer Review</h3>
-										<div class="dropdown ml-auto">
-											<div class="btn-link" data-toggle="dropdown" >
-												<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
-											</div>
-											<div class="dropdown-menu dropdown-menu-right" >
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
-										</div>
+										<h3 class="fs-20 text-black">Customer Job Applicaton</h3>
 									</div>
 									<div class="card-body pb-0">
 										<div class="pb-3 border-bottom mb-3">
-											<div class="d-flex mb-3 flex-wrap align-items-end">
-												<img class="rounded mr-3"  src="public/images/customers/1.jpg" width="58" alt="">
+											<style>
+												.job-content{
+													display: none;
+												}
+											</style>
+											{% for i in job_query %}
+											<div class=" job-content mb-3 flex-wrap align-items-end">
 												<div>
-													<h6 class="fs-16 text-black font-w600">John Doe</h6>
-													<div class="star-icons">
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-													</div>
+													<h6 class="fs-16 text-black font-w600">Name: {{i.full_name}}</h6>
+													<p>Email:{{i.email}}</p>
+													<p>Phone: {{i.phone}}</p>
+													<p>Expected Salary: {{i.expected_salary}}</p>
+													<a href="{{i.cv.url}}" download>CV&nbsp;<i class="fa fa-arrow-down"></i></a>												
 												</div>
-												<span class="fs-14 ml-auto">5m ago</span>
+												<!-- <span class="fs-14 float-end ml-auto">{{i.created.date}}</span> -->
+												<br>
 											</div>
-											<p class="fs-14 mb-0">Friendly service
-											Josh, Lunar and everyone at Just Property in Hastings deserved a big Thank You from us for moving us from Jakarta to Medan during the lockdown.
-											</p>
-										</div>
-										<div class="pb-3 border-bottom mb-3">
-											<div class="d-flex mb-3 flex-wrap align-items-end">
-												<img class="rounded mr-3"  src="public/images/customers/2.jpg" width="58" alt="">
-												<div>
-													<h6 class="fs-16 text-black font-w600">Amelia Tuner</h6>
-													<div class="star-icons">
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-													</div>
-												</div>
-												<span class="fs-14 ml-auto">10h ago</span>
-											</div>
-											<p class="fs-14 mb-0">I viewed a number of properties with Just Property and found them to be professional, efficient, patient, courteous and helpful every time.
-											</p>
-										</div>
-										<div class="pb-3">
-											<div class="d-flex mb-3 flex-wrap align-items-end">
-												<img class="rounded mr-3"  src="public/images/customers/3.jpg" width="58" alt="">
-												<div>
-													<h6 class="fs-16 text-black font-w600">Jessica Humb</h6>
-													<div class="star-icons">
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-														<i class="las la-star"></i>
-													</div>
-												</div>
-												<span class="fs-14 ml-auto">2d ago</span>
-											</div>
-											<p class="fs-14 mb-0">Dealing with Syamsudin and Bakri was a joy. I got in touch with Just Property after seeing a couple of properties that caught my eye. Both Syamsudin and Bakri strive to deliver a professional service and surpassed my expectations - they were not only helpful but extremely approachable and not at all bumptious...
-											</p>
+											{% endfor %}
 										</div>
 									</div>
 									<div class="card-footer border-0 p-0">
-										<a href="review.html" class="btn d-block btn-primary rounded">See More Reviews</a>
+										<a href="" class="btn d-block btn-primary rounded load-more-job">See More Application</a>
 									</div>
 								</div>
 							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-xxl-4">
+						<div class="row">
 							<div class="col-xl-12 col-lg-6">
 								<div class="card">
 									<div class="card-header border-0 pb-0">
-										<h3 class="fs-20 text-black">Recent Property</h3>
-										<div class="dropdown ml-auto">
-											<div class="btn-link" data-toggle="dropdown" >
-												<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+										<h3 class="fs-20 text-black">Customer Contact</h3>
+									</div>
+									<div class="card-body pb-0">
+										<div class="pb-3 border-bottom mb-3">
+											<style>
+												.contact-content{
+													display: none;
+												}
+											</style>
+											{% for i in feedback %}
+											<div class=" contact-content mb-3 flex-wrap align-items-end">
+									
+												<div>
+													<h6 class="fs-16 text-black font-w600">{{i.name}}</h6>
+													<p>{{i.description}}</p>
+													
+												</div>
+												<span class="fs-14 float-end ml-auto">{{i.created.date}}</span>
+												<br>
 											</div>
-											<div class="dropdown-menu dropdown-menu-right" >
-												<a class="dropdown-item" href="javascript:void(0);">Edit</a>
-												<a class="dropdown-item" href="javascript:void(0);">Delete</a>
-											</div>
+											{% endfor %}
 										</div>
 									</div>
-									<div class="card-body">
-										<div class="testimonial-one owl-carousel">
-											<div class="items">
-												<a href="property-details.html"><img  src="public/images/testimonial/1.png" alt="#" class="w-100 mw-100 mb-3 rounded"></a>
-												<h5 class="fs-16 font-w600 mb-0"><a href="property-details.html" class="text-black">98AB Alexander Court, London</a></h5>
-												<span class="fs-14 d-block mb-4">45 Connor St. London, 44523</span>
-												<a href="javascript:void(0);" class="bgl-primary text-black p-1 pl-2 pr-2 mr-3 font-w600 rounded">
-												<svg class="mr-2" width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M15.8125 5.54171C17.6264 5.54171 19.1667 7.01538 19.1667 8.89588V11.7709H17.7292V12.7292H16.7708V11.7709H2.39583V12.7292H1.4375V11.7709H0V8.89588C0 7.08201 1.48814 5.54171 3.35417 5.54171H15.8125ZM14.8542 0.270874C16.1425 0.270874 17.2504 1.30663 17.25 2.66671L17.2504 4.95601C16.8146 4.71707 16.3271 4.58337 15.8125 4.58337L14.8542 4.58289C14.8542 3.76226 14.1822 3.14587 13.4167 3.14587H10.5417C10.1735 3.14587 9.8377 3.28427 9.58338 3.51186C9.32939 3.28444 8.99338 3.14587 8.625 3.14587H5.75C4.95625 3.14587 4.31276 3.78921 4.3125 4.58289L3.35417 4.58337C2.83975 4.58337 2.35239 4.71699 1.91667 4.95579V2.66671C1.91667 1.37835 2.95002 0.270874 4.3125 0.270874H14.8542ZM8.625 4.10397C8.88503 4.10397 9.10417 4.34355 9.10417 4.58337L5.27083 4.58289C5.27083 4.28973 5.50427 4.10421 5.75 4.10421L8.625 4.10397ZM13.4167 4.10743C13.6878 4.10397 13.8956 4.33738 13.8958 4.58289H10.0625C10.0625 4.28554 10.2959 4.10421 10.5417 4.10421L13.4167 4.10743Z" fill="#3B4CB8"/>
-												</svg>
-												4</a>
-												<a href="javascript:void(0);" class="bgl-primary text-black p-1 pl-3 pr-3 font-w600 rounded">
-												<svg class="mr-2" width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M12.92 7.00064L12.6744 8.22859C12.2819 10.1913 10.4996 11.6677 8.55634 11.6677H7.95079L9.11756 14.7791H1.5557V7.00064H12.92ZM3.50032 0C4.54604 0 5.44495 0.871336 5.44495 1.94462V5.05602H12.8345V5.83387H5.44495V6.22279H0.777849L0.777769 7.38965C0.327309 7.05126 0 6.47802 0 5.83387V1.94462C0 0.8989 0.851593 0 1.94462 0H3.50032Z" fill="#3B4CB8"/>
-												</svg>
-												2
-												</a>
-												<p class="fs-14 mt-3 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mini</p>
-											</div>
-											<div class="items">
-												<a href="property-details.html"><img  src="public/images/testimonial/1.png" alt="#" class="w-100 mw-100 mb-3 rounded"></a>
-												<h5 class="fs-16 font-w600 mb-0"><a href="property-details.html" class="text-black">98AB Alexander Court, London</a></h5>
-												<span class="fs-14 d-block mb-4">45 Connor St. London, 44523</span>
-												<a href="javascript:void(0);" class="bgl-primary text-black p-1 pl-2 pr-2 mr-3 font-w600 rounded">
-												<svg class="mr-2" width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M15.8125 5.54171C17.6264 5.54171 19.1667 7.01538 19.1667 8.89588V11.7709H17.7292V12.7292H16.7708V11.7709H2.39583V12.7292H1.4375V11.7709H0V8.89588C0 7.08201 1.48814 5.54171 3.35417 5.54171H15.8125ZM14.8542 0.270874C16.1425 0.270874 17.2504 1.30663 17.25 2.66671L17.2504 4.95601C16.8146 4.71707 16.3271 4.58337 15.8125 4.58337L14.8542 4.58289C14.8542 3.76226 14.1822 3.14587 13.4167 3.14587H10.5417C10.1735 3.14587 9.8377 3.28427 9.58338 3.51186C9.32939 3.28444 8.99338 3.14587 8.625 3.14587H5.75C4.95625 3.14587 4.31276 3.78921 4.3125 4.58289L3.35417 4.58337C2.83975 4.58337 2.35239 4.71699 1.91667 4.95579V2.66671C1.91667 1.37835 2.95002 0.270874 4.3125 0.270874H14.8542ZM8.625 4.10397C8.88503 4.10397 9.10417 4.34355 9.10417 4.58337L5.27083 4.58289C5.27083 4.28973 5.50427 4.10421 5.75 4.10421L8.625 4.10397ZM13.4167 4.10743C13.6878 4.10397 13.8956 4.33738 13.8958 4.58289H10.0625C10.0625 4.28554 10.2959 4.10421 10.5417 4.10421L13.4167 4.10743Z" fill="#3B4CB8"/>
-												</svg>
-												4</a>
-												<a href="javascript:void(0);" class="bgl-primary text-black p-1 pl-3 pr-3 font-w600 rounded">
-												<svg class="mr-2" width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M12.92 7.00064L12.6744 8.22859C12.2819 10.1913 10.4996 11.6677 8.55634 11.6677H7.95079L9.11756 14.7791H1.5557V7.00064H12.92ZM3.50032 0C4.54604 0 5.44495 0.871336 5.44495 1.94462V5.05602H12.8345V5.83387H5.44495V6.22279H0.777849L0.777769 7.38965C0.327309 7.05126 0 6.47802 0 5.83387V1.94462C0 0.8989 0.851593 0 1.94462 0H3.50032Z" fill="#3B4CB8"/>
-												</svg>
-												2
-												</a>
-												<p class="fs-14 mt-3 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mini</p>
-											</div>
-										</div>
+									<div class="card-footer border-0 p-0">
+										<a href="" class="btn d-block btn-primary rounded load-more-contact">See More Contact</a>
 									</div>
 								</div>
 							</div>

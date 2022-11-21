@@ -11,6 +11,17 @@
             <h1>Get In Touch</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
         </div>
+        <div class="container">
+            <div class="messages container">
+               {% if messages %}
+                  {% for message in messages %}
+                  <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  {% endfor %}
+               {% endif %}
+            </div>
+         </div>
         <div class="bg-white">
             <div class="row g-0">
                 <div class="col-lg-7 col-md-12 col-sm-12 col-pad2">
@@ -46,8 +57,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
+                                    <div class="form-group message">
+                                        <input type="hidden" value="pending" name="status">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">
                                     <div class="send-btn text-center">
-                                        <button type="submit" type="submit" value="Submit Now" class="button-md button-theme btn-3">Send Message</button>
+                                        <button type="submit" type="submit" class="button-md button-theme btn-3">Send Message</button>
                                     </div>
                                 </div>
                             </div>

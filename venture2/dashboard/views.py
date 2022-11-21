@@ -16,17 +16,25 @@ from .forms import RelatedImageFormSet
 # Create your views here.
 
 def dashboard(request):
-    property_count = PropertyPost.objects.count()
-    feedback_q  = FeedBack.objects.filter(is_feedback_show=True).order_by('-id')
-    job_query = JobApplication.objects.all()
-
-    context = {
-        'property_count':property_count,
-        'feedback':feedback_q,
-        'job_query':job_query,
+    if request.user.is_authenticated:
         
-    }
-    return render(request,'dashboard/index.html',context)
+        property_count = PropertyPost.objects.count()
+        feedback_q  = FeedBack.objects.filter(is_feedback_show=True).order_by('-id')
+        job_query = JobApplication.objects.all()
+        contact = ContactUs.objects.all()
+
+        context = {
+            'property_count':property_count,
+            'feedback':feedback_q,
+            'job_query':job_query,
+            'contact':contact,
+            
+        }
+        return render(request,'dashboard/index.html',context)
+    else:
+        messages.ingo(request,'You are logout')
+        return redirect('auth_login')
+
 
 
 
@@ -46,12 +54,28 @@ def feedback_edit(request,id):
         if form.is_valid():
             form.save()
             messages.success(request,'Successfully Update')
-            return redirect('feedback_view')
         else:
             form = FeedBackForm(instance =query)
             messages.success(request,'Successfully not Update')
             return render(request, 'dashboard/feedback/feedback_edit.html',{'form':form})
-    return render(request,'dashboard/feedback/feedback_edit.html',{'form':form})
+    return render(request,'dashboard/feedback/feedback_edit.html',{'form':form,'query':query,})
+
+
+def feedback_approved(request,id):
+    query = FeedBack.objects.get(id=id)
+    form = FeedBackApprovedForm(instance =query)
+    if request.method=='POST':
+
+        form = FeedBackApprovedForm(request.POST,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('feedback_view')
+        else:
+            form = FeedBackApprovedForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/feedback/feedback_approve.html',{'form':form})
+    return render(request,'dashboard/feedback/feedback_approve.html',{'form':form,'query':query,})
 
 def feedback_delete(request,id):
     feedBack_delete =  FeedBack.objects.filter(id=id)
@@ -485,7 +509,22 @@ def career_delete(request,id):
 
 def job_application_view(request):
     query = JobApplication.objects.all()
-    return render(request,'dashboard/get_in_touch/job_application_view.html',{'query':query})
+    return render(request,'dashboard/get_in_touch/job-application/job_application_view.html',{'query':query})
+
+
+def job_application_edit(request,id):
+    query = JobApplication.objects.get(id=id)
+    form = JobApplicationForm(instance=query)
+    if request.method == 'POST':
+        form = JobApplicationForm(request.POST,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Read')
+            # return redirect('job_application_view')
+        else:
+            form = JobApplicationForm(request.POST)
+            return render(request, 'dashboard/get_in_touch/job-application/job_application_edit.html',{'form':form})
+    return render(request,'dashboard/get_in_touch/job-application/job_application_edit.html',{'form':form,'query':query})
 
 
 def  job_application_delete(request,id):
@@ -585,7 +624,24 @@ def notice_delete(request,id):
 
 def contact_view(request):
     query = ContactUs.objects.all()
-    return render(request,'dashboard/get_in_touch/contact_view.html',{'query':query})
+    context ={
+        'query':query,
+    }
+    return render(request,'dashboard/contact/contact_view.html',context)
+
+def contact_update(request,id):
+    query = ContactUs.objects.get(id=id)
+    form = ContactForm(instance=query)
+    if request.method == 'POST':
+        form = ContactForm(request.POST,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Read')
+            # return redirect('contact_view')
+        else:
+            form = ContactForm(request.POST)
+            return render(request, 'dashboard/contact/contact_update.html',{'form':form})
+    return render(request,'dashboard/contact/contact_update.html',{'form':form,'query':query})
 
 def contact_delete(request,id):
     query = ContactUs.objects.get(id=id)

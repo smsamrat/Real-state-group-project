@@ -63,7 +63,7 @@ ROOT_URLCONF = 'ventureRealestate.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates','dashboard/templates'],
+        'DIRS': ['ventureRealestate/templates','dashboard/templates','indexApp/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

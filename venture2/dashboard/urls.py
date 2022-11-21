@@ -5,6 +5,7 @@ urlpatterns = [
     path('',dashboard, name='dashboard'),
     path('feedback-view/',feedback_view, name='feedback_view'),
     path('feedback-edit/<str:id>/',feedback_edit, name='feedback_edit'),
+    path('feedback-approved/<str:id>/',feedback_approved, name='feedback_approved'),
     path('feedback-delete/<str:id>/',feedback_delete, name='feedback_delete'),
 
 ############# start related image inlineformset url ##############
@@ -63,7 +64,10 @@ urlpatterns = [
     path('career-view/',career_view, name='career_view'),
     path('career-edit/<str:id>/',career_edit, name='career_edit'),
     path('career-delete/<str:id>/',career_delete, name='career_delete'),
+
+    #job application
     path('job-application-view/',job_application_view, name='job_application_view'),
+    path('job-application-edit/<str:id>/',job_application_edit, name='job_application_edit'),
     path('job-application-delete/<str:id>/',job_application_delete, name='job_application_delete'),
 
     #our team
@@ -78,8 +82,9 @@ urlpatterns = [
     path('notice-edit/<str:id>/',notice_edit, name='notice_edit'),
     path('notice-delete/<str:id>/',notice_delete, name='notice_delete'),
 
-    #Contact notice
+    #Contact
     path('contact-view/',contact_view, name='contact_view'),
+    path('contact-update/<str:id>/',contact_update, name='contact_update'),
     path('contact-delete/<str:id>/',contact_delete, name='contact_delete'),
 
 

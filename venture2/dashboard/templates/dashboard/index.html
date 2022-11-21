@@ -1,6 +1,9 @@
 {% extends 'dashboard/base.html'%}
 {% load static %}
 {% block content %}
+
+
+
 <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'><link rel="stylesheet"> -->
 <style>
 .feedback-content{
@@ -125,8 +128,8 @@
 											<div class=" feedback-content mb-3 flex-wrap align-items-end">
 									
 												<div>
-													<h6 class="fs-16 text-black font-w600">{{i.name}}</h6>
-													<p>{{i.description}}</p>
+													<h6 class="fs-16 text-black font-w600">Name: {{i.name}}</h6>
+													<p>Des: {{i.description}}</p>
 													
 												</div>
 												<span class="fs-14 float-end ml-auto">{{i.created.date}}</span>
@@ -192,12 +195,15 @@
 													display: none;
 												}
 											</style>
-											{% for i in feedback %}
+											{% for i in contact %}
 											<div class=" contact-content mb-3 flex-wrap align-items-end">
 									
 												<div>
-													<h6 class="fs-16 text-black font-w600">{{i.name}}</h6>
-													<p>{{i.description}}</p>
+													<h6 class="fs-16 text-black font-w600">Name: {{i.name}}</h6>
+													<p>Email:{{i.email}}</p>
+													<p>Phone: {{i.phone}}</p>
+													<p>Subject: {{i.subject}}</p>
+													<p>message: {{i.message}}</p>
 													
 												</div>
 												<span class="fs-14 float-end ml-auto">{{i.created.date}}</span>
@@ -228,7 +234,7 @@
         
 		<div class="footer">
     <div class="copyright">
-        <p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/" target="_blank">DexignZone</a> 2020</p>
+        <p>Copyright © Designed &amp; Developed by <a href="##" target="_blank">Univers Soft Care</a> 2022</p>
     </div>
 </div>		
         <!--**********************************
@@ -245,6 +251,8 @@
 
 
     </div>
+
+
 	{% endblock content %}
     <!--**********************************
         Main wrapper end

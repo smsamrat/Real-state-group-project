@@ -30,6 +30,8 @@
                                 <th>User name</th>
                                 <th>Details</th>
                                 <th>Is active</th>
+                                <th>Date</th>
+                                <th>status</th>
                                 <th>Action</th>
                                 
  
@@ -55,14 +57,16 @@
                                 <td>{{i.description}}</td>
                                 <td>
                                     {% if i.is_feedback_show %}
-                                    <p>Approved</p> 
+                                    <a href="{% url 'feedback_approved' i.id %}"><p class="btn btn-success">Approved</p></a>
                                     {% else %}
-                                    <p>Unapproved</p>
+                                    <a href="{% url 'feedback_approved' i.id %}"><p class="btn btn-danger">Unapproved</p></a>
                                     {% endif %}
 
                                 </td>
                                 <td>{{i.created}}</td>
-                                <td> <a href="{% url 'feedback_edit' i.id %}"> <button class="btn btn-primary">edit</button></a> </td>
+                                <td>{{i.status}}</td>
+                                
+                                <td> <a href="{% url 'feedback_edit' i.id %}"> <button class="btn btn-primary"><i class="fa fa-eye"></i></button></a> </td>
                                 <td> <a href="{% url 'feedback_delete' i.id %}"> <button class="btn btn-danger">Delete</button></a> </td>
                             </tr>
                                 

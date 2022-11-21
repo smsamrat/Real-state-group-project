@@ -300,37 +300,52 @@ class Notice(models.Model):
         return self.title
 
 class ContactUs(models.Model):
+    STATUS =(
+        ('pending','pending'),
+        ('read','read'),
+    )
     name = models.CharField(max_length = 150)
     email = models.EmailField()
     phone = models.CharField(max_length = 150)
     subject = models.CharField(max_length = 150)
     message  = models.TextField()
+    status = models.CharField(max_length=100, choices=STATUS, null=True)
     
     class Meta:
         ordering = ['-id']
         verbose_name = 'ContactUs'
-        verbose_name_plural = 'ContactUs'
+        verbose_name_plural = 'Contact Us'
 
     def __str__(self):
         return self.email
 
 class JobApplication(models.Model):
+    STATUS =(
+        ('pending','pending'),
+        ('read','read'),
+    )
     full_name= models.CharField(max_length = 150)
     email = models.EmailField()
     phone= models.CharField(max_length = 150)
     expected_salary= models.CharField(max_length = 150)
     cv= models.FileField(upload_to='ApplicationCV')
     message = models.TextField()
+    status = models.CharField(max_length=100, choices=STATUS, null=True)
     
     def __str__(self):
         return self.email
 
 class FeedBack(models.Model):
+    STATUS =(
+        ('pending','pending'),
+        ('read','read'),
+    )
     name = models.CharField(max_length=50)
     property_id = models.IntegerField(blank=True,null=True)
     description = models.TextField()
     is_feedback_show = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.CharField(max_length=100, choices=STATUS, null=True)
 
     def __str__(self):
         return self.name

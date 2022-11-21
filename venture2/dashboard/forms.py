@@ -109,3 +109,22 @@ class FeedBackForm(forms.ModelForm):
     class Meta:
         model = FeedBack
         fields = '__all__'
+
+class FeedBackApprovedForm(forms.ModelForm):
+    class Meta:
+        model = FeedBack
+        fields = '__all__'
+        exclude = ('status',)
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactUs
+        fields = '__all__'
+        # exclude = ('status',)
+
+class JobApplicationForm(forms.ModelForm):
+    class Meta:
+        model = JobApplication
+        fields = '__all__'
+        # exclude = ('status',)
+

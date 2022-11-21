@@ -32,7 +32,7 @@ class ContactForm(forms.ModelForm):
     }))
     class Meta:
         model = ContactUs
-        fields = ['name', 'email', 'phone', 'subject','message']
+        fields = ['name', 'email', 'phone', 'subject','message','status']
 
 
 class JobApplicationForm(forms.ModelForm):
@@ -70,7 +70,7 @@ class JobApplicationForm(forms.ModelForm):
     }))
     class Meta:
         model = JobApplication
-        fields = ['full_name', 'email', 'phone', 'expected_salary','cv','message']
+        fields = ['full_name', 'email', 'phone', 'expected_salary','cv','message','status']
 
 
 class UserFeedbackForm(forms.ModelForm):
@@ -87,7 +87,7 @@ class UserFeedbackForm(forms.ModelForm):
 
     class Meta:
         model = FeedBack
-        fields =['name','description']
+        fields =['name','description','status']
 
 
 class BookingNowForm(forms.ModelForm):

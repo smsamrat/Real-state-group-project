@@ -4,16 +4,53 @@ from .views import *
 urlpatterns = [
     path('',dashboard, name='dashboard'),
 
+    ############# admin url ##############
     path('admin-profile-add/',admin_profile_add, name='admin_profile_add'),
     path('admin-profile-view/',admin_profile_view, name='admin_profile_view'),
     path('admin-profile-edit/<str:id>/',admin_profile_edit, name='admin_profile_edit'),
     path('admin-profile-delete/<str:id>/',admin_profile_delete, name='admin_profile_delete'),
 
+############# feedback url ##############
 
     path('feedback-view/',feedback_view, name='feedback_view'),
     path('feedback-edit/<str:id>/',feedback_edit, name='feedback_edit'),
     path('feedback-approved/<str:id>/',feedback_approved, name='feedback_approved'),
     path('feedback-delete/<str:id>/',feedback_delete, name='feedback_delete'),
+
+############# project type url ##############
+
+    path('project-type-add/',project_type_add, name='project_type_add'),
+    path('project-type-view',project_type_view, name='project_type_view'),
+    path('project-type-edit/<str:id>/',project_type_edit, name='project_type_edit'),
+    path('project-type-delete/<str:id>/',project_type_delete, name='project_type_delete'),
+
+############# project type url ##############
+
+    path('property-type-add/',property_type_add, name='property_type_add'),
+    path('property-type-view',property_type_view, name='property_type_view'),
+    path('property-type-edit/<str:id>/',property_type_edit, name='property_type_edit'),
+    path('property-type-delete/<str:id>/',property_type_delete, name='property_type_delete'),
+
+############# division url ##############
+
+    path('division-add/',division_add, name='division_add'),
+    path('division-view',division_view, name='division_view'),
+    path('division-edit/<str:id>/',division_edit, name='division_edit'),
+    path('division-delete/<str:id>/',division_delete, name='division_delete'),
+
+############# district url ##############
+
+    path('district-add/',district_add, name='district_add'),
+    path('district-view',district_view, name='district_view'),
+    path('district-edit/<str:id>/',district_edit, name='district_edit'),
+    path('district-delete/<str:id>/',district_delete, name='district_delete'),
+
+############# subdistrict url ##############
+
+    path('subdistrict-add/',subdistrict_add, name='subdistrict_add'),
+    path('subdistrict-view',subdistrict_view, name='subdistrict_view'),
+    path('subdistrict-edit/<str:id>/',subdistrict_edit, name='subdistrict_edit'),
+    path('subdistrict-delete/<str:id>/',subdistrict_delete, name='subdistrict_delete'),
 
 ############# start related image inlineformset url ##############
 

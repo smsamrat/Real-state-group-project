@@ -121,17 +121,43 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactUs
         fields = '__all__'
-        # exclude = ('status',)
+
 
 class JobApplicationForm(forms.ModelForm):
     class Meta:
         model = JobApplication
         fields = '__all__'
-        # exclude = ('status',)
+
 
 class AdminForm(forms.ModelForm):
     class Meta:
         model = Admin
         fields = '__all__'
-        # exclude = ('status',)
+
+
+class ProjectTypeFilterForm(forms.ModelForm):
+    class Meta:
+        model = ProjectTypeFilter
+        fields = '__all__'
+
+class PropertyTypeFilterForm(forms.ModelForm):
+    class Meta:
+        model = PropertyTypeFilter
+        fields = '__all__'
+
+class DivisionForm(forms.ModelForm):
+    class Meta:
+        model = Division
+        fields = '__all__'
+        
+class DistrictForm(forms.ModelForm):
+    class Meta:
+        model = District
+        fields = '__all__'
+
+class SubDistrictForm(forms.ModelForm):
+    class Meta:
+        model = SubDistrict
+        fields = '__all__'
+
 

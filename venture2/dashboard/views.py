@@ -31,7 +31,7 @@ def dashboard(request):
         }
         return render(request,'dashboard/index.html',context)
     else:
-        messages.ingo(request,'You are logout')
+        messages.info(request,'You are logout')
         return redirect('auth_login')
 
 
@@ -170,7 +170,7 @@ class PropertyPostUpdate(UpdateView):
 class PropertyPostRelatedImageUpdate(UpdateView):
     model = PropertyPost
     fields = '__all__'
-    template_name='dashboard/Postprofile/profile_form.html'
+    template_name='dashboard/Postprofile/property_edit.html'
     success_url = reverse_lazy('PropertyPost-list')
 
     def get_context_data(self, **kwargs):
@@ -811,4 +811,216 @@ def about_testimonial_delete(request,id):
     query.delete()
     messages.success(request,'Delete Successfully')
     return redirect('about_testimonial_view')
+
+
+#Project type section
+
+def project_type_add(request):
+    form = ProjectTypeFilterForm()
+    if request.method=='POST':
+        form = ProjectTypeFilterForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('project_type_view')
+        else:
+            form = ProjectTypeFilterForm(request.POST)
+            return render(request, 'dashboard/project_type/project_type_add.html',{'form':form})
+    return render(request,'dashboard/project_type/project_type_add.html',{'form':form})
+
+def project_type_view(request):
+    query = ProjectTypeFilter.objects.all()
+    return render(request,'dashboard/project_type/project_type_view.html',{'query':query})
+
+def project_type_edit(request,id):
+    query = ProjectTypeFilter.objects.get(id=id)
+    form = ProjectTypeFilterForm(instance =query)
+    if request.method=='POST':
+
+        form = ProjectTypeFilterForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('project_type_view')
+        else:
+            form = ProjectTypeFilterForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/project_type/project_type_edit.html',{'form':form})
+
+    return render(request,'dashboard/project_type/project_type_edit.html',{'form':form})
+
+def project_type_delete(request,id):
+    query = ProjectTypeFilter.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('project_type_view')
+
+
+# Property type section
+
+def property_type_add(request):
+    form = PropertyTypeFilterForm()
+    if request.method=='POST':
+        form = PropertyTypeFilterForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('property_type_view')
+        else:
+            form = PropertyTypeFilterForm(request.POST)
+            return render(request, 'dashboard/property_type/property_type_add.html',{'form':form})
+    return render(request,'dashboard/property_type/property_type_add.html',{'form':form})
+
+def property_type_view(request):
+    query = PropertyTypeFilter.objects.all()
+    return render(request,'dashboard/property_type/property_type_view.html',{'query':query})
+
+def property_type_edit(request,id):
+    query = PropertyTypeFilter.objects.get(id=id)
+    form = PropertyTypeFilterForm(instance =query)
+    if request.method=='POST':
+
+        form = PropertyTypeFilterForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('property_type_view')
+        else:
+            form = PropertyTypeFilterForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/property_type/property_type_edit.html',{'form':form})
+
+    return render(request,'dashboard/property_type/property_type_edit.html',{'form':form})
+
+def property_type_delete(request,id):
+    query =PropertyTypeFilter.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('property_type_view')
+    
+# Division section
+
+def division_add(request):
+    form = DivisionForm()
+    if request.method=='POST':
+        form = DivisionForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('division_view')
+        else:
+            form = DivisionForm(request.POST)
+            return render(request, 'dashboard/division/division_add.html',{'form':form})
+    return render(request,'dashboard/division/division_add.html',{'form':form})
+
+def division_view(request):
+    query = Division.objects.all()
+    return render(request,'dashboard/division/division_view.html',{'query':query})
+
+def division_edit(request,id):
+    query = Division.objects.get(id=id)
+    form = DivisionForm(instance =query)
+    if request.method=='POST':
+
+        form = DivisionForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('division_view')
+        else:
+            form = DivisionForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/division/division_edit.html',{'form':form})
+
+    return render(request,'dashboard/division/division_edit.html',{'form':form})
+
+def division_delete(request,id):
+    query =Division.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('division_view')
+    
+# District section
+
+def district_add(request):
+    form = DistrictForm()
+    if request.method=='POST':
+        form = DistrictForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('district_view')
+        else:
+            form = DistrictForm(request.POST)
+            return render(request, 'dashboard/district/district_add.html',{'form':form})
+    return render(request,'dashboard/district/district_add.html',{'form':form})
+
+def district_view(request):
+    query = District.objects.all()
+    return render(request,'dashboard/district/district_view.html',{'query':query})
+
+def district_edit(request,id):
+    query = District.objects.get(id=id)
+    form = DistrictForm(instance =query)
+    if request.method=='POST':
+
+        form = DistrictForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('district_view')
+        else:
+            form = DistrictForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/district/district_edit.html',{'form':form})
+
+    return render(request,'dashboard/district/district_edit.html',{'form':form})
+
+def district_delete(request,id):
+    query =District.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('district_view')
+
+# subdistrict section
+
+def subdistrict_add(request):
+    form = SubDistrictForm()
+    if request.method=='POST':
+        form = SubDistrictForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('subdistrict_view')
+        else:
+            form = DistrictForm(request.POST)
+            return render(request, 'dashboard/subdistrict/subdistrict_add.html',{'form':form})
+    return render(request,'dashboard/subdistrict/subdistrict_add.html',{'form':form})
+
+def subdistrict_view(request):
+    query = SubDistrict.objects.all()
+    return render(request,'dashboard/subdistrict/subdistrict_view.html',{'query':query})
+
+def subdistrict_edit(request,id):
+    query = SubDistrict.objects.get(id=id)
+    form = SubDistrictForm(instance =query)
+    if request.method=='POST':
+
+        form = SubDistrictForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('subdistrict_view')
+        else:
+            form = SubDistrictForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/subdistrict/subdistrict_edit.html',{'form':form})
+
+    return render(request,'dashboard/subdistrict/subdistrict_edit.html',{'form':form})
+
+def subdistrict_delete(request,id):
+    query =SubDistrict.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('subdistrict_view')
     

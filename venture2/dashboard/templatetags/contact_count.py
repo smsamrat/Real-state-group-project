@@ -1,5 +1,7 @@
 from django import template
 from indexApp.models import ContactUs,JobApplication,FeedBack
+from dashboard.models import Admin
+
 register = template.Library()
 
 @register.filter
@@ -16,3 +18,8 @@ def job_application_count(request):
 def feedback_count(request):
     pending_feedback_count= FeedBack.objects.filter(status='pending')
     return pending_feedback_count.count()
+
+@register.filter
+def admin_info(request):
+    admin_infos= Admin.objects.all().order_by('-id')[0:1]
+    return admin_infos

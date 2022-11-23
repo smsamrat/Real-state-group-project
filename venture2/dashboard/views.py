@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from .forms import *
 from indexApp.models import *
+from dashboard.models import Admin
 from django.contrib import messages
 from django.utils.text import slugify
 
@@ -22,13 +23,11 @@ def dashboard(request):
         feedback_q  = FeedBack.objects.filter(is_feedback_show=True).order_by('-id')
         job_query = JobApplication.objects.all()
         contact = ContactUs.objects.all()
-
         context = {
             'property_count':property_count,
             'feedback':feedback_q,
             'job_query':job_query,
             'contact':contact,
-            
         }
         return render(request,'dashboard/index.html',context)
     else:
@@ -37,6 +36,43 @@ def dashboard(request):
 
 
 
+def admin_profile_add(request):
+    form = AdminForm()
+    if request.method=='POST':
+        form = AdminForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('admin_profile_view')
+        else:
+            form = AdminForm()
+            return render(request, 'dashboard/admin/admin_profile_add.html',{'form':form})
+    return render(request,'dashboard/admin/admin_profile_add.html',{'form':form})
+
+def admin_profile_edit(request,id):
+    query = Admin.objects.get(id=id)
+    form = AdminForm(instance =query)
+    if request.method=='POST':
+
+        form = AdminForm(request.POST,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('admin_profile_view')
+        else:
+            form = AdminForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/admin/admin_profile_edit.html',{'form':form})
+    return render(request,'dashboard/admin/admin_profile_edit.html',{'form':form})
+
+def admin_profile_view(request):
+    query = Admin.objects.all()
+    return render(request,'dashboard/admin/admin_profile_view.html',{'query':query})
+
+def admin_profile_delete(request,id):
+    admin_delete =  Admin.objects.filter(id=id)
+    admin_delete.delete()
+    return redirect('admin_profile_view')
 
 def feedback_view(request):
     feedback_view  = FeedBack.objects.all()

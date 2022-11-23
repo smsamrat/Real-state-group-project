@@ -2,6 +2,19 @@
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
+
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-networking"></i>
+                <span class="nav-text">Admin</span>
+                </a>
+                <ul aria-expanded="false">
+                    
+                    <li><a href="{% url 'admin_profile_add' %}">Add Profile</a></li>
+                    <li><a href="{% url 'admin_profile_view' %}">View Profile</a></li>
+                    
+                </ul>
+            </li>
+
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Property</span>

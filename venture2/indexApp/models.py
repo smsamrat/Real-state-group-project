@@ -54,24 +54,67 @@ class ProjectTypeFilter(models.Model):
         verbose_name_plural = 'Project Type Filter'
 
 
+# class Division(models.Model):
+#     name = models.CharField(max_length=50)
+#     def __str__(self):
+#         return self.name
+      
+# class District(models.Model):
+#     country = models.ForeignKey(Division, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=50)
+
+#     def __str__(self):
+#         return self.name
+
+# class Area(models.Model):
+#     city = models.ForeignKey(District, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=50)
+
+#     def __str__(self):
+#         return self.name
+
+
 class Division(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
+
+
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = 'Divisions'
       
 class District(models.Model):
-    country = models.ForeignKey(Division, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    division = models.ForeignKey(Division, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = 'Districts'
+
+class SubDistrict(models.Model):
+    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Sub District'
+
 
 class Area(models.Model):
-    city = models.ForeignKey(District, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    division = models.ForeignKey(Division, on_delete=models.SET_NULL, null=True)
+    district = models.ForeignKey(District, on_delete=models.SET_NULL, null=True)
+    sub_district = models.ForeignKey(SubDistrict, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return self.name
+        return self.division.name + ", " + self.district.name + ", " + self.sub_district.name
+    
+    class Meta:
+        verbose_name_plural = 'Area'
 
 
 
@@ -84,11 +127,18 @@ class PropertyPost(models.Model):
     price = models.FloatField(default='0.00',blank=True,null=True)
     post_title = models.CharField(max_length=250,blank=True,null=True)
     post_location = models.ForeignKey(Location,on_delete=models.CASCADE,related_name='location',blank=True,null=True)
-    select_project_type = models.ForeignKey(ProjectTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
-    select_property_type = models.ForeignKey(PropertyTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
-    select_division = models.ForeignKey(Division,on_delete=models.CASCADE,blank=True,null=True)
-    select_district = models.ForeignKey(District,on_delete=models.CASCADE,blank=True,null=True)
-    post_type = models.ManyToManyField(Property_type, related_name='pro_type',blank=True)
+    # select_project_type = models.ForeignKey(ProjectTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
+    # select_property_type = models.ForeignKey(PropertyTypeFilter,on_delete=models.CASCADE,blank=True,null=True)
+    # select_division = models.ForeignKey(Division,on_delete=models.CASCADE,blank=True,null=True)
+    # select_district = models.ForeignKey(District,on_delete=models.CASCADE,blank=True,null=True)
+
+    project_type_filter = models.ForeignKey(ProjectTypeFilter, on_delete=models.CASCADE, blank=True, null=True)
+    property_type_filter = models.ForeignKey(PropertyTypeFilter, on_delete=models.CASCADE, blank=True, null=True)
+    division = models.ForeignKey(Division, on_delete=models.CASCADE,blank=True, null=True)
+    district = models.ForeignKey(District, on_delete=models.CASCADE,blank=True, null=True)
+    sub_district = models.ForeignKey(SubDistrict, on_delete=models.CASCADE,blank=True, null=True)
+    post_type = models.ManyToManyField(Property_type, related_name='pro_type',blank=True,null=True)
+
     land_size = models.IntegerField(blank=True,null=True)
     bedrooms = models.IntegerField(blank=True,null=True)
     bathrooms = models.IntegerField(blank=True,null=True)

@@ -1,6 +1,7 @@
 from django import forms 
 from django.forms import ModelForm
 from indexApp.models import *
+from dashboard.models import *
 from ckeditor.widgets import CKEditorWidget
 
 
@@ -125,6 +126,12 @@ class ContactForm(forms.ModelForm):
 class JobApplicationForm(forms.ModelForm):
     class Meta:
         model = JobApplication
+        fields = '__all__'
+        # exclude = ('status',)
+
+class AdminForm(forms.ModelForm):
+    class Meta:
+        model = Admin
         fields = '__all__'
         # exclude = ('status',)
 

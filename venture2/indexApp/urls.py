@@ -13,12 +13,21 @@ urlpatterns = [
     path('land-details-property/<str:id>/',views.land_details_property, name='land_details_property'),
     path('apnartmentProject/',views.apartment_project, name='apartment_project'),
     path('details/property/<str:id>/',views.apartment_details_property, name='details_property'),
-    path('product/filter-data',views.filter_data,name="filter-data"),
+    # path('product/filter-data',views.filter_data,name="filter-data"),
+    # path('get-district-ajax/', views.get_district_ajax, name="get_district_ajax"),
+    # path('get-area-ajax/', views.get_area_ajax, name="get_area_ajax"),
 
-    # path('dropdown/filter-dropdown',views.filter_dropdown,name="filter-dropdown"),
 
-    path('get-district-ajax/', views.get_district_ajax, name="get_district_ajax"),
-    path('get-area-ajax/', views.get_area_ajax, name="get_area_ajax"),
+
+
+    #load district and sub_district
+    path('ajax/load_districts/', views.load_districts, name='ajax_load_districts'),  # <-- this one here
+    path('ajax/load_subdistricts/', views.load_subdistricts, name='ajax_load_subdistricts'),  # <-- this one here
+
+
+    #filter data
+     path('landProject/filter-data/', views.filter_data, name='filter_data'),
+     path('apnartmentProject/apmntp_filter/', views.apmntp_filter, name="apmntp_filter"),
 
     #service url
     # path('service/',views.service, name='service'),

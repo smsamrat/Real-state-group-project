@@ -3,6 +3,13 @@ from .views import *
 
 urlpatterns = [
     path('',dashboard, name='dashboard'),
+
+    path('admin-profile-add/',admin_profile_add, name='admin_profile_add'),
+    path('admin-profile-view/',admin_profile_view, name='admin_profile_view'),
+    path('admin-profile-edit/<str:id>/',admin_profile_edit, name='admin_profile_edit'),
+    path('admin-profile-delete/<str:id>/',admin_profile_delete, name='admin_profile_delete'),
+
+
     path('feedback-view/',feedback_view, name='feedback_view'),
     path('feedback-edit/<str:id>/',feedback_edit, name='feedback_edit'),
     path('feedback-approved/<str:id>/',feedback_approved, name='feedback_approved'),

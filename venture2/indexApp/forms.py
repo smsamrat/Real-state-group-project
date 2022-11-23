@@ -1,6 +1,6 @@
 
 from django import forms 
-from .models import BookingPropertyType, ContactUs,JobApplication,FeedBack,BookingNow, Location
+from .models import *
 from phonenumber_field.formfields import PhoneNumberField
 # from phonenumber_field.widgets import PhoneNumberPrefixWidget
 # from phonenumber_field.widgets import PhonePrefixSelect 
@@ -167,3 +167,47 @@ class BookingNowForm(forms.ModelForm):
     class Meta:
         model = BookingNow
         fields ='__all__'
+
+#dependency Dropdown
+
+class AreaForm(forms.ModelForm):
+    division  = forms.ModelChoiceField(queryset=Division.objects.all(), empty_label='- select a division -',widget=forms.Select(attrs={
+        'class':'form-control custom-form-control',
+        'data-filter': 'division'
+    }))
+
+    district  = forms.ModelChoiceField(queryset=District.objects.all(), empty_label='- select a district -',widget=forms.Select(attrs={
+        'class':'form-control custom-form-control'
+    }))
+
+    sub_district  = forms.ModelChoiceField(queryset=SubDistrict.objects.all(), empty_label='- select a area -',widget=forms.Select(attrs={
+        'class':'form-control custom-form-control'
+    }))
+
+    class Meta:
+        model = Area
+        fields = ('division', 'district', 'sub_district')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['district'].queryset = District.objects.none()
+        self.fields['sub_district'].queryset = SubDistrict.objects.none()
+
+        if 'division' in self.data:
+            try:
+                division_id = int(self.data.get('division'))
+                self.fields['district'].queryset = District.objects.filter(division_id=division_id).order_by('name')
+            except (ValueError, TypeError):
+                pass
+        elif self.instance.pk:
+            self.fields['district'].queryset = self.instance.division.district_set.order_by('name')
+
+
+        if 'district' in self.data:
+            try:
+                district_id = int(self.data.get('district'))
+                self.fields['sub_district'].queryset = SubDistrict.objects.filter(district_id=district_id).order_by('name')
+            except (ValueError, TypeError):
+                pass
+        elif self.instance.pk:
+            self.fields['sub_district'].queryset = self.instance.district.sub_district_set.order_by('name')

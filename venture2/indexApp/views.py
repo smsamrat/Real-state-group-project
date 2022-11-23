@@ -54,11 +54,21 @@ def land_project(request):
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
     print(page_obj)
+
+    projecttype = ProjectTypeFilter.objects.all()
+    propertytype = PropertyTypeFilter.objects.all()
+    form = AreaForm()
+
+
     context ={
         'feature_details':page_obj,
         'page_number':int(page_number),
         'paginator':paginator,
+        'projecttype':projecttype,
+        'propertytype':propertytype,
+        'form':form
     }
+
     return render(request,'property/land_project.html',context)
 
 def apartment_project(request):
@@ -68,39 +78,26 @@ def apartment_project(request):
     page_obj = paginator.get_page(page_number)
     print(page_obj)
 
-    division = Division.objects.all()
-    districts = District.objects.all()
+    # division = Division.objects.all()
+    # districts = District.objects.all()
 
+    # project_type_filters = ProjectTypeFilter.objects.all()
+    # property_type_filters = PropertyTypeFilter.objects.all()
 
-
-    # divisionid = request.GET.get('subject_id',None)
-    # districtid = request.GET.get('district',None)
-
-    # district = None
-    # area = None
-
-    # if divisionid:
-    #     getdivision = Division.objects.get(id=divisionid)
-    #     district = District.objects.filter(country=getdivision)
-
-    # if districtid:
-    #     getdistrict = District.objects.get(id=districtid)
-    #     area = Area.objects.filter(city=getdistrict)
-
-    # division =Division.objects.all()
-
-    project_type_filters = ProjectTypeFilter.objects.all()
-    property_type_filters = PropertyTypeFilter.objects.all()
+    projecttype = ProjectTypeFilter.objects.all()
+    propertytype = PropertyTypeFilter.objects.all()
+    form = AreaForm()
 
 
     context ={
         'feature_details':page_obj,
         'page_number':int(page_number),
         'paginator':paginator,
-        'divisions':division,
-        'districts':districts,
-        'project_type_filters':project_type_filters,
-        'property_type_filters':property_type_filters,
+        # 'divisions':division,
+        # 'districts':districts,
+        'projecttype':projecttype,
+        'propertytype':propertytype,
+        'form':form
     }
     return render(request,'property/apartment_project.html',context)
 
@@ -366,26 +363,26 @@ def booking_now(request):
     }
     return render(request,'booking_now.html',context)
 
-def filter_data(request):
-    projectType = request.GET.getlist('projectType[]')
-    propertyType = request.GET.getlist('propertyType[]')
-    divisions = request.GET.getlist('divisionAll[]')
-    district = request.GET.getlist('districtAll[]')
+# def filter_data(request):
+#     projectType = request.GET.getlist('projectType[]')
+#     propertyType = request.GET.getlist('propertyType[]')
+#     divisions = request.GET.getlist('divisionAll[]')
+#     district = request.GET.getlist('districtAll[]')
 
-    allPosts = PropertyPost.objects.all().order_by('-id').distinct()
+#     allPosts = PropertyPost.objects.all().order_by('-id').distinct()
         
 
-    if len(projectType) > 0:
-        feature_details = allPosts.filter(select_project_type__id__in=projectType).distinct()
+#     if len(projectType) > 0:
+#         feature_details = allPosts.filter(select_project_type__id__in=projectType).distinct()
 
-    if len(propertyType) > 0:
-        feature_details = allPosts.filter(select_property_type__id__in=propertyType).distinct() 
+#     if len(propertyType) > 0:
+#         feature_details = allPosts.filter(select_property_type__id__in=propertyType).distinct() 
     
-    # if len(divisions) > 0:
-    #     feature_details = allPosts.filter(select_division__id__in=divisions).distinct()
+#     # if len(divisions) > 0:
+#     #     feature_details = allPosts.filter(select_division__id__in=divisions).distinct()
 
-    if len(projectType) > 0 and len(propertyType) > 0:
-        feature_details = allPosts.filter(select_project_type__id__in=projectType,select_property_type__id__in=propertyType).distinct()
+#     if len(projectType) > 0 and len(propertyType) > 0:
+#         feature_details = allPosts.filter(select_project_type__id__in=projectType,select_property_type__id__in=propertyType).distinct()
 
     
 
@@ -393,33 +390,107 @@ def filter_data(request):
     
 
    
-    # if len(district) > 0:
-    #     feature_details = allPosts.filter(select_district__id__in=district).distinct()
+#     # if len(district) > 0:
+#     #     feature_details = allPosts.filter(select_district__id__in=district).distinct()
     
 
 
 
 
-    t = render_to_string('filter.html', {'feature_details': feature_details})
+#     t = render_to_string('filter.html', {'feature_details': feature_details})
 
+#     return JsonResponse({'data': t})
+
+# def get_district_ajax(request):
+#     if request.method == "GET":
+#         division_id = request.GET['division_id']
+#         try:
+#             division = Division.objects.filter(id = division_id).first()
+#             districts = District.objects.filter(country = division)
+#         except Exception:
+#             pass
+#         return JsonResponse(list(districts.values('id', 'name')), safe = False)
+
+# def get_area_ajax(request):
+#     if request.method == "GET":
+#         district_id = request.GET['district_id']
+#         try:
+#             district = District.objects.filter(id = district_id).first()
+#             areas = Area.objects.filter(city = district)
+#         except Exception:
+#             pass
+#         return JsonResponse(list(areas.values('id', 'name')), safe = False)
+
+
+def filter_data(request):
+    project_type = request.GET.getlist('project_type[]')
+    property_type = request.GET.getlist('property_type[]')
+    division = request.GET.getlist('division')
+    district = request.GET.getlist('district')
+    sub_district = request.GET.getlist('sub_district')
+
+
+    allLandProject = PropertyPost.objects.filter(post_type__name='Land Property').order_by('-id')
+
+    if len(project_type) > 0:
+        allLandProject = PropertyPost.objects.filter(post_type__name='Land Property', project_type_filter__id__in=project_type).distinct()
+    
+    if len(property_type) > 0:
+        allLandProject = PropertyPost.objects.filter(post_type__name='Land Property', property_type_filter__id__in=property_type).distinct()
+
+    if len(division) > 0:
+        allLandProject = PropertyPost.objects.filter(post_type__name='Land Property', division__id__in=division).distinct()
+    
+    if len(district) > 0:
+        allLandProject = PropertyPost.objects.filter(post_type__name='Land Property', district__id__in=district).distinct()
+
+    if len(sub_district) > 0:
+        allLandProject = PropertyPost.objects.filter(post_type__name='Land Property', sub_district__id__in=sub_district).distinct()
+
+    
+
+    t = render_to_string('ajax/land_project_filter.html', {'project': allLandProject})
     return JsonResponse({'data': t})
 
-def get_district_ajax(request):
-    if request.method == "GET":
-        division_id = request.GET['division_id']
-        try:
-            division = Division.objects.filter(id = division_id).first()
-            districts = District.objects.filter(country = division)
-        except Exception:
-            pass
-        return JsonResponse(list(districts.values('id', 'name')), safe = False)
 
-def get_area_ajax(request):
-    if request.method == "GET":
-        district_id = request.GET['district_id']
-        try:
-            district = District.objects.filter(id = district_id).first()
-            areas = Area.objects.filter(city = district)
-        except Exception:
-            pass
-        return JsonResponse(list(areas.values('id', 'name')), safe = False)
+def apmntp_filter(request):
+    project_type = request.GET.getlist('project_type[]')
+    property_type = request.GET.getlist('property_type[]')
+    division = request.GET.getlist('division')
+    district = request.GET.getlist('district')
+    sub_district = request.GET.getlist('sub_district')
+
+
+    apartment_project = PropertyPost.objects.filter(post_type__name='Apartment Property').order_by('-id')
+
+    if len(project_type) > 0:
+        apartment_project = PropertyPost.objects.filter(post_type__name='Apartment Property', project_type_filter__id__in=project_type).distinct()
+    
+    if len(property_type) > 0:
+        apartment_project = PropertyPost.objects.filter(post_type__name='Apartment Property', property_type_filter__id__in=property_type).distinct()
+
+    if len(division) > 0:
+        apartment_project = PropertyPost.objects.filter(post_type__name='Apartment Property', division__id__in=division).distinct()
+    
+    if len(district) > 0:
+        apartment_project = PropertyPost.objects.filter(post_type__name='Apartment Property', district__id__in=district).distinct()
+
+    if len(sub_district) > 0:
+        apartment_project = PropertyPost.objects.filter(post_type__name='Apartment Property', sub_district__id__in=sub_district).distinct()
+
+    
+
+    t = render_to_string('ajax/apartment_project_filter.html', {'project': apartment_project})
+    return JsonResponse({'data': t})
+
+
+def load_districts(request):
+    division_id = request.GET.get('division')
+    districts = District.objects.filter(division_id=division_id).order_by('name')
+    return render(request, 'ajax/district_dropdown_list_options.html', {'districts': districts})
+
+
+def load_subdistricts(request):
+    district_id = request.GET.get('district')
+    subdistricts = SubDistrict.objects.filter(district_id=district_id).order_by('name')
+    return render(request, 'ajax/subdistrict_dropdown_list_options.html', {'subdistricts': subdistricts})

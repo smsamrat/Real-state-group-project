@@ -160,4 +160,9 @@ class SubDistrictForm(forms.ModelForm):
         model = SubDistrict
         fields = '__all__'
 
+class LocationForm(forms.ModelForm):
+    class Meta:
+        model = Location
+        fields = '__all__'
+
 

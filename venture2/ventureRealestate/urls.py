@@ -8,6 +8,7 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('indexApp.urls')),
+    path('', include('useraccount.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('auth-login/',auth_login,name='auth_login'),
     path('auth-logout/',auth_logout,name='auth_logout'),

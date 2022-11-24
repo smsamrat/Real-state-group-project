@@ -52,6 +52,13 @@ urlpatterns = [
     path('subdistrict-edit/<str:id>/',subdistrict_edit, name='subdistrict_edit'),
     path('subdistrict-delete/<str:id>/',subdistrict_delete, name='subdistrict_delete'),
 
+############# subdistrict url ##############
+
+    path('property-location-add/',property_location_add, name='property_location_add'),
+    path('property-location-view',property_location_view, name='property_location_view'),
+    path('property-location-edit/<str:id>/',property_location_edit, name='property_location_edit'),
+    path('property-location-delete/<str:id>/',property_location_delete, name='property_location_delete'),
+
 ############# start related image inlineformset url ##############
 
     path('inline-form/',PropertyPostList.as_view(), name='PropertyPost-list'),
@@ -152,4 +159,9 @@ urlpatterns = [
     path('about-testimonial-view/',about_testimonial_view, name='about_testimonial_view'),
     path('about-testimonial-edit/<str:id>/',about_testimonial_edit, name='about_testimonial_edit'),
     path('about-testimonial-delete/<str:id>/',about_testimonial_delete, name='about_testimonial_delete'),
+
+    # Booking section
+
+    path('booking-view/',booking_view, name='booking_view'),
+    path('booking-delete/<str:id>/',booking_delete, name='booking_delete'),
 ]

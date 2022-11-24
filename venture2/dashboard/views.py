@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.utils.text import slugify
 
 
+
+
+
 ############ start related image module ##########
 from django.db import transaction
 from django.urls import reverse_lazy
@@ -1024,3 +1027,55 @@ def subdistrict_delete(request,id):
     messages.success(request,'Delete Successfully')
     return redirect('subdistrict_view')
     
+# property location section
+
+def property_location_add(request):
+    form = LocationForm()
+    if request.method=='POST':
+        form = LocationForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Submit')
+            return redirect('property_location_view')
+        else:
+            form = LocationForm(request.POST)
+            return render(request, 'dashboard/property_location/property_location_add.html',{'form':form})
+    return render(request,'dashboard/property_location/property_location_add.html',{'form':form})
+
+def property_location_view(request):
+    query = Location.objects.all()
+    return render(request,'dashboard/property_location/property_location_view.html',{'query':query})
+
+def property_location_edit(request,id):
+    query = Location.objects.get(id=id)
+    form = LocationForm(instance =query)
+    if request.method=='POST':
+
+        form = LocationForm(request.POST,request.FILES,instance=query)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Successfully Update')
+            return redirect('property_location_view')
+        else:
+            form = LocationForm(instance =query)
+            messages.success(request,'Successfully not Update')
+            return render(request, 'dashboard/property_location/property_location_edit.html',{'form':form})
+
+    return render(request,'dashboard/property_location/property_location_edit.html',{'form':form})
+
+def property_location_delete(request,id):
+    query =Location.objects.get(id=id)
+    query.delete()
+    messages.success(request,'Delete Successfully')
+    return redirect('property_location_view')
+    
+# booking now
+
+def booking_view(request):
+    query = BookingNow.objects.all()
+    return render(request,'dashboard/booking_now/booking_view.html',{'query':query})
+    
+def booking_delete(request,id):
+    query = BookingNow.objects.get(id=id)
+    query.delete()
+    return redirect('booking_view')

@@ -2,6 +2,17 @@
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
+            {% if request.user.is_superuser %}
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-networking"></i>
+                <span class="nav-text">Super User</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'register' %}">Create user</a></li>
+                    <li><a href="{% url 'register_view' %}">User view</a></li>
+                </ul>
+            </li>
+            {% endif %}
 
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="flaticon-381-networking"></i>
@@ -28,14 +39,21 @@
                         </ul>
                     </li> 
 
-                    <li><a class="has-arrow" href="form-element.html">Upload Project type</a>
+                    <li><a class="has-arrow" href="form-element.html">Property Location</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{% url 'property_location_add' %}">Add Location</a></li>
+                            <li><a href="{% url 'property_location_view' %}">View Location</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a class="has-arrow" href="form-element.html">Project type</a>
                         <ul aria-expanded="false">
                             <li><a href="{% url 'project_type_add' %}">Add Project type</a></li>
                             <li><a href="{% url 'project_type_view' %}">View Project type</a></li>
                         </ul>
                     </li> 
 
-                    <li><a class="has-arrow" href="form-element.html">Upload Property type</a>
+                    <li><a class="has-arrow" href="form-element.html">Property type</a>
                         <ul aria-expanded="false">
                             <li><a href="{% url 'property_type_add' %}">Add Property type</a></li>
                             <li><a href="{% url 'property_type_view' %}">View Property type</a></li>
@@ -208,6 +226,16 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{% url 'feedback_view' %}">Feedback view</a>
+                </ul>
+            </li>
+
+            <li>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-notepad"></i>
+                <span class="nav-text">Booking</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'booking_view' %}">Booking view</a>
                 </ul>
             </li>
 

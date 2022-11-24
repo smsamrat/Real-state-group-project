@@ -182,7 +182,11 @@
                             <div class="property-overflow">
                             <a href="{% url 'recent_details_property' feature_detail.id %}">
                                 <div class="property-photo">
+                                    {% if feature_detail.post_pic %}
                                     <img src="{{feature_detail.post_pic.url}}" alt="rp" class="img-fluid">
+                                    {% else %}
+                                    <img src="" alt="rp" class="img-fluid">
+                                    {% endif %}
                                     <div class="listing-badges">
                                         <span class="featured active">
                                             {% if feature_detail.for_sale %}

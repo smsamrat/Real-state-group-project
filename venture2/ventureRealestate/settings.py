@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'phonenumber_field',
     'dashboard',
+    'useraccount',
     "crispy_forms",
     "crispy_bootstrap5",
 ]

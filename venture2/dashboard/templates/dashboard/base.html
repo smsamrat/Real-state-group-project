@@ -79,7 +79,7 @@
 		$("body").on('click touchstart', '.load-more-contact', function (e) {
 			e.preventDefault();
 			$(".contact-content:hidden").slice(0, 2).slideDown();
-			if ($(".job-content:hidden").length == 0) {
+			if ($(".contact-content:hidden").length == 0) {
 				$(".load-more-contact").text("No Content").addClass("noContent");
 			}
 			$('html,body').animate({

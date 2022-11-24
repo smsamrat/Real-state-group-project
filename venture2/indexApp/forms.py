@@ -144,7 +144,7 @@ class BookingNowForm(forms.ModelForm):
     }))
 
 
-    property_type = forms.ModelChoiceField(queryset =BookingPropertyType.objects.all(),empty_label='Select Property', widget=forms.Select(attrs={
+    property_type = forms.ModelChoiceField(queryset =PropertyTypeFilter.objects.all(),empty_label='Select Property', widget=forms.Select(attrs={
         'class':'form-select prt',
     }))
 

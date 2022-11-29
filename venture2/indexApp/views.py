@@ -45,6 +45,7 @@ def Home(request):
         'why_chosse_us_q':why_chosse_us_q,
         'faq_query':faq_query,
     }
+    messages.success(request,'Successfully Submit')
     return render(request,'index.html',context)
 
 

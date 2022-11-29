@@ -7,8 +7,6 @@ from django.utils.text import slugify
 
 
 
-
-
 ############ start related image module ##########
 from django.db import transaction
 from django.urls import reverse_lazy
@@ -102,19 +100,11 @@ def feedback_edit(request,id):
 
 def feedback_approved(request,id):
     query = FeedBack.objects.get(id=id)
-    form = FeedBackApprovedForm(instance =query)
-    if request.method=='POST':
+    query.is_feedback_show = True
+    query.save()
+    messages.success(request,'Successfully Approved')
+    return redirect('feedback_view')
 
-        form = FeedBackApprovedForm(request.POST,instance=query)
-        if form.is_valid():
-            form.save()
-            messages.success(request,'Successfully Update')
-            return redirect('feedback_view')
-        else:
-            form = FeedBackApprovedForm(instance =query)
-            messages.success(request,'Successfully not Update')
-            return render(request, 'dashboard/feedback/feedback_approve.html',{'form':form})
-    return render(request,'dashboard/feedback/feedback_approve.html',{'form':form,'query':query,})
 
 def feedback_delete(request,id):
     feedBack_delete =  FeedBack.objects.filter(id=id)
@@ -160,6 +150,8 @@ class PropertyPostRelatedImageCreate(CreateView):
             if relatedimages.is_valid():
                 relatedimages.instance = self.object
                 relatedimages.save()
+                messages.success(self.request,'Upload Successfully')
+
         return super(PropertyPostRelatedImageCreate, self).form_valid(form)
 
 
@@ -192,6 +184,7 @@ class PropertyPostRelatedImageUpdate(UpdateView):
             if relatedimages.is_valid():
                 relatedimages.instance = self.object
                 relatedimages.save()
+                messages.success(self.request,'Update Successfully')
         return super(PropertyPostRelatedImageUpdate, self).form_valid(form)
 
 
